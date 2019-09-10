@@ -11,6 +11,7 @@
 		<div id="menubar">
 		</div>
 		<div id="principal">
+            TEST
 		</div>
 	</div>
 </body>
