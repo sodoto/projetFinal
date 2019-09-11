@@ -4,6 +4,7 @@
         private $idOffer;
         private $idMember;
         private $message;
+		private $dateTime;//Allows to apply the "order by statement" for displaying the conversation according to time.
 
         public function __construct()
         {
@@ -49,6 +50,15 @@
             $this->message = $message;
         }
 
+		 public function getDateTime()
+        {
+            return $this->dateTime;
+        }
+
+        public function setDateTime($dateTime)
+        {
+            $this->dateTime = $dateTime;
+        }
 
 
     }
