@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 12 Septembre 2019 à 00:22
+-- Généré le :  Jeu 12 Septembre 2019 à 01:47
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -151,6 +151,35 @@ ALTER TABLE `skills`
   ADD PRIMARY KEY (`idSkills`);
 
 --
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `members`
+--
+ALTER TABLE `members`
+  MODIFY `idMember` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `message`
+--
+ALTER TABLE `message`
+  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `offerrequest`
+--
+ALTER TABLE `offerrequest`
+  MODIFY `idOffer` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `request`
+--
+ALTER TABLE `request`
+  MODIFY `idRequest` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `skills`
+--
+ALTER TABLE `skills`
+  MODIFY `idSkills` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- Contraintes pour les tables exportées
 --
 
@@ -165,8 +194,8 @@ ALTER TABLE `memberskills`
 -- Contraintes pour la table `message`
 --
 ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`idOffer`) REFERENCES `offerrequest` (`idOffer`),
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`idMember`) REFERENCES `members` (`idMember`);
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`idMember`) REFERENCES `members` (`idMember`),
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`idOffer`) REFERENCES `offerrequest` (`idOffer`);
 
 --
 -- Contraintes pour la table `offerrequest`
