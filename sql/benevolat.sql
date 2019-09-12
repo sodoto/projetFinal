@@ -2,10 +2,10 @@
 -- version 4.5.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Sep 11, 2019 at 12:46 PM
--- Server version: 5.7.11
--- PHP Version: 5.6.18
+-- Client :  localhost
+-- Généré le :  Jeu 12 Septembre 2019 à 00:22
+-- Version du serveur :  5.7.11
+-- Version de PHP :  5.6.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `benevolat`
+-- Base de données :  `benevolat`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `members`
+-- Structure de la table `members`
 --
 
 CREATE TABLE `members` (
@@ -40,7 +40,7 @@ CREATE TABLE `members` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `memberskills`
+-- Structure de la table `memberskills`
 --
 
 CREATE TABLE `memberskills` (
@@ -51,26 +51,27 @@ CREATE TABLE `memberskills` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Structure de la table `message`
 --
 
 CREATE TABLE `message` (
   `idMessage` int(11) NOT NULL,
   `message` varchar(200) COLLATE utf8_bin NOT NULL,
   `idOffer` int(11) NOT NULL,
-  `idMember` int(11) NOT NULL
+  `idMember` int(11) NOT NULL,
+  `dateTime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `offerrequest`
+-- Structure de la table `offerrequest`
 --
 
 CREATE TABLE `offerrequest` (
   `idOffer` int(11) NOT NULL,
   `status` varchar(50) COLLATE utf8_bin NOT NULL,
-  `dateOffer` date NOT NULL,
+  `dateOffer` datetime NOT NULL,
   `comment` varchar(50) COLLATE utf8_bin NOT NULL,
   `idMember` int(11) NOT NULL,
   `idRequest` int(11) NOT NULL
@@ -79,14 +80,14 @@ CREATE TABLE `offerrequest` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `request`
+-- Structure de la table `request`
 --
 
 CREATE TABLE `request` (
   `idRequest` int(11) NOT NULL,
   `title` varchar(50) COLLATE utf8_bin NOT NULL,
-  `dateRequest` date NOT NULL,
-  `dateService` date NOT NULL,
+  `dateRequest` datetime NOT NULL,
+  `dateService` datetime NOT NULL,
   `city` varchar(50) COLLATE utf8_bin NOT NULL,
   `status` varchar(50) COLLATE utf8_bin NOT NULL,
   `idMember` int(11) NOT NULL
@@ -95,53 +96,90 @@ CREATE TABLE `request` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `skills`
+-- Structure de la table `skills`
 --
 
 CREATE TABLE `skills` (
-  `idSkills` varchar(10) COLLATE utf8_bin NOT NULL,
+  `idSkills` int(11) NOT NULL,
   `description` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Indexes for dumped tables
+-- Index pour les tables exportées
 --
 
 --
--- Indexes for table `members`
+-- Index pour la table `members`
 --
 ALTER TABLE `members`
   ADD PRIMARY KEY (`idMember`);
 
 --
--- Indexes for table `memberskills`
+-- Index pour la table `memberskills`
 --
 ALTER TABLE `memberskills`
-  ADD PRIMARY KEY (`idMember`,`idSkill`);
+  ADD KEY `idMember` (`idMember`),
+  ADD KEY `idSkill` (`idSkill`);
 
 --
--- Indexes for table `message`
+-- Index pour la table `message`
 --
 ALTER TABLE `message`
-  ADD PRIMARY KEY (`idMessage`);
+  ADD PRIMARY KEY (`idMessage`),
+  ADD KEY `idMember` (`idMember`),
+  ADD KEY `idOffer` (`idOffer`);
 
 --
--- Indexes for table `offerrequest`
+-- Index pour la table `offerrequest`
 --
 ALTER TABLE `offerrequest`
-  ADD PRIMARY KEY (`idOffer`);
+  ADD PRIMARY KEY (`idOffer`),
+  ADD KEY `idMember` (`idMember`),
+  ADD KEY `idRequest` (`idRequest`);
 
 --
--- Indexes for table `request`
+-- Index pour la table `request`
 --
 ALTER TABLE `request`
-  ADD PRIMARY KEY (`idRequest`);
+  ADD PRIMARY KEY (`idRequest`),
+  ADD KEY `idMember` (`idMember`);
 
 --
--- Indexes for table `skills`
+-- Index pour la table `skills`
 --
 ALTER TABLE `skills`
   ADD PRIMARY KEY (`idSkills`);
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `memberskills`
+--
+ALTER TABLE `memberskills`
+  ADD CONSTRAINT `memberskills_ibfk_1` FOREIGN KEY (`idMember`) REFERENCES `members` (`idMember`),
+  ADD CONSTRAINT `memberskills_ibfk_2` FOREIGN KEY (`idSkill`) REFERENCES `skills` (`idSkills`);
+
+--
+-- Contraintes pour la table `message`
+--
+ALTER TABLE `message`
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`idOffer`) REFERENCES `offerrequest` (`idOffer`),
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`idMember`) REFERENCES `members` (`idMember`);
+
+--
+-- Contraintes pour la table `offerrequest`
+--
+ALTER TABLE `offerrequest`
+  ADD CONSTRAINT `offerrequest_ibfk_1` FOREIGN KEY (`idMember`) REFERENCES `members` (`idMember`),
+  ADD CONSTRAINT `offerrequest_ibfk_2` FOREIGN KEY (`idRequest`) REFERENCES `request` (`idRequest`);
+
+--
+-- Contraintes pour la table `request`
+--
+ALTER TABLE `request`
+  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`idMember`) REFERENCES `members` (`idMember`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
