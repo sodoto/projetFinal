@@ -4,7 +4,7 @@
 		private $idMember;
 		private $title;
 		private $dateRequest;
-		private $dsateService;
+		private $dateService;
 		private $city;
 		private $status;
 
