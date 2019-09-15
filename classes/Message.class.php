@@ -4,7 +4,7 @@
         private $idOffer;
         private $idMember;
         private $message;
-		private $dateTime;//Allows to apply the "order by statement" for displaying the conversation according to time.
+		private $timeMessage;//Allows to apply the "order by statement" for displaying the conversation according to time.
 
         public function __construct()
         {
@@ -50,15 +50,23 @@
             $this->message = $message;
         }
 
-		 public function getDateTime()
+		 public function getTimeMessage()
         {
-            return $this->dateTime;
+            return $this->timeMessage;
         }
 
-        public function setDateTime($dateTime)
+        public function setTimeMessage($timeMessage)
         {
-            $this->dateTime = $dateTime;
+            $this->timeMessage = $timeMessage;
         }
+
+        public function loadFromObject($x) {
+			$this->idMessage = $x->idMessage;
+			$this->idOffer = $x->idOffer;
+			$this->idMember = $x->idMember;
+			$this->message = $x->message;
+			$this->timeMessage = $x->timeMessage;
+		}
 
 
     }

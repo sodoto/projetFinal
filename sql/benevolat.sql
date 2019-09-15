@@ -51,15 +51,15 @@ CREATE TABLE `memberskills` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `message`
+-- Structure de la table `messageChat`
 --
 
-CREATE TABLE `message` (
+CREATE TABLE `messageChat` (
   `idMessage` int(11) NOT NULL,
   `message` varchar(200) COLLATE utf8_bin NOT NULL,
   `idOffer` int(11) NOT NULL,
   `idMember` int(11) NOT NULL,
-  `dateTime` datetime NOT NULL
+  `timeMessage` datetime NOT NULL --Changement du nom de variable "datetime" est un mot reserve en sql
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -100,7 +100,7 @@ CREATE TABLE `request` (
 --
 
 CREATE TABLE `skills` (
-  `idSkills` int(11) NOT NULL,
+  `idSkill` int(11) NOT NULL,
   `description` varchar(50) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -122,9 +122,9 @@ ALTER TABLE `memberskills`
   ADD KEY `idSkill` (`idSkill`);
 
 --
--- Index pour la table `message`
+-- Index pour la table `messageChat`
 --
-ALTER TABLE `message`
+ALTER TABLE `messageChat`
   ADD PRIMARY KEY (`idMessage`),
   ADD KEY `idMember` (`idMember`),
   ADD KEY `idOffer` (`idOffer`);
@@ -148,7 +148,7 @@ ALTER TABLE `request`
 -- Index pour la table `skills`
 --
 ALTER TABLE `skills`
-  ADD PRIMARY KEY (`idSkills`);
+  ADD PRIMARY KEY (`idSkill`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -162,7 +162,7 @@ ALTER TABLE `members`
 --
 -- AUTO_INCREMENT pour la table `message`
 --
-ALTER TABLE `message`
+ALTER TABLE `messageChat`
   MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `offerrequest`
@@ -178,7 +178,7 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT pour la table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `idSkills` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSkill` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour les tables exportées
 --
@@ -188,12 +188,12 @@ ALTER TABLE `skills`
 --
 ALTER TABLE `memberskills`
   ADD CONSTRAINT `memberskills_ibfk_1` FOREIGN KEY (`idMember`) REFERENCES `members` (`idMember`),
-  ADD CONSTRAINT `memberskills_ibfk_2` FOREIGN KEY (`idSkill`) REFERENCES `skills` (`idSkills`);
+  ADD CONSTRAINT `memberskills_ibfk_2` FOREIGN KEY (`idSkill`) REFERENCES `skills` (`idSkill`);
 
 --
 -- Contraintes pour la table `message`
 --
-ALTER TABLE `message`
+ALTER TABLE `messageChat`
   ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`idMember`) REFERENCES `members` (`idMember`),
   ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`idOffer`) REFERENCES `offerrequest` (`idOffer`);
 

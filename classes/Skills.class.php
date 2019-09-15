@@ -27,5 +27,9 @@
             $this->description = $description;
         }
 
+        public function loadFromObject($x) {
+			$this->idSKill = $x->idSkill;
+			$this->description = $x->description;
+		}
 
     }
