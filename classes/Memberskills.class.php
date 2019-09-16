@@ -1,7 +1,7 @@
 <?php
-    class Memberskills{
+    class MemberSkills{
         private $idMember;
-        private $skills;
+        private $idSkill;
 
         public function __construct()
         {
@@ -17,15 +17,19 @@
             $this->idMember = $idMember;
         }
 
-        public function getSkills()
+        public function getIdSkill()
         {
-            return $this->skills;
+            return $this->idSkill;
         }
 
-        public function setSkills($skills)
+        public function setIdSkill($idSkill)
         {
-            $this->skills = $skills;
+            $this->idSkill = $idSkill;
         }
 
+        public function loadFromObject($x) {
+			$this->idSKill = $x->idSkill;
+			$this->idMember = $x->idMember;
+		}
 
     }
