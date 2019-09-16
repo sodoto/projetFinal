@@ -66,5 +66,15 @@
 
         public function setStatus($value){
             $this->status = $value;
-        }
+		}
+		
+		public function loadFromObject($x) {
+			$this->idRequest = $x->idRequest;
+			$this->idMember = $x->idMember;
+			$this->title = $x->title;
+			$this->dateRequest = $x->dateRequest;
+			$this->dateService = $x->dateService;
+			$this->city = $x->city;
+			$this->status = $x->status;
+		}
 	}

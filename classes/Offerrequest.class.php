@@ -1,5 +1,5 @@
 <?php
-    class Offerrequest{
+    class OfferRequest{
         private $idOffer;
         private $idMember;
         private $idRequest;
@@ -71,8 +71,15 @@
             $this->status = $status;
         }
 
-
-
+        public function loadFromObject($x) {
+			$this->idOffer = $x->idOffer;
+            $this->idMember = $x->idMember;
+            $this->idRequest = $x->idRequest;
+            $this->dateOffer = $x->dateOffer;
+            $this->comment = $x->comment;
+            $this->status = $x->status;
+		}
+        
 
 
 
