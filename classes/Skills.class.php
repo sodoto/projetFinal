@@ -2,7 +2,7 @@
     class Skills{
         private $idSkill;
         private $description;
-
+        
         public function __construct()
         {
         }
