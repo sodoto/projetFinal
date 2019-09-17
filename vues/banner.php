@@ -1,3 +1,6 @@
+<?php
+	if (!ISSET($_SESSION)) session_start();
+?>
 <div> 
 	<img src="./images/handshake.jpg" alt="SOSvite.com" style="width:180px;height:70px; padding-left:30px;">
 </div>
@@ -25,6 +28,10 @@
 			</ul>
 
 			<ul class="nav navbar-nav ml-auto">
+			<?php
+				if (ISSET($_SESSION["connected"]))
+				{
+			?>
 				<li class="nav-item dropdown">
 						<a class="text-dark1" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
 							<i class="fas fa-user"></i> Mon Profil
@@ -36,6 +43,9 @@
 							<a class="text-dark" class="dropdown-item" href="#"> NOTIFICATIONS/MESSAGES</a></br>
 						</div>
 				</li>
+			<?php
+				}
+			?>
 				<li class="nav-item">
 					<a class="text-dark1" class="nav-link" href="?action=connecter"><i class="fas fa-sign-in-alt"></i> Login</a>
 				</li>

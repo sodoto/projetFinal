@@ -54,16 +54,14 @@ padding-right:17px;
   display: flexbox;
 } */
 
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+#footer {
+  padding-top: 20px;
+padding-bottom: 20px;
   background-color: #4D9AC4;
   font-family:Helvetica;
   /* Set the fixed height of the footer here */
-  height: 40px;
-  line-height: 40px; /* Vertically center the text there */
+  /* height: 40px;
+  line-height: 40px; */
 }
 
 .btn {
