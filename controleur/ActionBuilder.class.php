@@ -1,6 +1,5 @@
 <?php
 require_once('/controleur/DefaultAction.class.php');
-require_once('/controleur/AfficherAction.class.php');
 require_once('/controleur/LoginAction.class.php');
 require_once('/controleur/LogoutAction.class.php');
 class ActionBuilder{
