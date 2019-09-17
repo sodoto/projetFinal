@@ -55,7 +55,8 @@ padding-right:17px;
 } */
 
 .footer {
-  position: absolute;
+  position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
   background-color: #4D9AC4;
@@ -126,4 +127,45 @@ padding-right:17px;
   margin-top: 13px;
   margin-bottom:5px;
   padding-bottom: 5px;*/
+}
+
+.btn3 {
+	background-color: #4D9AC4;
+	color: black;
+	border-color: #4D9AC4;
+    display: inline-block;
+    text-decoration: none;
+    line-height: normal;
+	padding-right:2px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  font-family:Helvetica;
+}
+
+.formLogin {
+  margin: 90px auto;
+  background-color: #ced7dd;
+  padding: 50px 20%;
+  border-radius: 10px;
+  width: 800px;
+}
+
+.Input-Login {
+  padding: 15px 10px;
+  margin: 5px 0px;
+  width: 100%;
+  color: #666;
+  border-radius: 1px;
+  border: 1px solid #ccc;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.1rem;
+font-weight: bold;
+font-family:Helvetica;
 }

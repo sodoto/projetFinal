@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,9 +19,22 @@
 		include("/vues/banner.php");
 	?>
 	</div>
-	<div id="content">
-	Page d'accueil.
-	</div>
+    
+    <div class="container">
+    <form action="/" method="POST" class="formLogin">
+        <h1>LOGIN</h1>
+
+        <input type="email" class="Input-Login" name="email" placeholder="Courrier &eacute;lectronique"><br/><br/>
+        <input type="password" class="Input-Login" name="password" placeholder="Mot de passe"><br/>
+        <span style="float:right;">
+        <button type="submit" href="#" class="btn2">Entrer</button>
+        <button type="reset"href="#" class="btn2">Vider</button>
+        </span>
+        </br></br></br>
+            <button type="button" href="register.html" class="btn3 btn-lg btn-block"><a style="line-height: 1px;" class="text-dark1">Pas inscrit? Créer un compte</a></button>
+        </p>
+    </form>
+    </div>
 	<div>
 	<?php
 		include("/vues/footer.php");

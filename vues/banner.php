@@ -37,7 +37,7 @@
 						</div>
 				</li>
 				<li class="nav-item">
-					<a class="text-dark1" class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+					<a class="text-dark1" class="nav-link" href="?action=connecter"><i class="fas fa-sign-in-alt"></i> Login</a>
 				</li>
 			</ul>
 	</nav> 
