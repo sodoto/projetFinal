@@ -1,5 +1,5 @@
 <?php
-require_once('./configs/config.php');
+require_once('/modele/config/config.php');
 class Database
 {	
 	private static $instance = null;
