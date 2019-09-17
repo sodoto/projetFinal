@@ -32,7 +32,7 @@
         </span>
         </br></br></br>
             <button type="button" href="register.html" class="btn3 btn-lg btn-block"><a style="line-height: 1px;" class="text-dark1">Pas inscrit? Créer un compte</a></button>
-        </p>
+        
     </form>
     </div>
 	<div>
