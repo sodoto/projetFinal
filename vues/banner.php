@@ -10,7 +10,7 @@
 			<ul class="nav navbar-nav align-items-center mr-auto">
 				<li class="nav-item">
 					<!-- <button type="button" href="#"> -->
-						<a class="text-dark1" href="#">Toute les demandes</a>
+						<a class="text-dark1" href="?action=afficherRequest">Toute les demandes</a>
 					<!-- </button> -->
 				</li>
 				<li class="nav-item">

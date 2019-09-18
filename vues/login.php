@@ -31,9 +31,10 @@
         <button type="reset"href="#" class="btn2">Vider</button>
         </span>
         </br></br></br>
-            <button type="button" href="register.html" class="btn3 btn-lg btn-block"><a style="line-height: 1px;" class="text-dark1">Pas inscrit? Créer un compte</a></button>
-        
+            <!--<button type="button" href="?action=signin" class="btn3 btn-lg btn-block"><a style="line-height: 1px;" class="text-dark1">Pas inscrit? Créer un compte</a></button>-->
+            <a class="text-dark1" href="?action=signin">Pas inscrit? Créer un compte</a>
     </form>
+	
     </div>
 	<div>
 	<?php

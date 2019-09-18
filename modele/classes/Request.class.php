@@ -1,11 +1,12 @@
 <?php
 	class Request{
 		private $idRequest;
+		private $skillWanted;
 		private $idMember;
 		private $title;
 		private $dateRequest;
 		private $dateService;
-		private $city;
+		private $location;
 		private $status;
 
 		public function __construct(){
@@ -18,6 +19,14 @@
 
 		public function setIdRequest($value){
 			$this->idRequest = $value;
+		}
+
+		public function getSkillWanted(){
+			return $this->skillWanted;
+		}
+
+		public function setSkillWanted($value){
+			$this->skillWanted = $value;
 		}
 
 		public function getIdMember(){
@@ -52,12 +61,12 @@
 			$this->dateService = $value;
 		}
 
-        public function getCity(){
-            return $this->city;
+        public function getLocation(){
+            return $this->location;
         }
 
-        public function setCity($value){
-            $this->city = $value;
+        public function setLocation($value){
+            $this->location = $value;
         }
 
         public function getStatus(){
@@ -68,13 +77,49 @@
             $this->status = $value;
 		}
 		
+		public function __toString()
+	{
+		return "Request[".$this->idRequest.",".$this->skillWanted.",".$this->title.",".$this->dateRequest.",".$this->dateService.",".$this->location.",".$this->status.",".$this->idMember."]";
+	}
+	public function affiche()
+	{
+		echo $this->__toString();
+	}
+	
+	public function loadFromArray($tab)
+	{
+		$this->idRequest=$tab["idRequest"];
+		$this->skillWanted=$tab["skillWanted"];
+		$this->title = $tab["title"];
+		$this->dateRequest = $tab["dateRequest"];
+		$this->dateService = $tab["dateService"];
+		$this->location = $tab["location"];
+		$this->status = $tab["status"];
+		$this->idMember = $tab["idMember"];
+	}
+		
 		public function loadFromObject($x) {
 			$this->idRequest = $x->idRequest;
+			$this->skillWanted= $x->skillWanted;
 			$this->idMember = $x->idMember;
 			$this->title = $x->title;
 			$this->dateRequest = $x->dateRequest;
 			$this->dateService = $x->dateService;
-			$this->city = $x->city;
+			$this->location = $x->location;
 			$this->status = $x->status;
 		}
+		
+		public function loadFromObject1($x)
+	{
+		$this->idRequest = $x->idRequest;
+		$this->skillWanted= $x->description;
+		$this->title = $x->title;
+		$this->dateRequest = $x->dateRequest;
+		$this->dateService = $x->dateService;
+		$this->location = $x->location;
+		$this->status = $x->status;
+		//Atribute from another table innerjoin
+		$this->idMember = $x->username;
+	
+	}
 	}
