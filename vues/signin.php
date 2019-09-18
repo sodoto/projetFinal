@@ -19,6 +19,28 @@
 	include("banner.php");
 	//include("menu.php");
 	$messageForm = "Vous avez déjà un compte?";
+	
+	if (ISSET($_REQUEST["global_message"]))
+	   $msg="<span class=\"warningMessage\">".$_REQUEST["global_message"]."</span>";
+	   
+	   $f = "";
+	   $l = "";
+	   $c = "";
+	   $e = "";
+	   $u = "";
+	  
+	
+	if (ISSET($_REQUEST["firstname"]))
+		$f = $_REQUEST["firstname"];
+	if (ISSET($_REQUEST["lastname"]))
+		$l = $_REQUEST["lastname"];
+	if (ISSET($_REQUEST["city"]))
+		$c = $_REQUEST["city"];
+	if (ISSET($_REQUEST["email"]))
+		$e = $_REQUEST["email"];
+	if (ISSET($_REQUEST["username"]))
+		$u = $_REQUEST["username"];
+	
 ?>
 
 <h2> LISTE DE REQUESTS</h3>
@@ -26,16 +48,38 @@
 	 <div class="container">
 	<form action="" method="POST" class="formLogin">
                     <h1>S'inscrire</h1>
-					<input type="text" class="Input-Login" name="firstname" placeholder="Prenom"><br/>
-                    <input type="text" class="Input-Login" name="lastname"  placeholder="Nom"><br/>
-                    <input type="text" class="Input-Login" name="city"  placeholder="Ville"><br/>
-					 <input type="email" class="Input-Login" name="email"  placeholder="Courrier &eacute;lectronique"><br/>
-					 <input type="text" class="Input-Login" name="username" placeholder="Utilisateur"><br/>
-                    <input type="text" class="Input-Login" style="display:none">
+					<input type="text" class="Input-Login" name="firstname" value="<?php echo $f?>" placeholder="Prenom"><br/>
+                    <?php if (ISSET($_REQUEST["field_messages"]["firstname"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["firstname"]."</span>";
+					?>
+					<input type="text" class="Input-Login" name="lastname" value="<?php echo $l?>" placeholder="Nom"><br/>
+                    <?php if (ISSET($_REQUEST["field_messages"]["lastname"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["lastname"]."</span>";
+					?>
+					<input type="text" class="Input-Login" name="city"  value="<?php echo $c?>" placeholder="Ville"><br/>
+					 <?php if (ISSET($_REQUEST["field_messages"]["city"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["city"]."</span>";
+					?>
+					 <input type="email" class="Input-Login" name="email" value="<?php echo $e?>" placeholder="Courrier &eacute;lectronique"><br/>
+					 <?php if (ISSET($_REQUEST["field_messages"]["email"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["email"]."</span>";
+					?>
+					 <input type="text" class="Input-Login" name="username" value="<?php echo $u?>" placeholder="Utilisateur"><br/>
+                    <?php if (ISSET($_REQUEST["field_messages"]["username"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["username"]."</span>";
+					?>
+					<input type="text" class="Input-Login" style="display:none">
 					<input type="password" class="Input-Login" style="display:none">
+					
 					<input type="password" class="Input-Login" name="password"  placeholder="Mot de passe"><br/>
-                    <input type="password" class="Input-Login" name="password2"  placeholder="R&eacute;p&eacute;ter le mot de passe"><br/>
-                    <button type="submit" name="submit" value="submit" >Entrer</button>
+                    <?php if (ISSET($_REQUEST["field_messages"]["password"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["password"]."</span>";
+					?>
+					<input type="password" class="Input-Login" name="password2"  placeholder="R&eacute;p&eacute;ter le mot de passe"><br/>
+                    <?php if (ISSET($_REQUEST["field_messages"]["password2"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["password2"]."</span></br>";
+					?>
+					<button type="submit" name="submit" value="submit" >Entrer</button>
                     <button type="reset">Vider</button>
 					
                     <p><br><?=$messageForm?></p>
