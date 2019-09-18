@@ -1,13 +1,24 @@
 <?php
     class MemberSkills{
-        private $idMember;
+		private $idRegistre;
+		private $idMember;
         private $idSkill;
 
         public function __construct()
         {
         }
 
-        public function getIdMember()
+         public function getIdRegistre()
+        {
+            return $this->idRegistre;
+        }
+
+        public function setIdRegistre($idRegistre)
+        {
+            $this->idRegistre = $idRegistre;
+        }
+		
+		public function getIdMember()
         {
             return $this->idMember;
         }
@@ -28,6 +39,7 @@
         }
 
         public function loadFromObject($x) {
+			$this->idRegistre = $x->idRegistre;
 			$this->idSKill = $x->idSkill;
 			$this->idMember = $x->idMember;
 		}

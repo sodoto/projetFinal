@@ -1,11 +1,13 @@
 <?php
 require_once('./controleur/Action.interface.php');
-require_once('/classes/Memberskills.class.php');
+require_once('/modele/classes/MemberSkills.class.php');
+require_once('./modele/MemberSkillsDAO.class.php');
 
 class MemberSkillsAction implements Action {
 	public function execute(){
-		if (!ISSET($_REQUEST["username"]))
-			return "signin";
+
+if (!ISSET($_SESSION))
+	session_start();
 	
 		$idMember=$_SESSION["idMember"];
 			

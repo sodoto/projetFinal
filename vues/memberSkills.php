@@ -98,7 +98,9 @@ input:checked + .slider:before {
 			 <h1 id="heading1">Voulez-vous aider les autres? dites-nous vos compétences</h1>
 			 <p id="par1"><strong>Si pour le moment vous ne pouvez pas aider les autres ne vous inquietez pas, continuez simplement.</strong></p> 
 			 <p id="par1"><strong>Si vous changez d'avis plus tard vous pouvez ajouter des competences dans vos préferences</strong></p>
-                <form action="competences.php" method="POST" id="register1">
+                <?php echo $_SESSION["idMember"] ?>
+				 <?php echo $_SESSION["connected"] ?>
+				<form action="" method="POST" class="formLogin">
                    
 					
 					<label class="slider-label">Deplacer des objets </label>
@@ -181,14 +183,12 @@ input:checked + .slider:before {
 					<br>
 					
 					
-                   
+                   <input name="action" value="memberSkills" type="hidden" />
                     <button type="submit" name="submit" value="submit" >Enregistrer</button>
                     <button type="reset" name="reset" value="reset"  >Éteindre les boutons</button>
 
                     
-                    <p>
-                        <a href="gereBenevolat.php">Continuer</a>
-                    </p>
+                   
                 </form>
             </section>
         </article>
