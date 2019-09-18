@@ -23,7 +23,7 @@
 	<div id="content">
 	<h2>Découvrez comment vous pouvez aider quelqu'un</h2>
 <?php
-require_once('/modele/classes/Request.class.php');
+
 require_once('/modele/AfficherRequestDAO.class.php');
 
 $dao = new afficherRequestDAO();
