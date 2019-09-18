@@ -23,7 +23,7 @@ class ActionBuilder{
 				return new LogoutAction();
 				break; 
 			case "afficherRequest" :
-				return new AfficherAction();
+				return new AfficherRequestAction();
 				break; 
 			default :
 				return new DefaultAction();

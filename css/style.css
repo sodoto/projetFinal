@@ -13,6 +13,9 @@ background-color: #4D9AC4 ;
   vertical-align: center;
 }
 
+.main{
+ 
+}
 
 .text-dark{
 color:black;
@@ -56,7 +59,7 @@ padding-right:17px;
 
 #footer {
   padding-top: 20px;
-padding-bottom: 20px;
+  padding-bottom: 20px;
   background-color: #4D9AC4;
   font-family:Helvetica;
   /* Set the fixed height of the footer here */

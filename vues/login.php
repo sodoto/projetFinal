@@ -61,7 +61,7 @@ if (ISSET($_REQUEST["email"]))
     </form>
 	
     </div>
-	<div>
+	<div class="">
 	<?php
 		include("/vues/footer.php");
 	?>

@@ -24,7 +24,9 @@ class LoginAction implements Action {
 				return "login";
 			}
 		if (!ISSET($_SESSION)) session_start();
+
 		$_SESSION["connected"] = $_REQUEST["email"];
+		
 		return "afficherRequest";
 	}
 	

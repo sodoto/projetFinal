@@ -2,7 +2,7 @@
 	if (!ISSET($_SESSION)) session_start();
 ?>
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" href="?action=default">
 			<img src="./images/logoSOSVITE.png" alt="CommunAction" style="height:70px;">
 		</a>
 
@@ -57,4 +57,4 @@
 					}
 				?>
 			</ul>
-	</nav> 
+	</nav>

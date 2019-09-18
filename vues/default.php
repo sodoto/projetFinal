@@ -15,18 +15,18 @@
 	</head>
 
 <body>
-	<div>
-	<?php
-		include("/vues/banner.php");
-	?>
-	</div>
-	<div id="content">
-	Page d'accueil.
-	</div>
-	<div>
-	<?php
-		include("/vues/footer.php");
-	?>
+	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
+			<?php
+				include("/vues/banner.php");
+			?>
+		<div class="main bd-highlight">
+			<span>Page d'accueil.</span>
+		</div>
+		<div class="mt-auto">
+			<?php
+				include("/vues/footer.php");
+			?>
+		</div>
 	</div>
 </body>
 </html>
