@@ -96,7 +96,33 @@ class MemberDAO
 
         try{
             $pstmt = $db->prepare("SELECT * FROM members WHERE idMember=:id");
-            $pstmt->execute(array(':id'=$id));
+            $pstmt->execute(array(':id'=>$id));
+
+            $result = $pstmt->fetch(PDO::FETCH_OBJ);
+
+            if($result) {
+                $m = new Member();
+                $m->loadFromObject($result);
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+                return $m;
+            }
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return NULL;
+    }
+	
+	public function findUser($username) {
+        $db = Database::getInstance();
+
+        try{
+            $pstmt = $db->prepare("SELECT * FROM members WHERE username=:username");
+            $pstmt->execute(array(':username'=>$username));
 
             $result = $pstmt->fetch(PDO::FETCH_OBJ);
 
