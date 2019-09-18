@@ -94,7 +94,7 @@ class RequestDAO
 
         try{
             $pstmt = $db->prepare("SELECT * FROM request WHERE idRequest=:id");
-            $pstmt->execute(array(':id'= $id));
+            $pstmt->execute(array(':id'=> $id));
 
             $result = $pstmt->fetch(PDO::FETCH_OBJ);
 
@@ -113,5 +113,28 @@ class RequestDAO
         catch (PDOException $ex){
         }           
         return NULL;
+    }
+
+    public function findByIdMember($idMember) {
+        $db = Database::getInstance();
+        $requests = Array();
+
+        try{
+            $pstmt = $db->prepare("SELECT * FROM request WHERE idMember=:id");
+            $pstmt->execute(array(':id'=> $idMember));
+
+            while($result = $pstmt->fetch(PDO::FETCH_OBJ)) {
+                $r = new Request();
+                $r->loadFromObject($result);
+                array_push($requests, $r);
+            }
+
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return $requests;
     }
 }

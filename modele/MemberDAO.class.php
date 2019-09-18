@@ -143,11 +143,11 @@ class MemberDAO
         return NULL;
     }
 
-    public function findByEmail($email) {
+    public function findByEmailOrUsername($email) {
         $db = Database::getInstance();
 
         try{
-            $pstmt = $db->prepare("SELECT * FROM members WHERE email=:e");
+            $pstmt = $db->prepare("SELECT * FROM members WHERE email=:e OR username=:e");
             $pstmt->execute(array(':e'=> $email));
 
             $result = $pstmt->fetch(PDO::FETCH_OBJ);

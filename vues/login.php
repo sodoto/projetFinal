@@ -32,7 +32,7 @@ if (ISSET($_REQUEST["email"]))
 			<form action="" method="POST" class="formLogin">
 				<h1>LOGIN</h1>
 
-				<input type="email" class="Input-Login" name="email" placeholder="Courrier &eacute;lectronique" value="<?=$u?>">
+				<input type="text" class="Input-Login" name="email" placeholder="Courrier &eacute;lectronique ou Nom d'utilisateur" value="<?=$u?>">
 				<?php 
 					if (ISSET($_REQUEST["field_messages"]["email"]))
 					{
