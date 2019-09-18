@@ -59,8 +59,10 @@ if (ISSET($_REQUEST["email"]))
 					<a class="text-dark1" href="?action=signin">Pas inscrit? Créer un compte</a>
 			</form>
 		</div>
-		<?php
-			include("/vues/footer.php");
-		?>
+		<div class="mt-auto">
+			<?php
+				include("/vues/footer.php");
+			?>
+		</div>
 </body>
 </html>
