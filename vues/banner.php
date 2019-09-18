@@ -1,11 +1,10 @@
 <?php
 	if (!ISSET($_SESSION)) session_start();
 ?>
-<div> 
-	<img src="./images/handshake.jpg" alt="SOSvite.com" style="width:180px;height:70px; padding-left:30px;">
-</div>
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="#">SOSVITE</a>
+		<a class="navbar-brand" href="#">
+			<img src="./images/logoSOSVITE.png" alt="CommunAction" style="height:70px;">
+		</a>
 
 			<ul class="nav navbar-nav align-items-center mr-auto">
 				<li class="nav-item">
@@ -43,11 +42,19 @@
 							<a class="text-dark" class="dropdown-item" href="#"> NOTIFICATIONS/MESSAGES</a></br>
 						</div>
 				</li>
+				<li class="nav-item">
+					<a class="text-dark1" class="nav-link" href="?action=deconnecter"><i class="fas fa-sign-out-alt"></i> Logout</a>
+				</li>
 			<?php
 				}
+				else
+				{
 			?>
 				<li class="nav-item">
 					<a class="text-dark1" class="nav-link" href="?action=connecter"><i class="fas fa-sign-in-alt"></i> Login</a>
 				</li>
+				<?php
+					}
+				?>
 			</ul>
 	</nav> 
