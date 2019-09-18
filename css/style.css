@@ -170,3 +170,6 @@ h2 {
 font-weight: bold;
 font-family:Helvetica;
 }
+
+.warningMessage {
+	color : red;

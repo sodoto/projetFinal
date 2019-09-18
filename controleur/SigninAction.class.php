@@ -34,7 +34,7 @@ class SigninAction implements Action {
 		$_SESSION["connected"] = $_REQUEST["username"];
 		$_SESSION["idMember"] = $membre->getIdMember();
 		//si esta todo correcto va a la vista afficher
-		return "afficherRequest";//debe seguir a los skills
+		return "memberSkills";//debe seguir a los skills
 	}
 	//Verification de champs du formulaire
 	public function valide()

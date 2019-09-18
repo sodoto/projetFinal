@@ -14,7 +14,10 @@ class ActionBuilder{
 				break; 
 			case "signin" :
 				return new SigninAction();
-				break; 
+				break;
+			case "memberSkills" :
+				return new MemberSkillsAction();
+				break; 				
 			case "deconnecter" :
 				return new LogoutAction();
 				break; 
