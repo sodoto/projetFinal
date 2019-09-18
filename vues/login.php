@@ -1,3 +1,12 @@
+<?php 
+if (!ISSET($_SESSION)) {
+    session_start();
+}
+
+$u = "";
+if (ISSET($_REQUEST["email"]))
+	$u = $_REQUEST["email"];
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,13 +30,29 @@
 	</div>
     
     <div class="container">
-    <form action="/" method="POST" class="formLogin">
+    <form action="" method="POST" class="formLogin">
         <h1>LOGIN</h1>
 
-        <input type="email" class="Input-Login" name="email" placeholder="Courrier &eacute;lectronique"><br/><br/>
-        <input type="password" class="Input-Login" name="password" placeholder="Mot de passe"><br/>
+		<input type="email" class="Input-Login" name="email" placeholder="Courrier &eacute;lectronique" value="<?=$u?>">
+		<?php 
+			if (ISSET($_REQUEST["field_messages"]["email"]))
+			{
+		?>
+			<span class="warningMessage"><?=$_REQUEST["field_messages"]["email"]?></span><br /><br />
+		<?php
+			}
+		?>
+		<input type="password" class="Input-Login" name="password" placeholder="Mot de passe">
+		<?php 
+			if (ISSET($_REQUEST["field_messages"]["password"]))
+			{
+		?>
+			<span class="warningMessage"><?=$_REQUEST["field_messages"]["password"]?></span><br /><br />
+		<?php
+			}
+		?>
         <span style="float:right;">
-        <button type="submit" href="#" class="btn2">Entrer</button>
+        <button type="submit" href="?action=connecter" class="btn2">Entrer</button>
         <button type="reset"href="#" class="btn2">Vider</button>
         </span>
         </br></br></br>

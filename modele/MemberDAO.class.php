@@ -57,7 +57,7 @@ class MemberDAO
 
         try{
             $pstmt = $db->prepare("DELETE FROM members WHERE idMember=:id");
-            $n = $pstmt->execute(array(':id' => $favoris->getIdMember()));
+            $n = $pstmt->execute(array(':id' => $member->getIdMember()));
 
             $pstmt->closeCursor();
             $pstmt = NULL;
@@ -123,6 +123,32 @@ class MemberDAO
         try{
             $pstmt = $db->prepare("SELECT * FROM members WHERE username=:username");
             $pstmt->execute(array(':username'=>$username));
+
+            $result = $pstmt->fetch(PDO::FETCH_OBJ);
+
+            if($result) {
+                $m = new Member();
+                $m->loadFromObject($result);
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+                return $m;
+            }
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return NULL;
+    }
+
+    public function findByEmail($email) {
+        $db = Database::getInstance();
+
+        try{
+            $pstmt = $db->prepare("SELECT * FROM members WHERE email=:e");
+            $pstmt->execute(array(':e'=> $email));
 
             $result = $pstmt->fetch(PDO::FETCH_OBJ);
 

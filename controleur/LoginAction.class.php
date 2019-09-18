@@ -10,23 +10,24 @@ class LoginAction implements Action {
 			return "login";
 		}
 
-		require_once('/modele/UserDAO.class.php');
-		$udao = new UserDAO();
-		$user = $udao->find($_REQUEST["email"]);
-		if ($user == null)
+		require_once('/modele/MemberDAO.class.php');
+		$mdao = new MemberDAO();
+		$member = $mdao->findByEmail($_REQUEST["email"]);
+		if ($member == null)
 			{
 				$_REQUEST["field_messages"]["email"] = "Utilisateur inexistant.";	
 				return "login";
 			}
-		else if ($user->getPassword() != $_REQUEST["password"])
+		else if ($member->getPassword() != $_REQUEST["password"])
 			{
 				$_REQUEST["field_messages"]["password"] = "Mot de passe incorrect.";	
 				return "login";
 			}
 		if (!ISSET($_SESSION)) session_start();
 		$_SESSION["connected"] = $_REQUEST["email"];
-		return "afficher";
+		return "afficherRequest";
 	}
+	
 	public function valide()
 	{
 		$result = true;
