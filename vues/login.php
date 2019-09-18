@@ -23,48 +23,44 @@ if (ISSET($_REQUEST["email"]))
 	</head>
 
 <body>
-	<div>
-	<?php
-		include("/vues/banner.php");
-	?>
-	</div>
-    
-    <div class="container">
-    <form action="" method="POST" class="formLogin">
-        <h1>LOGIN</h1>
+	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
+		<?php
+			include("/vues/banner.php");
+		?>
+		
+		<div class="container">
+			<form action="" method="POST" class="formLogin">
+				<h1>LOGIN</h1>
 
-		<input type="email" class="Input-Login" name="email" placeholder="Courrier &eacute;lectronique" value="<?=$u?>">
-		<?php 
-			if (ISSET($_REQUEST["field_messages"]["email"]))
-			{
-		?>
-			<span class="warningMessage"><?=$_REQUEST["field_messages"]["email"]?></span><br /><br />
+				<input type="email" class="Input-Login" name="email" placeholder="Courrier &eacute;lectronique" value="<?=$u?>">
+				<?php 
+					if (ISSET($_REQUEST["field_messages"]["email"]))
+					{
+				?>
+					<span class="warningMessage"><?=$_REQUEST["field_messages"]["email"]?></span><br /><br />
+				<?php
+					}
+				?>
+				<input type="password" class="Input-Login" name="password" placeholder="Mot de passe">
+				<?php 
+					if (ISSET($_REQUEST["field_messages"]["password"]))
+					{
+				?>
+					<span class="warningMessage"><?=$_REQUEST["field_messages"]["password"]?></span><br /><br />
+				<?php
+					}
+				?>
+				<span style="float:right;">
+				<button type="submit" href="?action=connecter" class="btn2">Entrer</button>
+				<button type="reset"href="#" class="btn2">Vider</button>
+				</span>
+				</br></br></br>
+					<!--<button type="button" href="?action=signin" class="btn3 btn-lg btn-block"><a style="line-height: 1px;" class="text-dark1">Pas inscrit? Créer un compte</a></button>-->
+					<a class="text-dark1" href="?action=signin">Pas inscrit? Créer un compte</a>
+			</form>
+		</div>
 		<?php
-			}
+			include("/vues/footer.php");
 		?>
-		<input type="password" class="Input-Login" name="password" placeholder="Mot de passe">
-		<?php 
-			if (ISSET($_REQUEST["field_messages"]["password"]))
-			{
-		?>
-			<span class="warningMessage"><?=$_REQUEST["field_messages"]["password"]?></span><br /><br />
-		<?php
-			}
-		?>
-        <span style="float:right;">
-        <button type="submit" href="?action=connecter" class="btn2">Entrer</button>
-        <button type="reset"href="#" class="btn2">Vider</button>
-        </span>
-        </br></br></br>
-            <!--<button type="button" href="?action=signin" class="btn3 btn-lg btn-block"><a style="line-height: 1px;" class="text-dark1">Pas inscrit? Créer un compte</a></button>-->
-            <a class="text-dark1" href="?action=signin">Pas inscrit? Créer un compte</a>
-    </form>
-	
-    </div>
-	<div class="">
-	<?php
-		include("/vues/footer.php");
-	?>
-	</div>
 </body>
 </html>

@@ -19,7 +19,7 @@
 			<?php
 				include("/vues/banner.php");
 			?>
-		<div class="main bd-highlight">
+		<div>
 			<span>Page d'accueil.</span>
 		</div>
 		<div class="mt-auto">

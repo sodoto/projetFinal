@@ -14,60 +14,62 @@
 </head>
 
 <body>
-	<div>
+	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
 		<?php
 			include("banner.php");
 			//include("menu.php");
 		?>
-	</div>
-	<div id="content">
-		<h2>Découvrez comment vous pouvez aider quelqu'un</h2>
-		<?php
-			require_once('/modele/AfficherRequestDAO.class.php');
-			$dao = new afficherRequestDAO();
-		?>	
-		<h2> LISTE DE REQUESTS</h3>
-		<?php //echo $_SESSION["idMember"] ?>
-		<table class="table">
-			<thead class="thead-light">
-				<tr>
-					<td>SKILL WANTED</td>
-					<td>DESCRIPTION</td>
-					<td>DATE REQUEST</td>
-					<td>DATE OF SERVICE</td>
-					<td>LOCATION</td>
-					<td>STATUS</td>
-					<td>USER</td>
-					<td>ACTION</td>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-					$tRequest = $dao->findAll();
-					foreach($tRequest as $request) {
-				?>
-				<tr>
-					<td><?=$request->getSkillWanted()?></td>
-					<td><?=$request->getTitle()?></td>
-					<td><?=$request->getDateRequest()?></td>
-					<td><?=$request->getDateService()?></td>
-					<td><?=$request->getLocation()?></td>
-					<td><?=$request->getStatus()?></td>
-					<td><?=$request->getIdMember()?></td>
-					<td>
-						<a href='?action=edit&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><span class="glyphicon glyphicon-edit"></a>
-						<a href='?action=supp&idRequest=<?=$request->getIdRequest()?>' title='effacer'><span class="glyphicon glyphicon-trash"></a>
-						<!--Para que no aparezca el item de adicionar se puede hacer un campo hiden CAMBIAR PARA USAR CAMPO HIDEN-->
-					</td>
-				</tr>
-				<?php  
-				}
-				?>
-			</tbody>
-		</table>
-	</div>
-	<?php
-		include("footer.php");
-	?>
+
+		<div>
+			<h2>Découvrez comment vous pouvez aider quelqu'un</h2>
+			<?php
+				require_once('/modele/AfficherRequestDAO.class.php');
+				$dao = new afficherRequestDAO();
+			?>	
+			<h2> LISTE DE REQUESTS</h3>
+			<?php //echo $_SESSION["idMember"] ?>
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<td>SKILL WANTED</td>
+						<td>DESCRIPTION</td>
+						<td>DATE REQUEST</td>
+						<td>DATE OF SERVICE</td>
+						<td>LOCATION</td>
+						<td>STATUS</td>
+						<td>USER</td>
+						<td>ACTION</td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						$tRequest = $dao->findAll();
+						foreach($tRequest as $request) {
+					?>
+					<tr>
+						<td><?=$request->getSkillWanted()?></td>
+						<td><?=$request->getTitle()?></td>
+						<td><?=$request->getDateRequest()?></td>
+						<td><?=$request->getDateService()?></td>
+						<td><?=$request->getLocation()?></td>
+						<td><?=$request->getStatus()?></td>
+						<td><?=$request->getIdMember()?></td>
+						<td>
+							<a href='?action=edit&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><span class="glyphicon glyphicon-edit"></a>
+							<a href='?action=supp&idRequest=<?=$request->getIdRequest()?>' title='effacer'><span class="glyphicon glyphicon-trash"></a>
+							<!--Para que no aparezca el item de adicionar se puede hacer un campo hiden CAMBIAR PARA USAR CAMPO HIDEN-->
+						</td>
+					</tr>
+					<?php  
+					}
+					?>
+				</tbody>
+			</table>
+		</div>
+		<div class="mt-auto">
+			<?php
+				include("footer.php");
+			?>
+		</div>
 </body>
 </html>
