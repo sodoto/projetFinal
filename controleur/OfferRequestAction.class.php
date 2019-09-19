@@ -1,6 +1,6 @@
 <?php
 require_once('./controleur/Action.interface.php');
-require_once('/classes/OfferRequestDAO.class.php');
+require_once('/modele/OfferRequestDAO.class.php');
 
 class OfferRequestAction implements Action {
 	public function execute(){
