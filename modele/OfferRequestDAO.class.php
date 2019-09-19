@@ -91,7 +91,7 @@ class OfferRequestDAO
 
         try{
             $pstmt = $db->prepare("SELECT * FROM offerrequest WHERE idOffer=:id");
-            $pstmt->execute(array(':id'= $id));
+            $pstmt->execute(array(':id'=>$id));
 
             $result = $pstmt->fetch(PDO::FETCH_OBJ);
 
