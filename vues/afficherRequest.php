@@ -25,6 +25,7 @@
 			<?php
 				require_once('/modele/AfficherRequestDAO.class.php');
 				$dao = new afficherRequestDAO();
+				
 			?>	
 			<h2> LISTE DE REQUESTS</h3>
 			<?php //echo $_SESSION["idMember"] ?>
@@ -54,10 +55,9 @@
 						<td><?=$request->getLocation()?></td>
 						<td><?=$request->getStatus()?></td>
 						<td><?=$request->getIdMember()?></td>
-						<td>
-							<a href='?action=edit&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><span class="glyphicon glyphicon-edit"></a>
-							<a href='?action=supp&idRequest=<?=$request->getIdRequest()?>' title='effacer'><span class="glyphicon glyphicon-trash"></a>
-							<!--Para que no aparezca el item de adicionar se puede hacer un campo hiden CAMBIAR PARA USAR CAMPO HIDEN-->
+						<td>						
+						     <input type="hidden"  name="IdRequest" value="<?=$request->getIdRequest()?>">
+							<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
 						</td>
 					</tr>
 					<?php  
