@@ -11,15 +11,29 @@ class OfferRequestAction implements Action {
 		}
 		else{
 			
+			
+			if (isset($_GET['status'])&&isset($_GET['idMember'])) {
+			
+			$status=($_GET['status']);
+			$idMember=($_GET['idMember']);
+ 		
 			$dao = new OfferRequestDAO();
+			date_default_timezone_set("America/Toronto");
+		
+			$date = date('Y-m-d H:i:s');
 		
 			$offerRequest = new OfferRequest();
-			$offerRequest->setStatus($_REQUEST['status']);
-			$offerRequest->setDateOffer(date("Y/m/d"));
+			$offerRequest->setStatus($status);
+			$offerRequest->setDateOffer($date);
 			$offerRequest->setComment("Text");
-			$offerRequest->setIdMember($_REQUEST['idMember']);
-			$offerRequest->setIdRequest($_REQUEST['idRequest']);
+			$offerRequest->setIdMember($idMember);
+			$offerRequest->setIdRequest($_SESSION["IDRequest"]);
 			$dao->create($offerRequest);
+			
+			$offerRequest->affiche();
+			}			
+			
+			
 			
 			return "offerRequest";
 		}
