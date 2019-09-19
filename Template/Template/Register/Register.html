@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="feuilleRegister.css"/>
+</head>
+<body>
+	<div> 
+	<img src="handshake.jpg" alt="SOSvite.com" style="width:180px;height:70px; padding-left:30px;">
+	</div>
+	<nav class="navbar navbar-light bg-light">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" style="padding-left:50px" href="#">SOSVITE</a>
+		</div>
+    <ul class="nav navbar-nav">
+		<li><button type="button" href="#" class="btn btn-default btn-lg"> <a style="line-height: 1px;" class="text-dark"><p>TOUTES LES <p /> <p>DEMANDES<p /></a></button></li>
+		<li><input class="rechercher" name="search" type="search" aria-label="Search"></li>
+		<li><button type="button"  href="#" class="btn2"><span class="glyphicon glyphicon-search"></span> RECHERCHER</li>
+	</ul>
+    <span style="float:right; padding-top:17px ;">
+		<div class="dropdown">
+			<p class="text-dark1"><span class="glyphicon glyphicon-user"></span> Mon Profil</p></li>
+			<div class="dropdown-content">
+				<a class="text-dark" href="#">VOS COMP&Eacute;TENCES</a> </br>
+				<a class="text-dark" href="#"> VOS DEMANDES</a> </br>
+				<a class="text-dark" href="#"> AIDES COMPLET&Eacute;ES</a> </br>
+				<a class="text-dark" href="#"> NOTIFICATIONS/MESSAGES</a></br>
+			</div>
+		</div>
+		<a class="text-dark1"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	</span>
+</nav> 
+<a id="top"></a>
+
+<main>
+        <article>
+            <section>
+                <form action="/" method="POST" id="register">
+                    <h1>S'inscrire</h1>
+					<input type="text" class="textbox" name="surname" placeholder="Nom"><br/>
+                    <input type="text" class="textbox" name="name" placeholder="Prenom"><br/>
+                    <input type="email" class="textbox" name="email" placeholder="Courrier &eacute;lectronique"><br/>
+					 <input type="text" class="textbox" name="city" placeholder="Ville"><br/>
+					 <input type="text" class="textbox" name="username" placeholder="Utilisateur"><br/>
+                    <input type="password" class="textbox" name="password" placeholder="Mot de passe"><br/>
+                    <input type="password" class="textbox" name="password2" placeholder="R&eacute;p&eacute;ter le mot de passe"><br/><br/>
+                    <span class="buttonRegister" style="float:right;">
+					<button type="submit" class="btn2">JSON</button>
+                    <button type="reset" class="btn2">Vider</button>
+					<button type="submit" class="btn2">Entrer</button>
+					</span>
+                    <p>
+                        <button type="button"  href="login.html" class="btn3 btn-primary btn-lg btn-block"><a style="line-height: 1px;" class="text-dark1">Inscrit? Connectez-vous</a></button>
+                    </p>
+                </form>
+            </section>
+        </article>
+    </main>
+
+<div class="footer">
+  <span style="float:right;">
+  <button type="button"  href="#top" class="btn1 btn-default btn-sm"> <a class="text-dark"> Retour au haut de la page </a><span class="glyphicon glyphicon-triangle-top"></span></button>
+  </span>
+</div>
+</body>
+</html>
