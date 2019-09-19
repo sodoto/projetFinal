@@ -57,7 +57,8 @@ if (ISSET($_REQUEST["email"]))
 				
 				
 				<span style="float:right;">
-				<button type="submit" href="?action=connecter" class="btn2">Entrer</button>
+				<input name="action" value="connecter" type="hidden" />
+				<button type="submit" class="btn2">Entrer</button>
 				<button type="reset"href="#" class="btn2">Vider</button>
 				</span>
 				</br></br></br>
