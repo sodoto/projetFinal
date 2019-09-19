@@ -8,6 +8,7 @@
 		private $dateService;
 		private $location;
 		private $status;
+		private $username;
 
 		public function __construct(){
 
@@ -77,6 +78,14 @@
             $this->status = $value;
 		}
 		
+		 public function getUsername(){
+            return $this->username;
+        }
+
+        public function setUsername($value){
+            $this->username = $value;
+		}
+		
 		public function __toString()
 	{
 		return "Request[".$this->idRequest.",".$this->skillWanted.",".$this->title.",".$this->dateRequest.",".$this->dateService.",".$this->location.",".$this->status.",".$this->idMember."]";
@@ -118,8 +127,8 @@
 		$this->dateService = $x->dateService;
 		$this->location = $x->location;
 		$this->status = $x->status;
-		//Atribute from another table innerjoin
-		$this->idMember = $x->username;
-	
+		$this->idMember = $x->idMember;
+		$this->username = $x->username;
+	//Atribute from another table innerjoin
 	}
 	}
