@@ -7,7 +7,7 @@ class OfferRequestDAO
     public function create($offerRequest) {
         $db = Database::getInstance();
         $n = 0;
-
+		
         try{
             $pstmt = $db->prepare("INSERT INTO offerrequest (status,dateOffer,comment,idMember,idRequest)
                                     VALUES (:s,:do,:c,:idm,:idr)");
