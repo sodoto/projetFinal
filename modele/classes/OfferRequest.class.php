@@ -80,7 +80,14 @@
             $this->status = $x->status;
 		}
         
-
+public function __toString()
+	{
+		return "OfferRequest[".$this->idOffer.",".$this->status.",".$this->dateOffer.",".$this->comment.",".$this->idMember.",".$this->idRequest."]";
+	}
+	public function affiche()
+	{
+		echo $this->__toString();
+	}
 
 
     }
