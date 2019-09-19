@@ -26,8 +26,9 @@ if (!ISSET($_SESSION))
 			
 			if(isset($_REQUEST['IdRequest']))
 { 		
-			$IdRequest = $_REQUEST['IdRequest']; 
-			
+			//$IDRequest = $_REQUEST['IdRequest']; 
+			$_SESSION["IDRequest"]= $_REQUEST['IdRequest']; 
+			echo $_SESSION["IDRequest"];
 }
 		?>
 
@@ -54,31 +55,46 @@ if (!ISSET($_SESSION))
 				</thead>
 				<tbody>
 					<?php
-						$tRequest = $dao->findIdSkill($IdRequest);
+					$skillWanted="";
+					
+						$tRequest = $dao->findIdSkill($_SESSION["IDRequest"]);
 						foreach($tRequest as $request) {
+							$skillWanted=$request->getSkillWanted();
+							$title=$request->getTitle();
+							$dateRequest=$request->getDateRequest();
+							$dateService=$request->getDateService();
+							$location=$request->getLocation();
+							$status=$request->getStatus();
+							$username=$request->getUsername();
+							$idMember=$request->getIdMember();
+						}
 					?>
 					<tr>
-						<td><?=$request->getSkillWanted()?></td>
-						<td><?=$request->getTitle()?></td>
-						<td><?=$request->getDateRequest()?></td>
-						<td><?=$request->getDateService()?></td>
-						<td><?=$request->getLocation()?></td>
-						<td><?=$request->getStatus()?></td>
-						<td><?=$request->getIdMember()?></td>
-						<input type="hidden"  name="status" value="<?=$request->getStatus()?>">
-						<input type="hidden"  name="idMember" value="<?=$request->getidMember()?>">
-						<input type="hidden"  name="idRequest" value="<?php $idRequest ?>">
+						<td><?php echo"$skillWanted"?></td>
+						<td><?php echo"$title"?></td>
+						<td><?php echo"$dateRequest"?></td>
+						<td><?php echo"$dateService"?></td>
+						<td><?php echo"$location"?></td>
+						<td><?php echo"$status"?></td>	
+						<td><?php echo"$username"?></td>
+						
+						
+						
+						
+					
 				
 					</tr>
-					<?php  
-					}
-					?>
+					
 				</tbody>
+				
 			</table>
 		</div>
 		<br>
 		<p> Envoyez un message à cet utilisateur pour lui dire comment vous pouvez l'aider</p>
-			<a class="text-dark1" href="?action=offerRequest">Continuer</a>
+			
+			<a class="text-dark1" href="?action=offerRequest&status=<?php echo $status ?>&idMember=<?php echo $idMember ?>">Continuer</a>
+
+			
 		
 		<div class="mt-auto">
 			<?php
