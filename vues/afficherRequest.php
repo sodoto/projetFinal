@@ -56,7 +56,7 @@
 						<td><?=$request->getStatus()?></td>
 						<td><?=$request->getIdMember()?></td>
 						<td>						
-						    <!-- <input type="hidden"  name="IdRequest" value="<?=$request->getIdRequest()?>">-->
+						   
 							<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
 						</td>
 					</tr>
