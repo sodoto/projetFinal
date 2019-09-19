@@ -6,6 +6,7 @@ require_once('/controleur/LogoutAction.class.php');
 require_once('/controleur/SigninAction.class.php');
 require_once('/controleur/MyRequestAction.class.php');
 require_once('/controleur/MemberSkillsAction.class.php');
+require_once('/controleur/OfferRequestAction.class.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -29,6 +30,9 @@ class ActionBuilder{
 			case "mesDemandes" :
 				return new myRequestAction();
 				break;
+			case "offerRequest" :
+				return new OfferRequestAction();
+				break;	
 			default :
 				return new DefaultAction();
 		}
