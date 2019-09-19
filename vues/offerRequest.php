@@ -65,7 +65,10 @@ if (!ISSET($_SESSION))
 						<td><?=$request->getLocation()?></td>
 						<td><?=$request->getStatus()?></td>
 						<td><?=$request->getIdMember()?></td>
-						
+						<input type="hidden"  name="status" value="<?=$request->getStatus()?>">
+						<input type="hidden"  name="idMember" value="<?=$request->getidMember()?>">
+						<input type="hidden"  name="idRequest" value="<?php $idRequest ?>">
+				
 					</tr>
 					<?php  
 					}
@@ -75,6 +78,8 @@ if (!ISSET($_SESSION))
 		</div>
 		<br>
 		<p> Envoyez un message à cet utilisateur pour lui dire comment vous pouvez l'aider</p>
+			<a class="text-dark1" href="?action=offerRequest">Continuer</a>
+		
 		<div class="mt-auto">
 			<?php
 				include("footer.php");
