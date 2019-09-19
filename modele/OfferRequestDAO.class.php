@@ -1,5 +1,6 @@
 <?php
-require_once(/classes/OfferRequest.class.php);
+require_once('/classes/Database.class.php');
+require_once('/classes/OfferRequest.class.php');
 
 class OfferRequestDAO
 {
@@ -8,10 +9,9 @@ class OfferRequestDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO offerrequest (idOffer,status,dateOffer,comment,idMember,idRequest)
-                                    VALUES (:ido,:s,:do,:c,:idm,:idr)");
-            $n = $pstmt->execute(array(':ido' => $offerRequest->getIdOffer(),
-                                       ':s' => $offerRequest->getStatus(),
+            $pstmt = $db->prepare("INSERT INTO offerrequest (status,dateOffer,comment,idMember,idRequest)
+                                    VALUES (:s,:do,:c,:idm,:idr)");
+            $n = $pstmt->execute(array(':s' => $offerRequest->getStatus(),
                                        ':do' => $offerRequest->getDateOffer(),
                                        ':c' => $offerRequest->getComment(),
                                        ':idm' => $offerRequest->getIdMember(),
