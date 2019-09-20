@@ -31,7 +31,10 @@ class OfferRequestAction implements Action {
 				$offerRequest->setIdRequest($_SESSION["IDRequest"]);
 				$dao->create($offerRequest);
 				
-				$offerRequest->affiche();
+				$daoMe = new MessageDAO();
+				
+				$message=new Message();
+				
 			
 			}
 			
