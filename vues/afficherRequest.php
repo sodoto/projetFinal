@@ -54,7 +54,7 @@
 						<td><?=$request->getDateService()?></td>
 						<td><?=$request->getLocation()?></td>
 						<td><?=$request->getStatus()?></td>
-						<td><?=$request->getIdMember()?></td>
+						<td><?=$request->getUsername()?></td>
 						<td>						
 						   
 							<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
