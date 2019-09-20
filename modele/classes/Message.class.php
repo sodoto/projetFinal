@@ -1,10 +1,10 @@
 <?php
     class Message{
         private $idMessage;
+		private $message;
         private $idOffer;
-        private $idMember;
-        private $message;
-		private $timeMessage;//Allows to apply the "order by statement" for displaying the conversation according to time.
+        private $idMember;      
+		private $dateTime;//Allows to apply the "order by statement" for displaying the conversation according to time.
 
         public function __construct()
         {
@@ -50,14 +50,14 @@
             $this->message = $message;
         }
 
-		 public function getTimeMessage()
+		 public function getDateTime()
         {
-            return $this->timeMessage;
+            return $this->dateTime;
         }
 
-        public function setTimeMessage($timeMessage)
+        public function setDateTime($dateTime)
         {
-            $this->timeMessage = $timeMessage;
+            $this->dateTime = $dateTime;
         }
 
         public function loadFromObject($x) {
@@ -65,7 +65,7 @@
 			$this->idOffer = $x->idOffer;
 			$this->idMember = $x->idMember;
 			$this->message = $x->message;
-			$this->timeMessage = $x->timeMessage;
+			$this->dateTime = $x->dateTime;
 		}
 
 
