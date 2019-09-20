@@ -9,10 +9,9 @@ class MessageDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO messageChat (idMessage,message,idOffer,idMember,timeMessage)
+            $pstmt = $db->prepare("INSERT INTO message (message,idOffer,idMember,dateTime)
                                     VALUES (:idmess,:m,:ido,:idmem,:t)");
-            $n = $pstmt->execute(array(':idmess' => $message->getIdMessage(),
-                                       ':m' => $message->getMessage(),
+            $n = $pstmt->execute(array(':m' => $message->getMessage(),
                                        ':ido' => $message->getidOffer(),
                                        ':idmem' => $message->getidMember(),
                                        ':t' => $message->getTimeMessage()));
@@ -90,7 +89,7 @@ class MessageDAO
 
         try{
             $pstmt = $db->prepare("SELECT * FROM messageChat WHERE idMessage=:id");
-            $pstmt->execute(array(':id'=$id));
+            $pstmt->execute(array(':id'=>$id));
 
             $result = $pstmt->fetch(PDO::FETCH_OBJ);
 
