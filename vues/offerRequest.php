@@ -91,8 +91,16 @@ if (!ISSET($_SESSION))
 		</div>
 		<br>
 		<p> Envoyez un message à cet utilisateur pour lui dire comment vous pouvez l'aider</p>
+		
+		<form action="" method="POST" class="formLogin" >
+		<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
+		<br>
+		<input type="hidden" name="status" value="<?php echo $status ?>">
+		<input type="hidden" name="idMember" value="<?php echo $idMember ?>">
+		<input type="submit"  href="?action=offerRequest ?>">
+		</form>
 			
-			<a class="text-dark1" href="?action=offerRequest&status=<?php echo $status ?>&idMember=<?php echo $idMember ?>">Continuer</a>
+			
 
 			
 		
