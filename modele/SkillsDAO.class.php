@@ -86,7 +86,7 @@ class SkillsDAO
 
         try{
             $pstmt = $db->prepare("SELECT * FROM skills WHERE idSkill=:id");
-            $pstmt->execute(array(':id'=$id));
+            $pstmt->execute(array(':id'=> $id));
 
             $result = $pstmt->fetch(PDO::FETCH_OBJ);
 

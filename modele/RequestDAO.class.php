@@ -9,7 +9,7 @@ class RequestDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO request (idRequest,title,dateRequest,dateService,city,status,idMember)
+            $pstmt = $db->prepare("INSERT INTO request (idRequest,title,dateRequest,dateService,city,statut,idMember)
                                     VALUES (:idr,:t,:dr,:ds,:c,:s,:idm)");
             $n = $pstmt->execute(array(':idr' => $request->getIdRequest(),
                                        ':t' => $request->getTitle(),
@@ -33,12 +33,13 @@ class RequestDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("UPDATE request SET title=:t, dateService=:ds, city=:c, status=:s WHERE idRequest=:idr");
+            $pstmt = $db->prepare("UPDATE request SET title=:t, dateService=:ds, location=:c, status=:s, skillWanted=:sw WHERE idRequest=:idr");
             $n = $pstmt->execute(array(':idr' => $request->getIdRequest(),
-                                       ':title' => $request->getTitle(),
+                                       ':t' => $request->getTitle(),
                                        ':ds' => $request->getDateService(),
-                                       ':c' => $request->getCity(),
-                                       ':s' => $request->getStatus()));
+                                       ':c' => $request->getLocation(),
+                                       ':s' => $request->getStatus(),
+                                       ':sw' => $request->getSkillWanted()));
             
             $pstmt->closeCursor();
             $pstmt = NULL;

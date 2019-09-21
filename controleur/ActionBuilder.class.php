@@ -7,11 +7,15 @@ require_once('/controleur/SigninAction.class.php');
 require_once('/controleur/MyRequestAction.class.php');
 require_once('/controleur/MemberSkillsAction.class.php');
 require_once('/controleur/OfferRequestAction.class.php');
+require_once('/controleur/EditRequestAction.class.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
 		switch ($nomAction)
 		{
+			case "edit" :
+				return new EditRequestAction();
+				break;
 			case "connecter" :
 				return new LoginAction();
 				break; 
