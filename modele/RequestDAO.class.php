@@ -9,15 +9,15 @@ class RequestDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO request (idRequest,title,dateRequest,dateService,city,statut,idMember)
-                                    VALUES (:idr,:t,:dr,:ds,:c,:s,:idm)");
-            $n = $pstmt->execute(array(':idr' => $request->getIdRequest(),
-                                       ':t' => $request->getTitle(),
+            $pstmt = $db->prepare("INSERT INTO request (title,dateRequest,dateService,location,status,idMember,skillWanted)
+                                    VALUES (:t,:dr,:ds,:c,:s,:idm,:sw)");
+            $n = $pstmt->execute(array(':t' => $request->getTitle(),
                                        ':dr' => $request->getDateRequest(),
                                        ':ds' => $request->getDateService(),
-                                       ':c' => $request->getCity(),
+                                       ':c' => $request->getLocation(),
                                        ':s' => $request->getStatus(),
-                                       ':idm' => $request->getIdMember()));
+                                       ':idm' => $request->getIdMember(),
+                                       ':sw' => $request->getSkillWanted()));
 
             $pstmt->closeCursor();
             $pstmt = NULL;

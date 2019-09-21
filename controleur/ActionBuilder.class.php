@@ -8,12 +8,16 @@ require_once('/controleur/MyRequestAction.class.php');
 require_once('/controleur/MemberSkillsAction.class.php');
 require_once('/controleur/OfferRequestAction.class.php');
 require_once('/controleur/EditRequestAction.class.php');
+require_once('/controleur/NewRequestAction.class.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
 		switch ($nomAction)
 		{
-			case "edit" :
+			case "newRequest" :
+				return new NewRequestAction();
+				break;
+			case "editRequest" :
 				return new EditRequestAction();
 				break;
 			case "connecter" :

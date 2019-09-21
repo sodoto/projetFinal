@@ -84,8 +84,8 @@
 						<td><?=$request->getStatus()?></td>
 						<td><?=$request->getIdMember()?></td>
 						<td>
-							<a href='?action=edit&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
-							<a href='?action=supp&idRequest=<?=$request->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
+							<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
+							<a href='?action=suppRequest&idRequest=<?=$request->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
 							<!--Para que no aparezca el item de adicionar se puede hacer un campo hiden CAMBIAR PARA USAR CAMPO HIDEN-->
 						</td>
 					</tr>
@@ -95,6 +95,10 @@
 					?>
 				</tbody>
 			</table>
+			<form action="" method="POST">
+			<input name="action" value="newRequest" type="hidden" />
+				<button type="submit">Nouvelle demande</button>
+			</form>
 		</div>
 		<div class="mt-auto">
 			<?php

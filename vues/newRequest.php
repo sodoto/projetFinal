@@ -6,29 +6,11 @@ date_default_timezone_set('America/Toronto');
         session_start();
     }
 
-    $dao = new RequestDAO();
-    $request = $dao->find($_REQUEST["idRequest"]);
-    $idrequest = $request->getIdRequest();
-    $title = $request->getTitle();
-    $dateService = $request->getDateService();
-    $location = $request->getLocation();
-    $statut = $request->getStatus();
-    $selected1 = "";
-    $selected2 = "";
-    $selected3 = "";
+    $title = "";
+    $dateService = "";
+    $location = "";
+    $statut = "";
 
-    switch ($statut)
-    {
-        case "ouverte":
-            $selected1 = "selected";
-            break;
-        case "attente":
-            $selected2 = "selected";
-            break;
-        case "complete":
-            $selected3 = "selected";
-            break;
-    }
 ?>
 
 <!DOCTYPE html>
@@ -54,22 +36,22 @@ date_default_timezone_set('America/Toronto');
 		?>
 
 		<div>
-            <h2>Modifier ma demande</h2>
+            <h2>Ajouter une demande</h2>
 
             <?php
 				require_once('/modele/RequestDAO.class.php');
 				$dao = new RequestDAO();
-				if(ISSET($_SESSION["requestEdited"]) && $_SESSION["requestEdited"] == true)
+				if(ISSET($_SESSION["requestCreated"]) && $_SESSION["requestCreated"] == true)
 				{
 			?>
 			<div class="container">
 				<div class="alert alert-info alert-dismissible">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Succès!</strong> Vous avez modifié votre demande!
+					<strong>Succès!</strong> Vous avez ajouté une demande!
 				</div>
 			</div>
 			<?php
-				$_SESSION["requestEdited"] = false;
+				$_SESSION["requestCreated"] = false;
 				}
 			?>
 
@@ -80,7 +62,7 @@ date_default_timezone_set('America/Toronto');
                     echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["title"]."</span><br /><br />";
                 ?>
                 <small>Date du service demandé</small>
-                <input type="date" class="Input-Login" name="dateService"  value="<?php echo date('Y-m-d',strtotime($dateService))?>"><br/>
+                <input type="date" class="Input-Login" name="dateService"  value="<?php echo date('Y-m-d')?>"><br/>
                 <?php if (ISSET($_REQUEST["field_messages"]["dateService"])) 
                     echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["dateService"]."</span><br /><br />";
                 ?>
@@ -89,12 +71,6 @@ date_default_timezone_set('America/Toronto');
                 <?php if (ISSET($_REQUEST["field_messages"]["location"])) 
                     echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["location"]."</span><br /><br />";
                 ?>
-                <small>Statut</small>
-                <select name="statut" class="select-form">
-                    <option value="ouverte" <?=$selected1?>>Ouverte</option>
-                    <option value="attente" <?=$selected2?>>En attente</option>
-                    <option value="complete" <?=$selected3?>>Complété</option>
-                </select>
                 <small>Compétence requise</small>
                 <select name="skills" class="select-form">
                     <?php
@@ -103,18 +79,14 @@ date_default_timezone_set('America/Toronto');
                         $tSkills = $dao->findAll();
                         foreach ($tSkills as $skills)
                         {
-                            if($skills->getIdSkill() == $request->getSkillWanted())
-                                $selected = "selected";
-                            else
-                                $selected = "";
                     ?>
-                        <option value="<?=$skills->getIdSkill()?>" <?=$selected?> ><?=$skills->getDescription()?></option>
+                        <option value="<?=$skills->getIdSkill()?>" ><?=$skills->getDescription()?></option>
                     <?php
                         }
                     ?>
                 </select>
-                <input type="hidden" name="sendEditForm">
-                <button type="submit" name="submit" value="submit" >Enregistrer</button>
+                <input type="hidden" name="action" value="newRequest">
+                <button type="submit" name="submit" value="submit" >Ajouter</button>
             </form>
 			
 		</div>
