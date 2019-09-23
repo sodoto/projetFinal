@@ -1,3 +1,10 @@
+<?php
+	if(!ISSET($_SESSION))
+	{
+		session_start();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +18,12 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<title>Page d'accueil</title>
+		<script>
+            function myFunction()
+            {
+                alert("I am an alert box!"); // this is the message in ""
+            }
+        </script>
 </head>
 
 <body>
@@ -25,7 +38,19 @@
 			<?php
 				require_once('/modele/RequestDAO.class.php');
 				$dao = new RequestDAO();
-			?>	
+				if($_SESSION["erreurRequest"] == true)
+				{
+			?>
+			<div class="container">
+				<div class="alert alert-info alert-dismissible">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Attention!</strong> Vous ne pouvez pas modifier cette demande!
+				</div>
+			</div>
+			<?php
+				$_SESSION["erreurRequest"] = false;
+				}
+			?>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
@@ -41,24 +66,26 @@
 				</thead>
 				<tbody>
                     <?php
-                        $tRequest = $dao->findByIdMember($_SESSION["id"]);
+						$tRequest = $dao->findByIdMember($_SESSION["idMember"]);
+						date_default_timezone_set('America/Toronto');
                         if(empty($tRequest)){
                             echo "Vous n'avez aucune demande!";
                         }
                         else{
 						    foreach($tRequest as $request) {
+								$dateRequest = date_create($request->getDateRequest());
 					?>
 					<tr>
 						<td><?=$request->getSkillWanted()?></td>
 						<td><?=$request->getTitle()?></td>
-						<td><?=$request->getDateRequest()?></td>
+						<td><?=date_format($dateRequest, "d/m/Y")?></td>
 						<td><?=$request->getDateService()?></td>
 						<td><?=$request->getLocation()?></td>
 						<td><?=$request->getStatus()?></td>
 						<td><?=$request->getIdMember()?></td>
 						<td>
-							<a href='?action=edit&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
-							<a href='?action=supp&idRequest=<?=$request->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
+							<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
+							<a href='?action=suppRequest&idRequest=<?=$request->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
 							<!--Para que no aparezca el item de adicionar se puede hacer un campo hiden CAMBIAR PARA USAR CAMPO HIDEN-->
 						</td>
 					</tr>
@@ -68,11 +95,16 @@
 					?>
 				</tbody>
 			</table>
+			<form action="" method="POST">
+			<input name="action" value="newRequest" type="hidden" />
+				<button type="submit">Nouvelle demande</button>
+			</form>
 		</div>
 		<div class="mt-auto">
 			<?php
 				include("footer.php");
 			?>
 		</div>
+	</div>
 </body>
 </html>
