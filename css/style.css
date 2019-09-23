@@ -144,7 +144,7 @@ h1 {
 }
 
 .formLogin {
-  margin: 90px auto;
+  margin: 40px auto;
   background-color: #ced7dd;
   padding: 50px 20%;
   border-radius: 10px;
@@ -158,6 +158,15 @@ h1 {
   color: #666;
   border-radius: 1px;
   border: 1px solid #ccc;
+}
+
+.select-form{
+    padding: 15px 10px;
+    margin: 5px 0px;
+    width: 100%;
+    color: #666;
+    border-radius: 1px;
+    border: 1px solid #ccc;
 }
 
 h2 {
