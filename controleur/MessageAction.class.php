@@ -16,8 +16,6 @@ class MessageAction implements Action {
 			
 			if (isset($_REQUEST['message'])){
 				
-				$message=$_REQUEST['message'];
-				echo $message;
 			
 				$daoMe = new MessageDAO();			
 				date_default_timezone_set("America/Toronto");
@@ -34,7 +32,7 @@ class MessageAction implements Action {
 			
 			}
 			
-			return "afficherRequest";
+			return "messageEnvoye";
 			
 		}
 					
