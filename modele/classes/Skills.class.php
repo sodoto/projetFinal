@@ -28,7 +28,7 @@
         }
 
         public function loadFromObject($x) {
-			$this->idSKill = $x->idSkill;
+			$this->idSkill = $x->idSkills;
 			$this->description = $x->description;
 		}
 
