@@ -7,12 +7,10 @@ require_once('/controleur/SigninAction.class.php');
 require_once('/controleur/MyRequestAction.class.php');
 require_once('/controleur/MemberSkillsAction.class.php');
 require_once('/controleur/OfferRequestAction.class.php');
-<<<<<<< HEAD
 require_once('/controleur/MessageAction.class.php');
-=======
 require_once('/controleur/EditRequestAction.class.php');
 require_once('/controleur/NewRequestAction.class.php');
->>>>>>> 9b77bb49dac1bafd41dc30e051d8c18610c02e0c
+
 
 class ActionBuilder{
 	public static function getAction($nomAction){
