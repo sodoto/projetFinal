@@ -38,7 +38,7 @@
 			<?php
 				require_once('/modele/RequestDAO.class.php');
 				$dao = new RequestDAO();
-				if($_SESSION["erreurRequest"] == true)
+				if((ISSET($_SESSION["erreurRequest"]) && $_SESSION["erreurRequest"] == true))
 				{
 			?>
 			<div class="container">
