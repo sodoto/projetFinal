@@ -59,24 +59,24 @@ if (!ISSET($_SESSION))
 					
 						$tRequest = $dao->findIdSkill($_SESSION["IDRequest"]);
 						foreach($tRequest as $request) {
-							$skillWanted=$request->getSkillWanted();
-							$title=$request->getTitle();
-							$dateRequest=$request->getDateRequest();
-							$dateService=$request->getDateService();
-							$location=$request->getLocation();
-							$status=$request->getStatus();
-							$username=$request->getUsername();
-							$idMember=$request->getIdMember();
+							$_SESSION["skillWanted"]=$request->getSkillWanted();
+							$_SESSION["title"]=$request->getTitle();
+							$_SESSION["dateRequest"]=$request->getDateRequest();
+							$_SESSION["dateService"]=$request->getDateService();
+							$_SESSION["location"]=$request->getLocation();
+							$_SESSION["status"]=$request->getStatus();
+							$_SESSION["username"]=$request->getUsername();
+							$_SESSION["idMember"]=$request->getIdMember();
 						}
 					?>
 					<tr>
-						<td><?php echo"$skillWanted"?></td>
-						<td><?php echo"$title"?></td>
-						<td><?php echo"$dateRequest"?></td>
-						<td><?php echo"$dateService"?></td>
-						<td><?php echo"$location"?></td>
-						<td><?php echo"$status"?></td>	
-						<td><?php echo"$username"?></td>
+						<td><?php echo $_SESSION["skillWanted"]?></td>
+						<td><?php echo $_SESSION["title"]?></td>
+						<td><?php echo $_SESSION["dateRequest"] ?></td>
+						<td><?php echo $_SESSION["dateService"]?></td>
+						<td><?php echo $_SESSION["location"]?></td>
+						<td><?php echo $_SESSION["status"]?></td>	
+						<td><?php echo $_SESSION["username"]?></td>
 						
 						
 						
@@ -94,10 +94,10 @@ if (!ISSET($_SESSION))
 		
 		<form action="" method="POST" class="formLogin" >
 		<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
+		
 		<br>
-		<input type="hidden" name="status" value="<?php echo $status ?>">
-		<input type="hidden" name="idMember" value="<?php echo $idMember ?>">
-		<input type="submit"  href="?action=offerRequest ?>">
+		<input name="action" value="messageEnvoye" type="hidden" />
+		<button type="submit" class="btn2">Continuer</button>
 		</form>
 			
 			
