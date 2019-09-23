@@ -7,8 +7,10 @@ require_once('/controleur/SigninAction.class.php');
 require_once('/controleur/MyRequestAction.class.php');
 require_once('/controleur/MemberSkillsAction.class.php');
 require_once('/controleur/OfferRequestAction.class.php');
+require_once('/controleur/MessageAction.class.php');
 require_once('/controleur/EditRequestAction.class.php');
 require_once('/controleur/NewRequestAction.class.php');
+
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -41,6 +43,10 @@ class ActionBuilder{
 			case "offerRequest" :
 				return new OfferRequestAction();
 				break;	
+			case "messageEnvoye" :
+				return new MessageAction();
+				break;	
+						
 			default :
 				return new DefaultAction();
 		}

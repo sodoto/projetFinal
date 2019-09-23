@@ -34,73 +34,10 @@ if (!ISSET($_SESSION))
 
 		<div>
 			<h2>Merci de votre intérêt à mettre vos compétences au service de quelqu'un</h2>
-			<?php
-				require_once('/modele/AfficherRequestDAO.class.php');
-				$dao = new afficherRequestDAO();
-			?>	
-			<h2> Vous avez sélectionné la tâche suivante</h2>
-			<?php //echo $_SESSION["idMember"] ?>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<td>SKILL WANTED</td>
-						<td>DESCRIPTION</td>
-						<td>DATE REQUEST</td>
-						<td>DATE OF SERVICE</td>
-						<td>LOCATION</td>
-						<td>STATUS</td>
-						<td>USER</td>
-						
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					$skillWanted="";
-					
-						$tRequest = $dao->findIdSkill($_SESSION["IDRequest"]);
-						foreach($tRequest as $request) {
-							$_SESSION["skillWanted"]=$request->getSkillWanted();
-							$_SESSION["title"]=$request->getTitle();
-							$_SESSION["dateRequest"]=$request->getDateRequest();
-							$_SESSION["dateService"]=$request->getDateService();
-							$_SESSION["location"]=$request->getLocation();
-							$_SESSION["status"]=$request->getStatus();
-							$_SESSION["username"]=$request->getUsername();
-							$_SESSION["idMember"]=$request->getIdMember();
-						}
-					?>
-					<tr>
-						<td><?php echo $_SESSION["skillWanted"]?></td>
-						<td><?php echo $_SESSION["title"]?></td>
-						<td><?php echo $_SESSION["dateRequest"] ?></td>
-						<td><?php echo $_SESSION["dateService"]?></td>
-						<td><?php echo $_SESSION["location"]?></td>
-						<td><?php echo $_SESSION["status"]?></td>	
-						<td><?php echo $_SESSION["username"]?></td>
-						
-						
-						
-						
-					
-				
-					</tr>
-					
-				</tbody>
-				
-			</table>
-		</div>
-		<br>
-		<p> Envoyez un message à cet utilisateur pour lui dire comment vous pouvez l'aider</p>
-		
-		<form action="" method="POST" class="formLogin" >
-		<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
-		
-		<br>
-		<input name="action" value="messageEnvoye" type="hidden" />
-		<button type="submit" class="btn2">Continuer</button>
-		</form>
 			
+	
 			
+			<input name="action" value="messageEnvoye">Enter</input>
 
 			
 		

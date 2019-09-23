@@ -2,10 +2,11 @@
     class Message{
         private $idMessage;
 		private $message;
-        private $idOffer;
-        private $idMember;      
-		private $dateTime;//Allows to apply the "order by statement" for displaying the conversation according to time.
-
+		private $dateHeure;
+        private $idRequest;
+        private $idMember;  
+		
+		
         public function __construct()
         {
         }
@@ -20,14 +21,24 @@
             $this->idMessage = $idMessage;
         }
 
-        public function getIdOffer()
+		public function getMessage()
         {
-            return $this->idOffer;
+            return $this->message;
         }
 
-        public function setIdOffer($idOffer)
+        public function setMessage($message)
         {
-            $this->idOffer = $idOffer;
+            $this->message = $message;
+        }
+		
+        public function getIdRequest()
+        {
+            return $this->idRequest;
+        }
+
+        public function setIdRequest($idRequest)
+        {
+            $this->idRequest = $idRequest;
         }
 
         public function getIdMember()
@@ -40,33 +51,34 @@
             $this->idMember = $idMember;
         }
 
-        public function getMessage()
+      
+
+		 public function getDateHeure()
         {
-            return $this->message;
+            return $this->dateHeure;
         }
 
-        public function setMessage($message)
+        public function setDateHeure($dateHeure)
         {
-            $this->message = $message;
-        }
-
-		 public function getDateTime()
-        {
-            return $this->dateTime;
-        }
-
-        public function setDateTime($dateTime)
-        {
-            $this->dateTime = $dateTime;
+            $this->dateHeure = $dateHeure;
         }
 
         public function loadFromObject($x) {
 			$this->idMessage = $x->idMessage;
-			$this->idOffer = $x->idOffer;
-			$this->idMember = $x->idMember;
 			$this->message = $x->message;
-			$this->dateTime = $x->dateTime;
+			$this->idOffer = $x->idRequest;
+			$this->idMember = $x->idMember;
+			$this->timeMessage = $x->dateHeure;
 		}
 
+public function __toString()
+	{
+		return "Message[".$this->idMessage.",".$this->message.",".$this->dateHeure.",".$this->idRequest.",".$this->idMember."]";
+	}
+	public function affiche()
+	{
+		echo $this->__toString();
+	}
+	
 
     }
