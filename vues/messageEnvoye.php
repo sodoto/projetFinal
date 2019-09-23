@@ -23,21 +23,14 @@ if (!ISSET($_SESSION))
 		<?php
 			include("banner.php");
 			//include("menu.php");
-			
-			if(isset($_REQUEST['IdRequest']))
-{ 		
-			//$IDRequest = $_REQUEST['IdRequest']; 
-			$_SESSION["IDRequest"]= $_REQUEST['IdRequest']; 
-			echo $_SESSION["IDRequest"];
-}
 		?>
 
 		<div>
-			<h2>Merci de votre intérêt à mettre vos compétences au service de quelqu'un</h2>
+			<h2>Votre message a été envoyé à l'utilisateur <?php echo $_SESSION["username"]?> Vous devez attendre la confirmation pour pouvoir ajuster les détails de votre aide.</h2>
 			
 	
 			
-			<input name="action" value="messageEnvoye">Enter</input>
+			<a href="?action=afficherRequest">Retour aux demandes</a>
 
 			
 		
