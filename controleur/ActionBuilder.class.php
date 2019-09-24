@@ -10,12 +10,16 @@ require_once('/controleur/OfferRequestAction.class.php');
 require_once('/controleur/MessageAction.class.php');
 require_once('/controleur/EditRequestAction.class.php');
 require_once('/controleur/NewRequestAction.class.php');
+require_once('/controleur/MyOfferRequestAction.class.php');
 
 
 class ActionBuilder{
 	public static function getAction($nomAction){
 		switch ($nomAction)
 		{
+			case "mesOffres" :
+				return new MyOfferRequestAction();
+				break;
 			case "newRequest" :
 				return new NewRequestAction();
 				break;
