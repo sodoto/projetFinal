@@ -121,7 +121,7 @@ class RequestDAO
         $requests = Array();
 
         try{
-            $pstmt = $db->prepare("SELECT * FROM request WHERE idMember=:id");
+            $pstmt = $db->prepare("SELECT * FROM request WHERE idMember=:id ");
             $pstmt->execute(array(':id'=> $idMember));
 
             while($result = $pstmt->fetch(PDO::FETCH_OBJ)) {

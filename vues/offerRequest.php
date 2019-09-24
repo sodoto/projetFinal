@@ -69,7 +69,7 @@ if (!ISSET($_SESSION))
 							$_SESSION["location"]=$request->getLocation();
 							$_SESSION["status"]=$request->getStatus();
 							$_SESSION["username"]=$request->getUsername();
-							$_SESSION["idMember"]=$request->getIdMember();
+							// $_SESSION["idMember"]=$request->getIdMember();
 						}
 					?>
 					<tr>

@@ -111,4 +111,27 @@ class OfferRequestDAO
         }           
         return NULL;
     }
+
+    public function findByIdMember($idMember) {
+        $db = Database::getInstance();
+        $offerRequests = Array();
+
+        try{
+            $pstmt = $db->prepare("SELECT * FROM offerrequest WHERE idMember=:id");
+            $pstmt->execute(array(':id'=>$idMember));
+
+            while($result = $pstmt->fetch(PDO::FETCH_OBJ)) {
+                $o = new OfferRequest();
+                $o->loadFromObject($result);
+                array_push($offerRequests, $o);
+            }
+
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return $offerRequests;
+    }
 }

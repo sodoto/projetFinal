@@ -78,7 +78,7 @@
             $this->dateOffer = $x->dateOffer;
             $this->comment = $x->comment;
             $this->status = $x->status;
-		}
+        }
         
 public function __toString()
 	{
