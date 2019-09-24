@@ -31,7 +31,7 @@
 			<h2>MES DEMANDES</h2>
 			<?php
 				require_once('/modele/RequestDAO.class.php');
-				$dao = new RequestDAO();
+				$daoRequest = new RequestDAO();
 				if((ISSET($_SESSION["erreurRequest"]) && $_SESSION["erreurRequest"] == true))
 				{
 			?>
@@ -59,7 +59,9 @@
 				</thead>
 				<tbody>
 					<?php
-						$tRequest = $dao->findByIdMember($_SESSION["idMember"]);
+						require_once('/modele/SkillsDAO.class.php');
+						$daoSkills = new SkillsDAO();
+						$tRequest = $daoRequest->findByIdMember($_SESSION["idMember"]);
 						date_default_timezone_set('America/Toronto');
                         if(empty($tRequest)){
                             echo "Vous n'avez aucune demande!";
@@ -67,10 +69,11 @@
                         else{
 						    foreach($tRequest as $request) {
 								$dateRequest = date_create($request->getDateRequest());
-								$dateService = date_create($request->getDateService())
+								$dateService = date_create($request->getDateService());
+								$skill = $daoSkills->find($request->getSkillWanted());
 					?>
 					<tr>
-						<td><?=$request->getSkillWanted()?></td>
+						<td><?=$skill->getDescription()?></td>
 						<td><?=$request->getTitle()?></td>
 						<td><?=date_format($dateRequest, "d/m/Y")?></td>
 						<td><?=date_format($dateService, "d/m/Y")?></td>

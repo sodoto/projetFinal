@@ -42,18 +42,21 @@
 				<tbody>
                     <?php
                         require_once('/modele/OfferRequestDAO.class.php');
-                        $dao = new OfferRequestDAO();
-						$tOfferRequest = $dao->findByIdMember($_SESSION["idMember"]);
+                        require_once('/modele/RequestDAO.class.php');
+                        $daoOfferRequest = new OfferRequestDAO();
+                        $daoRequest = new RequestDAO();
+                        $tOfferRequest = $daoOfferRequest->findByIdMember($_SESSION["idMember"]);
 						date_default_timezone_set('America/Toronto');
                         if(empty($tOfferRequest)){
                             echo "Vous n'avez aucune demande!";
                         }
                         else{
 						    foreach($tOfferRequest as $offerRequest) {
-								$dateOffer = date_create($offerRequest->getDateOffer());
+                                $dateOffer = date_create($offerRequest->getDateOffer());
+                                $request = $daoRequest->find($offerRequest->getIdRequest());
 					?>
 					<tr>
-						<td><?=$offerRequest->getIdRequest()?></td>
+						<td><?=$request->getTitle()?></td>
 						<td><?=date_format($dateOffer, "d/m/Y")?></td>
 						<td><?=$offerRequest->getComment()?></td>
 						<td><?=$offerRequest->getStatus()?></td>
@@ -69,10 +72,6 @@
 					?>
 				</tbody>
 			</table>
-			<form action="" method="POST">
-			<input name="action" value="newRequest" type="hidden" />
-				<button type="submit">Nouvelle demande</button>
-			</form>
 		</div>
 		<div class="mt-auto">
 			<?php

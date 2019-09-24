@@ -121,13 +121,12 @@ class RequestDAO
         $requests = Array();
 
         try{
-            $pstmt = $db->prepare("SELECT * FROM request r1 INNER JOIN members m1 ON r1.idMember = m1.idMember
-                INNER JOIN skills s1 ON r1.skillWanted=s1.idSkills WHERE r1.idMember=:id ");
+            $pstmt = $db->prepare("SELECT * FROM request WHERE idMember=:id ");
             $pstmt->execute(array(':id'=> $idMember));
 
             while($result = $pstmt->fetch(PDO::FETCH_OBJ)) {
                 $r = new Request();
-                $r->loadFromObject1($result);
+                $r->loadFromObject($result);
                 array_push($requests, $r);
             }
 
