@@ -38,17 +38,20 @@ class MessageAction implements Action {
 				$message->setIdMember($_SESSION["idMember"]);
 				$message->setDateHeure($date);	
 				$daoMe->insert($message);
-/*
+
+
 				$daoMail= new MemberDAO();
+			
+				$daoMail->findEmailById($_SESSION["idMember"]);
+			/*	
+				echo $mess;
 				
-				$daoMail->findEmailBtId();
-*/
-			/*
+			
 				$msg = wordwrap($_REQUEST['message'],70);
 				
 				mail("someone@example.com","SOSvite sent you a message from",$msg);
-*/
 
+*/
 				$dao = new OfferRequestDAO();
 				date_default_timezone_set("America/Toronto");
 			
