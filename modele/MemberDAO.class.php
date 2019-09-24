@@ -168,4 +168,30 @@ class MemberDAO
         }           
         return NULL;
     }
+	
+	 public function findEmailBtId($idMember) {
+        $db = Database::getInstance();
+
+        try{
+            $pstmt = $db->prepare("SELECT email FROM members WHERE idMember=:e");
+            $pstmt->execute(array(':e'=> $idMember));
+
+            $result = $pstmt->fetch(PDO::FETCH_OBJ);
+
+            if($result) {
+                $m = new Member();
+                $m->loadFromObject($result);
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+                return $m;
+            }
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return NULL;
+    }
 }
