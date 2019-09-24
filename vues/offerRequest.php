@@ -28,17 +28,20 @@ if (!ISSET($_SESSION))
 { 		
 			//$IDRequest = $_REQUEST['IdRequest']; 
 			$_SESSION["IDRequest"]= $_REQUEST['IdRequest']; 
-			echo $_SESSION["IDRequest"];
+			
 }
 		?>
 
 		<div>
 			<h2>Merci de votre intérêt à mettre vos compétences au service de quelqu'un</h2>
+			
 			<?php
 				require_once('/modele/AfficherRequestDAO.class.php');
 				$dao = new afficherRequestDAO();
 			?>	
 			<h2> Vous avez sélectionné la tâche suivante</h2>
+			<br>
+			<br>
 			<?php //echo $_SESSION["idMember"] ?>
 			<table class="table">
 				<thead class="thead-light">
@@ -66,7 +69,7 @@ if (!ISSET($_SESSION))
 							$_SESSION["location"]=$request->getLocation();
 							$_SESSION["status"]=$request->getStatus();
 							$_SESSION["username"]=$request->getUsername();
-							// $_SESSION["idMember"]=$request->getIdMember();
+						    $_SESSION["idMember"]=$request->getIdMember();
 						}
 					?>
 					<tr>
@@ -89,9 +92,12 @@ if (!ISSET($_SESSION))
 				
 			</table>
 		</div>
-		<br>
-		<p> Envoyez un message à cet utilisateur pour lui dire comment vous pouvez l'aider</p>
 		
+		<div>
+		<br>
+		<br>
+		<h2> Envoyez un message à cet utilisateur pour lui dire comment vous pouvez l'aider</h2>
+		</div>
 		<form action="" method="POST" class="formLogin" >
 		<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
 		
