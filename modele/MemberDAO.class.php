@@ -169,7 +169,7 @@ class MemberDAO
         return NULL;
     }
 	
-	 public function findEmailBtId($idMember) {
+	 public function findEmailById($idMember) {
         $db = Database::getInstance();
 
         try{
