@@ -1,5 +1,5 @@
 <?php
-	class Request{
+	class Request implements JsonSerializable{
 		private $idRequest;
 		private $skillWanted;
 		private $idMember;
@@ -9,6 +9,11 @@
 		private $location;
 		private $status;
 		private $username;
+
+		public function jsonSerialize()
+     	{
+          return get_object_vars($this);
+     	}
 
 		public function __construct(){
 
@@ -87,25 +92,25 @@
 		}
 		
 		public function __toString()
-	{
-		return "Request[".$this->idRequest.",".$this->skillWanted.",".$this->title.",".$this->dateRequest.",".$this->dateService.",".$this->location.",".$this->status.",".$this->idMember."]";
-	}
-	public function affiche()
-	{
-		echo $this->__toString();
-	}
-	
-	public function loadFromArray($tab)
-	{
-		$this->idRequest=$tab["idRequest"];
-		$this->skillWanted=$tab["skillWanted"];
-		$this->title = $tab["title"];
-		$this->dateRequest = $tab["dateRequest"];
-		$this->dateService = $tab["dateService"];
-		$this->location = $tab["location"];
-		$this->status = $tab["status"];
-		$this->idMember = $tab["idMember"];
-	}
+		{
+			return "Request[".$this->idRequest.",".$this->skillWanted.",".$this->title.",".$this->dateRequest.",".$this->dateService.",".$this->location.",".$this->status.",".$this->idMember."]";
+		}
+		public function affiche()
+		{
+			echo $this->__toString();
+		}
+		
+		public function loadFromArray($tab)
+		{
+			$this->idRequest=$tab["idRequest"];
+			$this->skillWanted=$tab["skillWanted"];
+			$this->title = $tab["title"];
+			$this->dateRequest = $tab["dateRequest"];
+			$this->dateService = $tab["dateService"];
+			$this->location = $tab["location"];
+			$this->status = $tab["status"];
+			$this->idMember = $tab["idMember"];
+		}
 		
 		public function loadFromObject($x) {
 			$this->idRequest = $x->idRequest;
@@ -119,7 +124,7 @@
 		}
 		
 		public function loadFromObject1($x)
-	{
+		{
 		$this->idRequest = $x->idRequest;
 		$this->skillWanted= $x->description;
 		$this->title = $x->title;
@@ -129,6 +134,6 @@
 		$this->status = $x->status;
 		$this->idMember = $x->idMember;
 		$this->username = $x->username;
-	//Atribute from another table innerjoin
-	}
+		//Atribute from another table innerjoin
+		}
 	}

@@ -3,6 +3,37 @@
 	{
 		session_start();
 	}
+
+	function object_to_array($data)
+    {
+        if(is_array($data) || is_object($data))
+        {
+            $result = array();
+     
+            foreach($data as $key => $value) {
+                $result[$key] = $this->object_to_array($value);
+            }
+     
+            return $result;
+        }
+     
+        return $data;
+	}
+	
+	function utf8ize($d) {
+		if (is_array($d)) 
+			foreach ($d as $k => $v) 
+				$d[$k] = utf8ize($v);
+	
+		 else if(is_object($d))
+			foreach ($d as $k => $v) 
+				$d->$k = utf8ize($v);
+	
+		 else 
+			return utf8_encode($d);
+	
+		return $d;
+	}
 ?>
 
 <!DOCTYPE html>
@@ -28,29 +59,7 @@
 			require_once('/modele/RequestDAO.class.php');
 		?>
 		<div class="overlay-content">
-			<table>
-				<thead>
-					<tr>
-						<td>SKILL WANTED</td>
-						<td>DESCRIPTION</td>
-						<td>DATE REQUEST</td>
-						<td>DATE OF SERVICE</td>
-						<td>LOCATION</td>
-						<td>STATUS</td>
-						<td>ACTION</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+			
 		</div>
 
 	</div>
@@ -73,6 +82,7 @@
 					</tr>
 				</thead>
 				<tbody>
+					<script type="text/javascript">var obj = {};</script>
                     <?php
                         require_once('/modele/OfferRequestDAO.class.php');
                         require_once('/modele/RequestDAO.class.php');
@@ -86,10 +96,15 @@
                         else{
 						    foreach($tOfferRequest as $offerRequest) {
                                 $dateOffer = date_create($offerRequest->getDateOffer());
-                                $request = $daoRequest->find($offerRequest->getIdRequest());
+								$request = $daoRequest->find($offerRequest->getIdRequest());
+								$json = json_encode($request->jsonSerialize());
 					?>
 					<tr>
-						<td><a href="#" onclick="openNav()" title="Voir la demande"><?=$request->getTitle()?></a></td>
+						<span id="test"></span>
+						<script type="text/javascript">
+							var obj = <?=$json?>;
+						</script>
+						<td><a href="#" onclick="openNav(obj)" id="salut" data-title="<?=$request->getTitle()?>" title="Voir la demande"><?=$request->getTitle()?></a></td>
 						<td><?=date_format($dateOffer, "d/m/Y")?></td>
 						<td><?=$offerRequest->getComment()?></td>
 						<td><?=$offerRequest->getStatus()?></td>
