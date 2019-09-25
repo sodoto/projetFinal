@@ -9,13 +9,12 @@ class MessageDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO message (message,dateHeure,idRequest,idMemberRecepteur,idMemberEmetteur)
-                                    VALUES (:m,:d,:idr,:idm, :ide)");		
+            $pstmt = $db->prepare("INSERT INTO message (message,idOffer,idMemberEmetteur, dateHeure)
+                                    VALUES (:m,:ido,:ide, :d)");		
 			$n = $pstmt->execute(array(':m' => $message->getMessage(),
-                                       ':d' => $message->getDateHeure(),
-                                       ':idr' => $message->getIdRequest(),
-                                       ':idm' => $message->getIdMemberRecepteur(),
-									   ':ide' => $message->getIdMemberEmetteur()));
+                                       ':ido' => $message->getIdOffer(),
+									   ':ide' => $message->getIdMemberEmetteur(),
+									   ':d' => $message->getDateHeure()));
  
             $pstmt->closeCursor();
             $pstmt = NULL;
