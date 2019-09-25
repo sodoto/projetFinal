@@ -4,7 +4,8 @@
 		private $message;
 		private $dateHeure;
         private $idRequest;
-        private $idMember;  
+        private $idMemberRecepteur; 
+		private $idMemberEmetteur; 	
 		
 		
         public function __construct()
@@ -41,17 +42,29 @@
             $this->idRequest = $idRequest;
         }
 
-        public function getIdMember()
+        public function getIdMemberRecepteur()
         {
-            return $this->idMember;
+            return $this->idMemberRecepteur;
         }
 
-        public function setIdMember($idMember)
+        public function setIdMemberRecepteur($idMemberRecepteur)
         {
-            $this->idMember = $idMember;
+            $this->idMemberRecepteur = $idMemberRecepteur;
         }
 
-      
+      //
+	  
+		 public function getIdMemberEmetteur()
+        {
+            return $this->idMemberEmetteur;
+        }
+
+        public function setIdMemberEmetteur($idMemberEmetteur)
+        {
+            $this->idMemberEmetteur = $idMemberEmetteur;
+        }
+		
+		
 
 		 public function getDateHeure()
         {
@@ -65,15 +78,16 @@
 
         public function loadFromObject($x) {
 			$this->idMessage = $x->idMessage;
+			$this->dateHeure = $x->dateHeure;
 			$this->message = $x->message;
 			$this->idOffer = $x->idRequest;
-			$this->idMember = $x->idMember;
-			$this->timeMessage = $x->dateHeure;
+			$this->idMemberRecepteur = $x->idMemberRecepteur;
+			$this->idMemberEmetteur = $x->idMemberEmetteur;
 		}
 
 public function __toString()
 	{
-		return "Message[".$this->idMessage.",".$this->message.",".$this->dateHeure.",".$this->idRequest.",".$this->idMember."]";
+		return "Message[".$this->idMessage.",".$this->message.",".$this->dateHeure.",".$this->idRequest.",".$this->idMemberRecepteur.",".$this->idMemberEmetteur."]";
 	}
 	public function affiche()
 	{

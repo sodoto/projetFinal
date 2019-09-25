@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 17 Septembre 2019 à 22:47
+-- Généré le :  Mer 25 Septembre 2019 à 14:13
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -52,7 +52,8 @@ INSERT INTO `members` (`idMember`, `firstName`, `lastName`, `city`, `email`, `us
 (10, 'Test', 'Test', 'New Jersey', 'nj@hotmail.com', 'nj', '123', NULL),
 (11, 'testsession', 'session', 'Buenos Aires', 'session@hotmail.com', 'buenos', '1234', NULL),
 (12, 'sosvite', 'benevolat', 'Dubai', 'benevolat@hotmail.com', 'sostive', '1234', NULL),
-(13, 'Samuel', 'NN', 'Montreal', 'samuel@hotmail.con', 'sam', '123', NULL);
+(13, 'Samuel', 'NN', 'Montreal', 'samuel@hotmail.con', 'sam', '123', NULL),
+(14, 'Jack', 'Black', 'Montreal', 'jack@hotmail.com', 'jacky', '123', NULL);
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,11 @@ INSERT INTO `memberskills` (`idRegistre`, `idMember`, `idSkill`) VALUES
 (40, 1, 12),
 (41, 1, 13),
 (42, 1, 4),
-(43, 1, 6);
+(43, 1, 6),
+(44, 14, 1),
+(45, 14, 3),
+(46, 14, 6),
+(47, 14, 12);
 
 -- --------------------------------------------------------
 
@@ -84,10 +89,11 @@ INSERT INTO `memberskills` (`idRegistre`, `idMember`, `idSkill`) VALUES
 
 CREATE TABLE `message` (
   `idMessage` int(11) NOT NULL,
-  `message` varchar(200) COLLATE utf8_bin NOT NULL,
-  `idOffer` int(11) NOT NULL,
-  `idMember` int(11) NOT NULL,
-  `dateTime` datetime NOT NULL
+  `message` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `dateHeure` datetime NOT NULL,
+  `idRequest` int(11) NOT NULL,
+  `idMemberRecepteur` int(11) NOT NULL,
+  `idMemberEmetteur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -130,7 +136,8 @@ INSERT INTO `request` (`idRequest`, `skillWanted`, `title`, `dateRequest`, `date
 (1, 10, 'The car dont start', '2019-09-12 00:00:00', '2019-09-18 00:00:00', 'Montreal', '', 1),
 (2, 2, 'Peinture sur les murs', '2019-09-12 00:00:00', '2019-09-18 00:00:00', 'Montreal', '', 1),
 (3, 2, 'The car dont start', '2019-09-12 00:00:00', '2019-09-18 00:00:00', 'Montreal', '', 2),
-(4, 3, 'Boxes in the garage', '2019-09-12 00:00:00', '2019-09-18 00:00:00', 'Montreal', NULL, 1);
+(4, 3, 'Boxes in the garage', '2019-09-12 00:00:00', '2019-09-18 00:00:00', 'Montreal', NULL, 1),
+(5, 12, 'Move Car', '2019-09-24 14:55:42', '2019-09-23 00:00:00', 'Montreal', 'ouverte', 2);
 
 -- --------------------------------------------------------
 
@@ -185,8 +192,9 @@ ALTER TABLE `memberskills`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`idMessage`),
-  ADD KEY `idMember` (`idMember`),
-  ADD KEY `idOffer` (`idOffer`);
+  ADD KEY `idMember` (`idMemberRecepteur`),
+  ADD KEY `idOffer` (`idRequest`),
+  ADD KEY `idMemberEmetteur` (`idMemberEmetteur`);
 
 --
 -- Index pour la table `offerrequest`
@@ -218,27 +226,27 @@ ALTER TABLE `skills`
 -- AUTO_INCREMENT pour la table `members`
 --
 ALTER TABLE `members`
-  MODIFY `idMember` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idMember` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT pour la table `memberskills`
 --
 ALTER TABLE `memberskills`
-  MODIFY `idRegistre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `idRegistre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT pour la table `message`
 --
 ALTER TABLE `message`
-  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT pour la table `offerrequest`
 --
 ALTER TABLE `offerrequest`
-  MODIFY `idOffer` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idOffer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 --
 -- AUTO_INCREMENT pour la table `request`
 --
 ALTER TABLE `request`
-  MODIFY `idRequest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idRequest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `skills`
 --
@@ -259,8 +267,9 @@ ALTER TABLE `memberskills`
 -- Contraintes pour la table `message`
 --
 ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`idMember`) REFERENCES `members` (`idMember`),
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`idOffer`) REFERENCES `offerrequest` (`idOffer`);
+  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`idMemberRecepteur`) REFERENCES `members` (`idMember`),
+  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`idRequest`) REFERENCES `offerrequest` (`idRequest`),
+  ADD CONSTRAINT `message_ibfk_3` FOREIGN KEY (`idMemberEmetteur`) REFERENCES `offerrequest` (`idMember`);
 
 --
 -- Contraintes pour la table `offerrequest`
