@@ -18,7 +18,7 @@ class MessageAction implements Action {
 			$IDRequest="";
 			$IDRequest=isset($_SESSION['IDRequest'])?$_SESSION['IDRequest']:'';
 			$idMember="";
-			$idMember=isset($_SESSION['idMember'])?$_SESSION['idMember']:'';
+			$idMember=isset($_SESSION['idMember'])?$_SESSION['idMember']:'';//Changer á Emetteur du message
 		}
 		
 		if (!ISSET($_SESSION["connected"])){  
@@ -35,9 +35,10 @@ class MessageAction implements Action {
 				$date = date('Y-m-d H:i:s');
 
 				$message=new Message();
+				//falta poner el usuario que envia el mensaje - persona que quiere ayudar
 				$message->setMessage($_REQUEST['message']);
 				$message->setIdRequest($_SESSION["IDRequest"]);
-				$message->setIdMember($_SESSION["idMember"]);
+				$message->setIdMemberEmetteur($_SESSION["idMember"]);//cambiar variable de ingreso idMembreEmeteur
 				$message->setDateHeure($date);	
 				$daoMe->insert($message);
 
@@ -51,7 +52,8 @@ class MessageAction implements Action {
 				$offerRequest->setStatus("Message d'adie envoye");
 				$offerRequest->setDateOffer($date);
 				$offerRequest->setComment("Awaiting");
-				$offerRequest->setIdMember($idMember);
+				//El id aca debe ser el de la persona que quiere ayudar
+				$offerRequest->setIdMember($idMember); //idMembreEmeteur
 				$offerRequest->setIdRequest($IDRequest);
 				$dao->create($offerRequest);
 				
