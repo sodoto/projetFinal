@@ -1,8 +1,10 @@
+
 <?php
 require_once('./controleur/Action.interface.php');
 require_once('./modele/MessageDAO.class.php');
 require_once('/modele/OfferRequestDAO.class.php');
 require_once('./modele/MemberDAO.class.php');
+
 
 class MessageAction implements Action {
 	
@@ -40,18 +42,6 @@ class MessageAction implements Action {
 				$daoMe->insert($message);
 
 
-				$daoMail= new MemberDAO();
-			
-				$daoMail->findEmailById($_SESSION["idMember"]);
-			/*	
-				echo $mess;
-				
-			
-				$msg = wordwrap($_REQUEST['message'],70);
-				
-				mail("someone@example.com","SOSvite sent you a message from",$msg);
-
-*/
 				$dao = new OfferRequestDAO();
 				date_default_timezone_set("America/Toronto");
 			
@@ -64,6 +54,30 @@ class MessageAction implements Action {
 				$offerRequest->setIdMember($idMember);
 				$offerRequest->setIdRequest($IDRequest);
 				$dao->create($offerRequest);
+				
+				
+				$daoMail= new MemberDAO();
+			
+				$mess=$daoMail->findEmailById($_SESSION["idMember"]);
+				
+				$courriel= $mess->getEmail();
+				//echo $courriel;
+				
+				
+				$subject = 'Testing Sendmail';
+				$headers = 'From SOSVITE';
+				
+				if(mail($courriel,$subject,$_REQUEST['message'],$headers)){
+				echo "email sent";
+				}
+				else{
+				echo "email sending failed";
+				}
+
+
+
+
+			
 			}
 			
 			return "messageEnvoye";
