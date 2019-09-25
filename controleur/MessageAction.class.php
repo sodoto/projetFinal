@@ -28,21 +28,6 @@ class MessageAction implements Action {
 			
 			if (isset($_REQUEST['message'])){
 				
-			
-				$daoMe = new MessageDAO();			
-				date_default_timezone_set("America/Toronto");
-			
-				$date = date('Y-m-d H:i:s');
-
-				$message=new Message();
-				//falta poner el usuario que envia el mensaje - persona que quiere ayudar
-				$message->setMessage($_REQUEST['message']);
-				$message->setIdRequest($_SESSION["IDRequest"]);
-				$message->setIdMemberEmetteur($_SESSION["idMember"]);//cambiar variable de ingreso idMembreEmeteur
-				$message->setDateHeure($date);	
-				$daoMe->insert($message);
-
-
 				$dao = new OfferRequestDAO();
 				date_default_timezone_set("America/Toronto");
 			
@@ -58,6 +43,21 @@ class MessageAction implements Action {
 				$dao->create($offerRequest);
 				
 				
+				
+			
+				
+				$daoMe = new MessageDAO();			
+				date_default_timezone_set("America/Toronto");
+			
+				$date = date('Y-m-d H:i:s');
+
+				$message=new Message();
+				$message->setMessage($_REQUEST['message']);
+				$message->setIdOffer($_SESSION["IDRequest"]);// se requiere agregar la oferta antes de agregar el idOffer
+				$message->setIdMemberEmetteur($_SESSION["idMember"]);//cambiar variable de ingreso idMembreEmeteur
+				$message->setDateHeure($date);	
+				$daoMe->insert($message);
+							
 				// $daoMail= new MemberDAO();
 			
 				// $mess=$daoMail->findEmailById($_SESSION["idMember"]);
