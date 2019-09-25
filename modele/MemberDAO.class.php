@@ -180,7 +180,7 @@ class MemberDAO
 
             if($result) {
                 $m = new Member();
-                $m->loadFromObject($result);
+                $m->loadFromObject2($result);
                 $pstmt->closeCursor();
                 $pstmt = NULL;
                 Database::close();
