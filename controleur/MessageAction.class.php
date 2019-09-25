@@ -56,23 +56,23 @@ class MessageAction implements Action {
 				$dao->create($offerRequest);
 				
 				
-				$daoMail= new MemberDAO();
+				// $daoMail= new MemberDAO();
 			
-				$mess=$daoMail->findEmailById($_SESSION["idMember"]);
+				// $mess=$daoMail->findEmailById($_SESSION["idMember"]);
 				
-				$courriel= $mess->getEmail();
-				//echo $courriel;
+				// $courriel= $mess->getEmail();
+				// //echo $courriel;
 				
 				
-				$subject = 'Testing Sendmail';
-				$headers = 'From SOSVITE';
+				// $subject = 'Testing Sendmail';
+				// $headers = 'From SOSVITE';
 				
-				if(mail($courriel,$subject,$_REQUEST['message'],$headers)){
-				echo "email sent";
-				}
-				else{
-				echo "email sending failed";
-				}
+				// if(mail($courriel,$subject,$_REQUEST['message'],$headers)){
+				// echo "email sent";
+				// }
+				// else{
+				// echo "email sending failed";
+				// }
 
 
 

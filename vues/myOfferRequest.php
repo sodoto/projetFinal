@@ -58,8 +58,29 @@
 		<?php
 			require_once('/modele/RequestDAO.class.php');
 		?>
-		<div class="overlay-content">
-			
+		<div class="overlay-content" id="afficheRequest">
+		<table class="table" style="background-color: grey;">
+				<thead class="thead-light">
+					<tr>
+						<td>SKILL WANTED</td>
+						<td>DESCRIPTION</td>
+						<td>DATE REQUEST</td>
+						<td>DATE OF SERVICE</td>
+						<td>LOCATION</td>
+						<td>STATUS</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td id="description"></td>
+						<td id="title"></td>
+						<td id="dateRequest"></td>
+						<td id="dateService"></td>
+						<td id="location"></td>
+						<td id="status"></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 	</div>
@@ -82,7 +103,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<script type="text/javascript">var obj = {};</script>
                     <?php
                         require_once('/modele/OfferRequestDAO.class.php');
                         require_once('/modele/RequestDAO.class.php');
@@ -94,23 +114,28 @@
                             echo "Vous n'avez aucune demande!";
                         }
                         else{
+							$trequest = Array();
 						    foreach($tOfferRequest as $offerRequest) {
                                 $dateOffer = date_create($offerRequest->getDateOffer());
 								$request = $daoRequest->find($offerRequest->getIdRequest());
-								$json = json_encode($request->jsonSerialize());
+								$trequest[] = array(
+									"idRequest" => $request->getIdRequest(),
+									"skill" => $request->getSkillWanted(),
+									"title" => $request->getTitle(),
+									"dateRequest" => $request->getDateRequest(),
+									"dateService" => $request->getDateService(),
+									"location" => $request->getLocation(),
+									"status" => $request->getStatus(),
+									"idMember" => $request->getIdMember()
+								  );
 					?>
 					<tr>
-						<span id="test"></span>
-						<script type="text/javascript">
-							var obj = <?=$json?>;
-						</script>
-						<td><a href="#" onclick="openNav(obj)" id="salut" data-title="<?=$request->getTitle()?>" title="Voir la demande"><?=$request->getTitle()?></a></td>
+						<td><a href="#" onclick="openNav(this,json)" data-id="<?=$request->getIdRequest()?>" title="Voir la demande"><?=$request->getTitle()?></a></td>
 						<td><?=date_format($dateOffer, "d/m/Y")?></td>
 						<td><?=$offerRequest->getComment()?></td>
 						<td><?=$offerRequest->getStatus()?></td>
 						<td>
-							<a href='?action=editRequest&idRequest=<?=$offerRequest->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
-							<a href='?action=suppRequest&idRequest=<?=$offerRequest->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
+							
 							<!--Para que no aparezca el item de adicionar se puede hacer un campo hiden CAMBIAR PARA USAR CAMPO HIDEN-->
 						</td>
 					</tr>
@@ -127,5 +152,8 @@
 			?>
 		</div>
 	</div>
+	<script type="text/javascript">
+		var json = <?=json_encode($trequest)?>;
+	</script>
 </body>
 </html>
