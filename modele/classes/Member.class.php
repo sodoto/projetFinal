@@ -72,10 +72,16 @@
 			$this->idMember = $x->idMember;
 			$this->firstname = $x->firstName;
 			$this->lastname = $x->lastName;
-			$this->email = $x->city;
-			$this->city = $x->email;
+			$this->email = $x->email;
+			$this->city = $x->city;
 			$this->username = $x->username;
 			$this->password = $x->password;
+		}
+		
+		public function loadFromObject2($x) {
+			
+			$this->email = $x->email;
+			
 		}
 
 	}

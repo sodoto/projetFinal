@@ -10,7 +10,9 @@ if (!ISSET($_SESSION))
 	session_start();
 	
 		$idMember=$_SESSION["idMember"];
-			
+		
+		$dao=new MemberSkillsDAO();
+		
 		if (isset($_POST['submit'])) {
 			if(isset($_POST['deObj'])){
 				$memberskill = new Memberskills();
