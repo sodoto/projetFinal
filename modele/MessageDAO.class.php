@@ -41,7 +41,7 @@ class MessageDAO
                 $pstmt->closeCursor();
                 $pstmt = NULL;
                 Database::close();
-                return $result->messagelu;//['messagelu'];
+                return $result->messagelu;
 				
             }
 			else
@@ -53,6 +53,32 @@ class MessageDAO
         catch (PDOException $ex){
         }           
         return NULL;
+	}	
+	
+	public static function findMemberMessages($id)
+	{
+		 $db = Database::getInstance();
+            //creacion de un array
+			$favs = Array();
+            try {			
+                $pstmt = $db->prepare("SELECT me1.dateHeure, m1.username, r1.title, me1.messageLu, me1.idMessage FROM message me1 
+				INNER JOIN members m1 on me1.idMember=m1.idMember 
+				INNER JOIN request r1 on r1.idRequest=me1.idRequest and r1.idMember=:id");
+                $pstmt->execute(array (':id' => $id));
+
+                while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
+                {
+                        $req = new Request();
+                        $req->loadFromObjectMessages($result);
+                        array_push($favs, $req);
+                }
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+            }
+            catch (PDOException $ex){
+            }             
+            return $favs;
 	}	
 
 }
