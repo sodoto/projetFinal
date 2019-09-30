@@ -19,7 +19,16 @@
 			include("banner.php");
 			//include("menu.php");
 		?>
-
+		
+		<?php
+				require_once('/modele/MessageDAO.class.php');
+				$daoM = new MessageDAO();
+				$mmesagesNonLus=$daoM->messageLuStatus($_SESSION["idMember"]);
+				
+					?>
+						<p>Messages non lus <?=$mmesagesNonLus?></p>
+					
+		
 		<div>
 			<h2>Découvrez comment vous pouvez aider quelqu'un</h2>
 			<?php
