@@ -11,6 +11,7 @@
 		
         public function __construct()
         {
+			
         }
 
         public function getIdMessage()
@@ -109,7 +110,7 @@
 			
 		}
 		
-		 public function loadFromObjectMessages($x) {
+		 public function loadFromObject2($x) {
 			$this->dateHeure = $x->dateHeure;
 			$this->username = $x->username;
 			$this->title = $x->title;
