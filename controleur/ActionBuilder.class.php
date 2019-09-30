@@ -12,6 +12,7 @@ require_once('/controleur/EditRequestAction.class.php');
 require_once('/controleur/NewRequestAction.class.php');
 require_once('/controleur/MyOfferRequestAction.class.php');
 require_once('/controleur/MySkillsAction.class.php');
+require_once('/controleur/AfficherMessagesAction.class.php');
 
 
 class ActionBuilder{
@@ -53,6 +54,9 @@ class ActionBuilder{
 				break;	
 			case "mySkills" :
 				return new MySkillsAction();
+				break;	
+			case "afficherMessages" :
+				return new AfficherMessagesAction();
 				break;	
 						
 			default :
