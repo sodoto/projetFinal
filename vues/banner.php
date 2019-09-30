@@ -24,36 +24,36 @@
 		</li>	 -->
 	</ul>
 
-	<ul class="nav navbar-nav ml-auto">
-	<?php
-		if (ISSET($_SESSION["connected"]))
-		{
-	?>
-		<li class="nav-item dropdown">
-				<a class="text-dark1" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
-					<i class="fas fa-user"></i> Mon Profil
-				</a> 
-				<div class="dropdown-content">
-					<a class="text-dark" class="dropdown-item" href="#">MES COMP&Eacute;TENCES</a> <br />
-					<a class="text-dark" class="dropdown-item" href="?action=mesDemandes">MES DEMANDES</a> <br />
-					<a class="text-dark" class="dropdown-item" href="?action=mesOffres">MES OFFRES</a> <br />
-					<a class="text-dark" class="dropdown-item" href="#">AIDES COMPLET&Eacute;ES</a> <br />
-					<a class="text-dark" class="dropdown-item" href="#">NOTIFICATIONS/MESSAGES</a> <br />
-				</div>
-		</li>
-		<li class="nav-item">
-			<a class="text-dark1" class="nav-link" href="?action=deconnecter"><i class="fas fa-sign-out-alt"></i> Logout</a>
-		</li>
-	<?php
-		}
-		else
-		{
-	?>
-		<li class="nav-item">
-			<a class="text-dark1" class="nav-link" href="?action=connecter"><i class="fas fa-sign-in-alt"></i> Login</a>
-		</li>
-		<?php
-			}
-		?>
-	</ul>
-</nav>
+			<ul class="nav navbar-nav ml-auto">
+			<?php
+				if (ISSET($_SESSION["connected"]))
+				{
+			?>
+				<li class="nav-item dropdown">
+						<a class="text-dark1" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">
+							<i class="fas fa-user"></i> Mon Profil
+						</a> 
+						<div class="dropdown-content">
+							<a class="text-dark" class="dropdown-item" href="?action=mySkills">MES COMP&Eacute;TENCES</a> </br>
+							<a class="text-dark" class="dropdown-item" href="?action=mesDemandes">MES DEMANDES</a> </br>
+							<a class="text-dark" class="dropdown-item" href="?action=mesOffres">MES OFFRES</a> </br>
+							<a class="text-dark" class="dropdown-item" href="#">AIDES COMPLET&Eacute;ES</a> </br>
+							<a class="text-dark" class="dropdown-item" href="#">NOTIFICATIONS/MESSAGES</a></br>
+						</div>
+				</li>
+				<li class="nav-item">
+					<a class="text-dark1" class="nav-link" href="?action=deconnecter"><i class="fas fa-sign-out-alt"></i> Logout</a>
+				</li>
+			<?php
+				}
+				else
+				{
+			?>
+				<li class="nav-item">
+					<a class="text-dark1" class="nav-link" href="?action=connecter"><i class="fas fa-sign-in-alt"></i> Login</a>
+				</li>
+				<?php
+					}
+				?>
+			</ul>
+	</nav>

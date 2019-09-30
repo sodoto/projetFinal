@@ -3,6 +3,7 @@
 		private $idRegistre;
 		private $idMember;
         private $idSkill;
+		private $description;
 
         public function __construct()
         {
@@ -37,11 +38,28 @@
         {
             $this->idSkill = $idSkill;
         }
+		
+		 public function getDescription()
+        {
+            return $this->description;
+        }
+
+        public function setDescription($description)
+        {
+            $this->description = $description;
+        }
 
         public function loadFromObject($x) {
 			$this->idRegistre = $x->idRegistre;
 			$this->idSKill = $x->idSkill;
 			$this->idMember = $x->idMember;
 		}
+		
+		 public function loadFromObject1($x) {
+			
+			$this->description = $x->description;
+		}
+		
+		
 
     }

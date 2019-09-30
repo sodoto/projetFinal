@@ -106,4 +106,6 @@ class SkillsDAO
         }           
         return NULL;
     }
+	
+	 
 }

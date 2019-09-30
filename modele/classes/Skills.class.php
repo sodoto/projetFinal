@@ -31,5 +31,6 @@
 			$this->idSkill = $x->idSkills;
 			$this->description = $x->description;
 		}
-
+		
+		
     }
