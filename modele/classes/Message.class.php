@@ -6,6 +6,8 @@
        	private $idMember; 	
 		private $dateHeure;
 		private $messageLu;
+		private $username;
+		private $title;
 		
         public function __construct()
         {
@@ -71,6 +73,26 @@
         {
             $this->messageLu = $messageLu;
         }
+		
+		public function getUsername()
+        {
+            return $this->username;
+        }
+
+        public function setUsername($username)
+        {
+            $this->username = $username;
+        }
+		
+		public function getTitle()
+        {
+            return $this->title;
+        }
+
+        public function setTitle($title)
+        {
+            $this->title = $title;
+        }
 
         public function loadFromObject($x) {
 			$this->idMessage = $x->idMessage;
@@ -86,10 +108,19 @@
 			$this->messageLu = $x->messageLu;
 			
 		}
+		
+		 public function loadFromObjectMessages($x) {
+			$this->dateHeure = $x->dateHeure;
+			$this->username = $x->username;
+			$this->title = $x->title;
+			$this->messageLu = $x->messageLu;
+			$this->idMessage = $x->idMessage;	
+		}
+		
 
 public function __toString()
 	{
-		return "Message[".$this->idMessage.",".$this->message.",".$this->idRequest.",".$this->idMember.",".$this->dateHeure.",".$this->messageLu."]";
+		return "Message[".$this->idMessage.",".$this->message.",".$this->idRequest.",".$this->idMember.",".$this->dateHeure.",".$this->messageLu.",".$this->username.",".$this->title."]";
 	}
 	public function affiche()
 	{
