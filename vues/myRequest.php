@@ -45,6 +45,42 @@
 				$_SESSION["erreurRequest"] = false;
 				}
 			?>
+
+			<div class="container">
+				<?php
+					require_once('/modele/SkillsDAO.class.php');
+					$daoSkills = new SkillsDAO();
+					$tRequest = $daoRequest->findByIdMember($_SESSION["idMember"]);
+					date_default_timezone_set('America/Toronto');
+					if(empty($tRequest)){
+						echo "Vous n'avez aucune demande!";
+					}
+					else{
+						foreach($tRequest as $request) {
+							$dateRequest = date_create($request->getDateRequest());
+							$dateService = date_create($request->getDateService());
+							$skill = $daoSkills->find($request->getSkillWanted());
+				?>
+				<div class="card">
+					<div class="card-header"><?=$request->getTitle()?></div>
+					<div class="card-body">
+						Date du service: <?=date_format($dateService, "d/m/Y")?> <br/>
+						Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
+						Location: <?=$request->getLocation()?> <br/>
+						Status: <?=$request->getStatus()?> <br/>
+						Habileté demandée: <?=$skill->getDescription()?> <br/>
+					</div>
+					<div class="card-footer">
+						<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
+						<a href='?action=suppRequest&idRequest=<?=$request->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
+					</div>
+				</div>
+				<?php 
+                            }
+					    }
+					?>
+			</div>
+			<?php /*
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
@@ -91,6 +127,7 @@
 					?>
 				</tbody>
 			</table>
+			*/ ?>
 			<form action="" method="POST">
 			<input name="action" value="newRequest" type="hidden" />
 				<button type="submit">Nouvelle demande</button>

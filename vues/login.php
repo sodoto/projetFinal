@@ -22,54 +22,48 @@ if (ISSET($_REQUEST["email"]))
 		<title>Page d'accueil</title>
 	</head>
 
-<body>
-	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
-		<?php
-			include("/vues/banner.php");
-		?>
-		
-		<div class="container">
-			<form action="" method="POST" class="formLogin">
-				<h1>LOGIN</h1>
+	<body>
+		<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
+			<?php
+				include("/vues/banner.php");
+			?>
+			
+			<div class="d-flex flex-row justify-content-center align-items-center bd-highlight flex-grow-1">
+				<form action="" method="POST" class="formLogin">
+					<h1>Login</h1>
 
-				<input type="text" class="Input-Login" name="email" placeholder="Courrier &eacute;lectronique ou Nom d'utilisateur" value="<?=$u?>">
-				<?php 
-					if (ISSET($_REQUEST["field_messages"]["email"]))
-					{
-				?>
-					<span class="warningMessage"><?=$_REQUEST["field_messages"]["email"]?></span><br /><br />
-				<?php
-					}
-				?>
-				<!--vider les champs  utilisateur et mot de passe-->
-				<input type="text" class="Input-Login" style="display:none">
-				<input type="password" class="Input-Login" style="display:none">
-				<!--   -->
-				<input type="password" class="Input-Login" name="password" placeholder="Mot de passe">
-				<?php 
-					if (ISSET($_REQUEST["field_messages"]["password"]))
-					{
-				?>
-					<span class="warningMessage"><?=$_REQUEST["field_messages"]["password"]?></span><br /><br />
-				<?php
-					}
-				?>
-				
-				
-				<span style="float:right;">
-				<input name="action" value="connecter" type="hidden" />
-				<button type="submit" class="btn2">Entrer</button>
-				<button type="reset"href="#" class="btn2">Vider</button>
-				</span>
-				</br></br></br>
-					<!--<button type="button" href="?action=signin" class="btn3 btn-lg btn-block"><a style="line-height: 1px;" class="text-dark1">Pas inscrit? Créer un compte</a></button>-->
+					<input type="text" id="inputEmail" class="Input-Login" name="email" placeholder="Courrier &eacute;lectronique ou Nom d'utilisateur" value="<?=$u?>">
+					<?php 
+						if (ISSET($_REQUEST["field_messages"]["email"]))
+						{
+					?>
+						<span class="warningMessage"><?=$_REQUEST["field_messages"]["email"]?></span><br /><br />
+					<?php
+						}
+					?>
+					<!--vider les champs  utilisateur et mot de passe-->
+					<input type="text" class="Input-Login" style="display:none">
+					<input type="password" class="Input-Login" style="display:none">
+					<!--   -->
+					<input type="password" class="Input-Login" name="password" placeholder="Mot de passe">
+					<?php 
+						if (ISSET($_REQUEST["field_messages"]["password"]))
+						{
+					?>
+						<span class="warningMessage"><?=$_REQUEST["field_messages"]["password"]?></span><br /><br />
+					<?php
+						}
+					?>
+
+					<input name="action" value="connecter" type="hidden" />
+					<button type="submit" class="btn btn-lg btn-block text-uppercase">Se Connecter</button>
+					<br /><br /><br />
 					<a class="text-dark1" href="?action=signin">Pas inscrit? Créer un compte</a>
-			</form>
-		</div>
-		<div class="mt-auto">
+				</form>
+			</div>
+			
 			<?php
 				include("/vues/footer.php");
 			?>
-		</div>
-</body>
+	</body>
 </html>

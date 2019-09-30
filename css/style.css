@@ -1,16 +1,40 @@
-.navbar-brand {
-	color: black;
-	font-weight: bold;
-	font-family:Georgia;
-  font-style: italic;
-}
+/* ------------ Banner and footer ----------------- */
+
 .navbar {
 color:black;
 background-color: #4D9AC4 ;
 }
 
-.navbar-nav > li{
+/* .navbar-nav > li{
   vertical-align: center;
+} */
+
+.dropdown {
+  position: relative;
+ display: inline-block;
+}
+
+.dropdown-content {
+ display: none;
+ position: absolute;
+ background-color: #f9f9f9;
+ min-width: 160px;
+ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+ padding: 12px 16px;
+ z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+ display: block;
+}
+
+.rechercher{
+ font-size:17px;
+ /* margin-top: 13px;
+ margin-bottom:15px;
+ padding-bottom: 2px;
+ margin-left: 10px; */
+ background-color:#d5ecf9;
 }
 
 .text-dark{
@@ -31,99 +55,36 @@ text-align:center;
 padding-right:17px;
 }
 
-.text-light{
-color:c1c6c9;
-font-size:17px;
-font-weight: bold;
-font-family:Helvetica;
-text-align:center;
-padding-right:17px;
-}
-
-/* .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 5%;
-  width: 100%;
-  background-color: #4D9AC4;
-  color: black;
-  text-align: left;
-  font-family:Helvetica;
-  display: flexbox;
-} */
-
 #footer {
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: #4D9AC4;
   font-family:Helvetica;
-  /* Set the fixed height of the footer here */
-  /* height: 40px;
-  line-height: 40px; */
 }
+
+/* ------------ Login ----------------- */
 
 .btn {
+  /* font-size: 80%; */
+  margin-top: 10px;
+  font-weight: bold;
+  background-color: #074B98 !important;
+  color: #ced7dd !important;
+}
+
+.btn1 { /* footer */
   background-color: white;
-  display: inline-block;
   text-decoration: none;
   padding: 5px 10px;
-  border: 2px solid #cdcdcd;
-  border-color:black;
-  line-height: normal;
-  margin: 10px 0;
-  padding-top: 10px;
-  padding-bottom: 1px;
+  border: 1px solid #1a1919;
+  border-radius: 5px;
 }
 
-.btn1 {
-	background-color: white;
-    text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid #1a1919;
-    border-radius: 5px;
-}
-
-.dropdown {
-   position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.rechercher{
-  font-size:17px;
-  /* margin-top: 13px;
-  margin-bottom:15px;
-  padding-bottom: 2px;
-  margin-left: 10px; */
-  background-color:#d5ecf9;
-}
-
-.btn2 {
+.btn2 { /*rechercher*/
   background-color: #555555;
   color: white;
-  /* display: inline-block;
-  text-decoration: none; */
   border: 1px solid;
   border-color: #555555;
-  /* line-height: normal; */
-  /* padding-top: 8px ;
-  margin-top: 13px;
-  margin-bottom:5px;
-  padding-bottom: 5px;*/
 }
 
 .btn3 {
@@ -144,29 +105,29 @@ h1 {
 }
 
 .formLogin {
-  margin: 40px auto;
+  margin: 50px;
   background-color: #ced7dd;
-  padding: 50px 20%;
+  padding: 2rem;
   border-radius: 10px;
-  width: 800px;
+  width: 500px;
 }
 
 .Input-Login {
+  padding: 15px 10px;
+  margin-top: 5px;
+  width: 100%;
+  color: #666;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.select-form{
   padding: 15px 10px;
   margin: 5px 0px;
   width: 100%;
   color: #666;
   border-radius: 1px;
   border: 1px solid #ccc;
-}
-
-.select-form{
-    padding: 15px 10px;
-    margin: 5px 0px;
-    width: 100%;
-    color: #666;
-    border-radius: 1px;
-    border: 1px solid #ccc;
 }
 
 h2 {
@@ -179,6 +140,8 @@ font-family:Helvetica;
 .warningMessage {
   color : red;
 }
+
+/* --------------------- OVERLAY -------------------- */
 
 .overlay {
   /* Height & width depends on how you want to reveal the overlay (see JS below) */   

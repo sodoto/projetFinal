@@ -53,8 +53,7 @@ date_default_timezone_set('America/Toronto');
 			//include("menu.php");
 		?>
 
-		<div>
-            <h2>Modifier ma demande</h2>
+		<div class="d-flex flex-row justify-content-center align-items-center bd-highlight flex-grow-1">
 
             <?php
 				require_once('/modele/RequestDAO.class.php');
@@ -74,6 +73,7 @@ date_default_timezone_set('America/Toronto');
 			?>
 
             <form action="" method="POST" class="formLogin">
+                <h2>Modifier ma demande</h2>
                 <small>Titre</small>
                 <input type="text" class="Input-Login" name="title" value="<?php echo $title?>" placeholder="Titre"><br/>
                 <?php if (ISSET($_REQUEST["field_messages"]["title"])) 
@@ -114,7 +114,7 @@ date_default_timezone_set('America/Toronto');
                     ?>
                 </select>
                 <input type="hidden" name="sendEditForm">
-                <button type="submit" name="submit" value="submit" >Enregistrer</button>
+                <button type="submit" class="btn btn-lg btn-block text-uppercase">Enregistrer</button>
             </form>
 			
 		</div>
