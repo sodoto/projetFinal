@@ -38,7 +38,7 @@
 							<a class="text-dark" class="dropdown-item" href="?action=mesDemandes">MES DEMANDES</a> </br>
 							<a class="text-dark" class="dropdown-item" href="?action=mesOffres">MES OFFRES</a> </br>
 							<a class="text-dark" class="dropdown-item" href="#">AIDES COMPLET&Eacute;ES</a> </br>
-							<a class="text-dark" class="dropdown-item" href="#">NOTIFICATIONS/MESSAGES</a></br>
+							<a class="text-dark" class="dropdown-item" href="?action=afficherMessages">NOTIFICATIONS/MESSAGES</a></br>
 						</div>
 				</li>
 				<li class="nav-item">
