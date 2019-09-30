@@ -27,7 +27,7 @@ class MessageAction implements Action {
 		else{
 			
 			if (isset($_REQUEST['message'])){
-				
+			
 				$dao = new OfferRequestDAO();
 				date_default_timezone_set("America/Toronto");
 			
@@ -37,15 +37,12 @@ class MessageAction implements Action {
 				$offerRequest->setStatus("Message d'adie envoye");
 				$offerRequest->setDateOffer($date);
 				$offerRequest->setComment("Awaiting");
-				//El id aca debe ser el de la persona que quiere ayudar
-				$offerRequest->setIdMember($idMember); //idMembreEmeteur
+				
+				$offerRequest->setIdMember($idMember); 
 				$offerRequest->setIdRequest($IDRequest);
 				$dao->create($offerRequest);
 				
-				
-				
-			
-				
+
 				$daoMe = new MessageDAO();			
 				date_default_timezone_set("America/Toronto");
 			
@@ -53,10 +50,13 @@ class MessageAction implements Action {
 
 				$message=new Message();
 				$message->setMessage($_REQUEST['message']);
-				$message->setIdOffer($_SESSION["IDRequest"]);// se requiere agregar la oferta antes de agregar el idOffer
-				$message->setIdMemberEmetteur($_SESSION["idMember"]);//cambiar variable de ingreso idMembreEmeteur
-				$message->setDateHeure($date);	
+				$message->setIdRequest($_SESSION["IDRequest"]);
+				$message->setIdMember($_SESSION["idMember"]);
+				$message->setDateHeure($date);
+				$message->setMessageLu("No");
+				
 				$daoMe->insert($message);
+				
 							
 				// $daoMail= new MemberDAO();
 			
@@ -75,10 +75,6 @@ class MessageAction implements Action {
 				// else{
 				// echo "email sending failed";
 				// }
-
-
-
-
 			
 			}
 			
