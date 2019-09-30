@@ -68,9 +68,9 @@ class MessageDAO
 
                 while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
                 {
-                        $req = new Request();
-                        $req->loadFromObjectMessages($result);
-                        array_push($favs, $req);
+                        $mes = new Message();
+                        $mes->loadFromObject2($result);
+                        array_push($favs, $mes);
                 }
                 $pstmt->closeCursor();
                 $pstmt = NULL;
