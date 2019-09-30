@@ -2,9 +2,10 @@
     class Message{
         private $idMessage;
 		private $message;
-		private $idOffer;
-       	private $idMemberEmetteur; 	
+		private $idRequest;
+       	private $idMember; 	
 		private $dateHeure;
+		private $messageLu;
 		
         public function __construct()
         {
@@ -31,24 +32,24 @@
         }
 		
 		
-		public function getIdOffer()
+		public function getIdRequest()
         {
-            return $this->idOffer;
+            return $this->idRequest;
         }
 
-        public function setIdOffer($idOffer)
+        public function setIdRequest($idRequest)
         {
-            $this->idOffer = $idOffer;
+            $this->idRequest = $idRequest;
         }
 		
-		 public function getIdMemberEmetteur()
+		 public function getIdMember()
         {
-            return $this->idMemberEmetteur;
+            return $this->idMember;
         }
 
-        public function setIdMemberEmetteur($idMemberEmetteur)
+        public function setIdMember($idMember)
         {
-            $this->idMemberEmetteur = $idMemberEmetteur;
+            $this->idMember = $idMember;
         }
 		
 		public function getDateHeure()
@@ -61,19 +62,34 @@
             $this->dateHeure = $dateHeure;
         }
 		
+		public function getMessageLu()
+        {
+            return $this->messageLu;
+        }
+
+        public function setMessageLu($messageLu)
+        {
+            $this->messageLu = $messageLu;
+        }
 
         public function loadFromObject($x) {
 			$this->idMessage = $x->idMessage;
 			$this->message = $x->message;
-			$this->idOffer = $x->idOffer;
-			$this->idMemberEmetteur = $x->idMemberEmetteur;
+			$this->idRequest = $x->idRequest;
+			$this->idMember = $x->idMember;
 			$this->dateHeure = $x->dateHeure;
+			$this->messageLu = $x->messageLu;
+			
+		}
+		 public function loadFromObject1($x) {
+
+			$this->messageLu = $x->messageLu;
 			
 		}
 
 public function __toString()
 	{
-		return "Message[".$this->idMessage.",".$this->message.",".$this->idOffer.",".$this->idMemberEmetteur.",".$this->dateHeure."]";
+		return "Message[".$this->idMessage.",".$this->message.",".$this->idRequest.",".$this->idMember.",".$this->dateHeure.",".$this->messageLu."]";
 	}
 	public function affiche()
 	{
