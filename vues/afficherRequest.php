@@ -20,6 +20,57 @@
 			//include("menu.php");
 		?>
 
+
+		<h2>Découvrez comment vous pouvez aider quelqu'un</h2>
+		<?php
+			require_once('/modele/AfficherRequestDAO.class.php');
+			$dao = new afficherRequestDAO();
+			$ariaExpanded = "true";
+			$collapsedShow = "show";
+			$collapsed = "";
+		?>	
+		<h2> LISTE DE REQUESTS</h3>
+		<div class="accordion" id="accordionRequest" role="tablist">
+			<?php
+				$tRequest = $dao->findAll();
+				foreach($tRequest as $request) {
+					$dateRequest = date_create($request->getDateRequest());
+					$dateService = date_create($request->getDateService());
+			?>
+			<div class="card mb-r">
+				<h4 class="card-header" role="tab" id="heading<?=$request->getIdRequest()?>">
+					<a class="<?=$collapsed?> d-block" data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
+						<span>
+						<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?>
+						</span>
+					</a>
+				</h4>
+
+				<div id="collapse<?=$request->getIdRequest()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$request->getIdRequest()?>" data-parent="#accordionRequest">
+					<div class="card-body">
+						Date du service: <?=date_format($dateService, "d/m/Y")?> <br/>
+						Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
+						Location: <?=$request->getLocation()?> <br/>
+						Status: <?=$request->getStatus()?> <br/>
+						Habileté demandée: <?=$request->getSkillWanted()?> <br/>
+					</div>
+					<div class="card-footer">
+						<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
+						<a href='?action=suppRequest&idRequest=<?=$request->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
+					</div>
+				</div>
+			</div>
+			<?php
+				$ariaExpanded = "false";
+				$collapsedShow = "";
+				$collapsed = "collapsed";
+						}
+			?>
+		</div>
+
+
+
+		<?php /*
 		<div>
 			<h2>Découvrez comment vous pouvez aider quelqu'un</h2>
 			<?php
@@ -66,6 +117,7 @@
 				</tbody>
 			</table>
 		</div>
+		*/?>
 		<div class="mt-auto">
 			<?php
 				include("footer.php");
