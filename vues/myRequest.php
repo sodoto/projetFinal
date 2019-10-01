@@ -64,15 +64,13 @@
 								$skill = $daoSkills->find($request->getSkillWanted());
 					?>
 					<div class="card mb-r">
-							<!-- <div class="" > -->
-							<h4 class="card-header" role="tab" id="heading<?=$request->getIdRequest()?>">
-								<a class="<?=$collapsed?> d-block" data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
-									<span>
-									<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?>
-									</span>
-								</a>
-							</h4>
-							<!-- </div> -->
+						<h4 class="card-header" role="tab" id="heading<?=$request->getIdRequest()?>">
+							<a class="<?=$collapsed?> d-block" data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
+								<span>
+								<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?>
+								</span>
+							</a>
+						</h4>
 					
 						<div id="collapse<?=$request->getIdRequest()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$request->getIdRequest()?>" data-parent="#accordionRequest">
 							<div class="card-body">
@@ -98,7 +96,7 @@
 				</div>
 			<form action="" method="POST">
 				<input name="action" value="newRequest" type="hidden" />
-				<button type="submit">Nouvelle demande</button>
+				<button type="submit" style="margin-top: 10px;">Nouvelle demande</button>
 			</form>
 		</div>
 		<div class="mt-auto">

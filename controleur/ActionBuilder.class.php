@@ -14,11 +14,15 @@ require_once('/controleur/MyOfferRequestAction.class.php');
 require_once('/controleur/MySkillsAction.class.php');
 require_once('/controleur/AfficherMessagesAction.class.php');
 require_once('/controleur/AfficherConversationsAction.class.php');
+require_once('/controleur/DetailOfferAction.class.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
 		switch ($nomAction)
 		{
+			case "detailOffer" :
+				return new DetailOfferAction();
+				break;
 			case "mesOffres" :
 				return new MyOfferRequestAction();
 				break;

@@ -41,6 +41,9 @@ class MessageAction implements Action {
 				$offerRequest->setIdMember($idMember); 
 				$offerRequest->setIdRequest($IDRequest);
 				$dao->create($offerRequest);
+
+				$lastOfferRequest = new OfferRequest();
+				$lastOfferRequest = $dao->findLast();
 				
 
 				$daoMe = new MessageDAO();			
@@ -54,6 +57,7 @@ class MessageAction implements Action {
 				$message->setIdMember($_SESSION["idMember"]);
 				$message->setDateHeure($date);
 				$message->setMessageLu("No");
+				$message->setIdOffer($lastOfferRequest->getIdOffer());
 				
 				$daoMe->insert($message);
 				

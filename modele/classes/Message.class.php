@@ -3,7 +3,8 @@
         private $idMessage;
 		private $message;
 		private $idRequest;
-       	private $idMember; 	
+        private $idMember;
+        private $idOffer;
 		private $dateHeure;
 		private $messageLu;
 		private $username;
@@ -43,6 +44,16 @@
         public function setIdRequest($idRequest)
         {
             $this->idRequest = $idRequest;
+        }
+
+        public function getIdOffer()
+        {
+            return $this->idOffer;
+        }
+
+        public function setIdOffer($idOffer)
+        {
+            $this->idOffer = $idOffer;
         }
 		
 		 public function getIdMember()

@@ -9,11 +9,12 @@ class MessageDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO message (message,idRequest,idMember, dateHeure, messageLu)
-                                    VALUES (:m,:ido,:ide, :d, :e)");		
+            $pstmt = $db->prepare("INSERT INTO message (message,idRequest,idMember,idOffer, dateHeure, messageLu)
+                                    VALUES (:m,:ido,:ide,:idoff, :d, :e)");		
 			$n = $pstmt->execute(array(':m' => $message->getMessage(),
                                        ':ido' => $message->getIdRequest(),
-									   ':ide' => $message->getIdMember(),
+                                       ':ide' => $message->getIdMember(),
+                                       ':idoff' => $message->getIdOffer(),
 									   ':d' => $message->getDateHeure(),
 									   ':e' => $message->getMessageLu()));
 			
@@ -24,6 +25,29 @@ class MessageDAO
         catch (PDOException $ex){
         }           
         return $n;	
+    }
+
+    public function findByIdOffer($id) {
+        $db = Database::getInstance();
+        $messages = Array();
+
+        try {			
+            $pstmt = $db->prepare("SELECT * FROM message WHERE idOffer=:id");
+            $pstmt->execute(array (':id' => $id));
+
+            while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
+            {
+                    $mes = new Message();
+                    $mes->loadFromObject($result);
+                    array_push($messages, $mes);
+            }
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }             
+        return $messages;
     }
 	
 	public static function messageLuStatus($id)
