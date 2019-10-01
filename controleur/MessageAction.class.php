@@ -18,7 +18,9 @@ class MessageAction implements Action {
 			$IDRequest="";
 			$IDRequest=isset($_SESSION['IDRequest'])?$_SESSION['IDRequest']:'';
 			$idMember="";
-			$idMember=isset($_SESSION['idMember'])?$_SESSION['idMember']:'';//Changer á Emetteur du message
+			$idMember=isset($_SESSION['idMember'])?$_SESSION['idMember']:'';
+			$idRecepteur="";
+			$idRecepteur=isset($_SESSION['idRecepteur'])?$_SESSION['idRecepteur']:'';
 		}
 		
 		if (!ISSET($_SESSION["connected"])){  
@@ -52,6 +54,7 @@ class MessageAction implements Action {
 				$message->setMessage($_REQUEST['message']);
 				$message->setIdRequest($_SESSION["IDRequest"]);
 				$message->setIdMember($_SESSION["idMember"]);
+				$message->setIdRecepteur($_SESSION["idRecepteur"]);
 				$message->setDateHeure($date);
 				$message->setMessageLu("No");
 				
