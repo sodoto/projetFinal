@@ -3,7 +3,8 @@
         private $idMessage;
 		private $message;
 		private $idRequest;
-       	private $idMember; 	
+       	private $idMember;
+		private $idRecepteur;		
 		private $dateHeure;
 		private $messageLu;
 		private $username;
@@ -53,6 +54,16 @@
         public function setIdMember($idMember)
         {
             $this->idMember = $idMember;
+        }
+		
+		 public function getIdRecepteur()
+        {
+            return $this->idRecepteur;
+        }
+
+        public function setIdRecepteur($idRecepteur)
+        {
+            $this->idRecepteur = $idRecepteur;
         }
 		
 		public function getDateHeure()
@@ -115,13 +126,33 @@
 			$this->username = $x->username;
 			$this->title = $x->title;
 			$this->messageLu = $x->messageLu;
-			$this->idMessage = $x->idMessage;	
+			$this->idMessage = $x->idMessage;
+			$this->idRecepteur = $x->idRecepteur;
+			$this->idRequest = $x->idRequest;
+			
+		}
+		
+		 public function loadFromObject3($x) {
+			$this->dateHeure = $x->dateHeure;
+			$this->username = $x->username;
+			$this->title = $x->title;
+			$this->messageLu = $x->messageLu;
+			$this->idMessage = $x->idMessage;
+			$this->idMember = $x->idMember;
+			$this->idRequest = $x->idRequest;
+			
+		}
+		 public function loadFromObject4($x) {
+			$this->dateHeure = $x->dateHeure;
+			$this->username = $x->username;
+			$this->message = $x->message;
+			
 		}
 		
 
 public function __toString()
 	{
-		return "Message[".$this->idMessage.",".$this->message.",".$this->idRequest.",".$this->idMember.",".$this->dateHeure.",".$this->messageLu.",".$this->username.",".$this->title."]";
+		return "Message[".$this->idMessage.",".$this->message.",".$this->idRequest.",".$this->idMember.",".$this->idRecepteur.",".$this->dateHeure.",".$this->messageLu.",".$this->username.",".$this->title."]";
 	}
 	public function affiche()
 	{
