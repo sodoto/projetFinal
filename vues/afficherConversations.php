@@ -19,24 +19,66 @@
 			include("banner.php");
 			//include("menu.php");
 		?>
-		
-					
+		<?php
+				require_once('/modele/MessageDAO.class.php');
+				$dao = new MessageDAO();
+	
+				if(isset($_REQUEST['idRecepteur']))
+				{ 		 
+				$_SESSION["idRecepteur"]= $_REQUEST['idRecepteur']; 
+				}		
+				if(isset($_REQUEST['IdRequest']))
+				{ 		 
+				$_SESSION["IdRequest"]= $_REQUEST['IdRequest']; 
+				}	
+	
+			?>	
+			
+		<h2> CONVERSATION</h3>
+			<?php //echo $_SESSION["idMember"] ?>
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<td>DATE D'ENVOI</td>
+						<td>USERNAME</td>
+						<td>MESSAGE</td>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						$tRequest = $dao->findConversation($_SESSION['idMember'], $_SESSION['idRecepteur'], $_SESSION['IdRequest']);
+						foreach($tRequest as $request) {
+					?>
+					<tr>
+						<td><?=$request->getDateHeure()?></td>
+						<td><?=$request->getUsername()?></td>
+						<td><?=$request->getMessage()?></td>
+			
+					</tr>
+					<?php  
+					}
+					?>
+				</tbody>
+			</table>
+			
 		
 		<div>
 			
-			<?php
-			if(isset($_REQUEST['IdMessage']))
-			{ 		
-			//$IDRequest = $_REQUEST['IdRequest']; 
-			$_SESSION["IdMessage"]= $_REQUEST['IdMessage']; 
+		
 			
-			}
-						
-							
-				require_once('/modele/MessageDAO.class.php');
-				$dao = new MessageDAO();
-				$dao->updateMessageLu(($_SESSION["IdMessage"]));
-			?>	
+			
+		
+		
+			<form action="" method="POST" class="formLogin" >
+		<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
+		
+		<br>
+		<input name="action" value="afficherConversations" type="hidden" />
+		
+		<button type="submit"  class="btn2">Continuer</button>
+		</form>
+		
 		
 		</div>
 		<div class="mt-auto">
