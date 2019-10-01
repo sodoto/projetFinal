@@ -69,7 +69,6 @@
 			*/ 
 			?>
 		</div>
-
 	
 		<?php
 				require_once('/modele/MessageDAO.class.php');
@@ -77,8 +76,8 @@
 				$mmesagesNonLus=$daoM->messageLuStatus($_SESSION["idMember"]);
 				
 					?>
-						<p>Messages non lus <?=$mmesagesNonLus?></p>
-					
+						
+					<p>Messages nom lus <a  href="?action=afficherMessages"><?=$mmesagesNonLus?></a></p>
 		
 		<div>
 			<h2>Découvrez comment vous pouvez aider quelqu'un</h2>
