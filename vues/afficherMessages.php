@@ -28,23 +28,60 @@
 				require_once('/modele/MessageDAO.class.php');
 				$dao = new MessageDAO();
 				
+				
+				
 			?>	
-			<h2> LISTE DE MESSAGES</h3>
+			<h2> MESSAGES - ENVOYES</h3>
 			<?php //echo $_SESSION["idMember"] ?>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
 						<td>DATE D'ENVOI</td>
-						<td>USERNAME</td>
+						<td>ENVOYE A</td>
 						<td>TITLE</td>
-						<td>STATUS</td>
+						
 						<td>ACCEDER</td>
 						
 					</tr>
 				</thead>
 				<tbody>
 					<?php
-						$tRequest = $dao->findMemberMessages($_SESSION['idMember']);
+						$tRequest = $dao->findMemberMessagesEnvoyes($_SESSION['idMember']);
+						foreach($tRequest as $request) {
+					?>
+					<tr>
+						<td><?=$request->getDateHeure()?></td>
+						<td><?=$request->getUsername()?></td>
+						<td><?=$request->getTitle()?></td>
+						
+						<td>						
+						   
+							<a href="?action=afficherConversations&IdMessage=<?=$request->getIdMessage()?>
+							&idRecepteur=<?=$request->getIdRecepteur()?>&IdRequest=<?=$request->getIdRequest()?>">Message!</a>  
+						</td>
+					</tr>
+					<?php  
+					}
+					?>
+				</tbody>
+			</table>
+			
+			<h2> MESSAGES - RECUS</h3>
+			<?php //echo $_SESSION["idMember"] ?>
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<td>DATE D'ENVOI</td>
+						<td>ENVOYE PAR</td>
+						<td>TITLE</td>
+						<td>MESSAGE LU</td>
+						<td>ACCEDER</td>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+						$tRequest = $dao->findMemberMessagesRecus($_SESSION['idMember']);
 						foreach($tRequest as $request) {
 					?>
 					<tr>
@@ -54,7 +91,8 @@
 						<td><?=$request->getMessageLu()?></td>
 						<td>						
 						   
-							<a href="?action=afficherConversations&IdMessage=<?=$request->getIdMessage()?>">Message!</a> 
+							<a href="?action=afficherConversations&IdMessage=<?=$request->getIdMessage()?>
+							&idRecepteur=<?=$request->getIdMember()?>&IdRequest=<?=$request->getIdRequest()?>">Message!</a>  
 						</td>
 					</tr>
 					<?php  
@@ -62,6 +100,7 @@
 					?>
 				</tbody>
 			</table>
+			
 		</div>
 		<div class="mt-auto">
 			<?php
