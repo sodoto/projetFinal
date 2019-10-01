@@ -54,7 +54,7 @@
 						<td><?=$request->getMessageLu()?></td>
 						<td>						
 						   
-							<a href="?action=offerRequest&IdRequest=<?=$request->getIdMessage()?>">Message!</a> 
+							<a href="?action=afficherConversations&IdMessage=<?=$request->getIdMessage()?>">Message!</a> 
 						</td>
 					</tr>
 					<?php  
