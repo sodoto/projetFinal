@@ -35,7 +35,7 @@ date_default_timezone_set('America/Toronto');
 			//include("menu.php");
 		?>
 
-		<div class="d-flex flex-row justify-content-center align-items-center bd-highlight flex-grow-1">
+		<div class="d-flex flex-column justify-content-center align-items-center bd-highlight flex-grow-1">
             <?php
 				require_once('/modele/RequestDAO.class.php');
 				$dao = new RequestDAO();

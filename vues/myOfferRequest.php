@@ -3,37 +3,6 @@
 	{
 		session_start();
 	}
-
-	function object_to_array($data)
-    {
-        if(is_array($data) || is_object($data))
-        {
-            $result = array();
-     
-            foreach($data as $key => $value) {
-                $result[$key] = $this->object_to_array($value);
-            }
-     
-            return $result;
-        }
-     
-        return $data;
-	}
-	
-	function utf8ize($d) {
-		if (is_array($d)) 
-			foreach ($d as $k => $v) 
-				$d[$k] = utf8ize($v);
-	
-		 else if(is_object($d))
-			foreach ($d as $k => $v) 
-				$d->$k = utf8ize($v);
-	
-		 else 
-			return utf8_encode($d);
-	
-		return $d;
-	}
 ?>
 
 <!DOCTYPE html>
@@ -135,8 +104,7 @@
 						<td><?=$offerRequest->getComment()?></td>
 						<td><?=$offerRequest->getStatus()?></td>
 						<td>
-							
-							<!--Para que no aparezca el item de adicionar se puede hacer un campo hiden CAMBIAR PARA USAR CAMPO HIDEN-->
+							<a href="?action=detailOffer&offerSelected=<?=$offerRequest->getIdOffer()?>" ><i class="fas fa-comments"></i></a>
 						</td>
 					</tr>
                     <?php 

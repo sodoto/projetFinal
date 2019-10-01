@@ -63,6 +63,32 @@ class OfferRequestDAO
         return $n;
     }
 
+    public function findLast() {
+        $db = Database::getInstance();
+
+        try {			
+            $pstmt = $db->prepare("SELECT * FROM offerrequest ORDER BY idOffer DESC LIMIT 1");
+            $pstmt->execute();
+
+            $result = $pstmt->fetch(PDO::FETCH_OBJ);
+
+            if($result) {
+                $o = new OfferRequest();
+                $o->loadFromObject($result);
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+                return $o;
+            }
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return NULL;
+    }
+
     public function findAll() {
         $db = Database::getInstance();
         $offerRequests = Array();

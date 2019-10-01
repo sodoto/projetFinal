@@ -45,6 +45,16 @@
         {
             $this->idRequest = $idRequest;
         }
+
+        public function getIdOffer()
+        {
+            return $this->idOffer;
+        }
+
+        public function setIdOffer($idOffer)
+        {
+            $this->idOffer = $idOffer;
+        }
 		
 		 public function getIdMember()
         {
