@@ -9,11 +9,12 @@ class MessageDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO message (message,idRequest,idMember, dateHeure, messageLu)
-                                    VALUES (:m,:ido,:ide, :d, :e)");		
+            $pstmt = $db->prepare("INSERT INTO message (message,idRequest,idMember, idRecepteur, dateHeure, messageLu)
+                                    VALUES (:m,:ido,:ide,:idr, :d, :e)");		
 			$n = $pstmt->execute(array(':m' => $message->getMessage(),
                                        ':ido' => $message->getIdRequest(),
 									   ':ide' => $message->getIdMember(),
+									   ':idr' => $message->getIdRecepteur(),
 									   ':d' => $message->getDateHeure(),
 									   ':e' => $message->getMessageLu()));
 			
@@ -31,8 +32,7 @@ class MessageDAO
 		 $db = Database::getInstance();
           
             try {			
-                $pstmt = $db->prepare("SELECT count(m1.messageLu) as messagelu FROM message m1 INNER JOIN request o1 on m1.idRequest=o1.idRequest 
-					 WHERE o1.idMember=:id and m1.messageLu='No'");
+                $pstmt = $db->prepare("SELECT count(m1.messageLu) as messagelu FROM message m1 WHERE m1.idRecepteur=:id and m1.messageLu='No'");
                $pstmt->execute(array (':id' => $id));
             $result = $pstmt->fetch(PDO::FETCH_OBJ);
 			
@@ -55,21 +55,47 @@ class MessageDAO
         return NULL;
 	}	
 	
-	public static function findMemberMessages($id)
+	public static function findMemberMessagesEnvoyes($id)
 	{
 		 $db = Database::getInstance();
             //creacion de un array
 			$favs = Array();
             try {			
-                $pstmt = $db->prepare("SELECT me1.dateHeure, m1.username, r1.title, me1.messageLu, me1.idMessage FROM message me1 
-				INNER JOIN members m1 on me1.idMember=m1.idMember 
-				INNER JOIN request r1 on r1.idRequest=me1.idRequest and r1.idMember=:id");
+                $pstmt = $db->prepare("SELECT me1.dateHeure, m1.username, r1.title, me1.messageLu, me1.idMessage, me1.idRecepteur, r1.idRequest FROM message me1 
+				INNER JOIN members m1 on me1.idRecepteur=m1.idMember 
+				INNER JOIN request r1 on r1.idRequest=me1.idRequest where me1.idMember=:id");
                 $pstmt->execute(array (':id' => $id));
 
                 while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
                 {
                         $mes = new Message();
                         $mes->loadFromObject2($result);
+                        array_push($favs, $mes);
+                }
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+            }
+            catch (PDOException $ex){
+            }             
+            return $favs;
+	}	
+	
+	public static function findMemberMessagesRecus($id)
+	{
+		 $db = Database::getInstance();
+            //creacion de un array
+			$favs = Array();
+            try {			
+                $pstmt = $db->prepare("SELECT me1.dateHeure, m1.username, r1.title, me1.messageLu, me1.idMessage, me1.idMember, r1.idRequest FROM message me1 
+				INNER JOIN members m1 on me1.idMember=m1.idMember 
+				INNER JOIN request r1 on r1.idRequest=me1.idRequest where me1.idRecepteur=:id");
+                $pstmt->execute(array (':id' => $id));
+
+                while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
+                {
+                        $mes = new Message();
+                        $mes->loadFromObject3($result);
                         array_push($favs, $mes);
                 }
                 $pstmt->closeCursor();
@@ -99,6 +125,34 @@ class MessageDAO
         }           
         return $n;
     }
+	
+	public static function findConversation($idMember, $idRecepteur, $idRequest)
+	{
+		 $db = Database::getInstance();
+            //creacion de un array
+			$favs = Array();
+            try {			
+                $pstmt = $db->prepare("SELECT me1.dateHeure, m1.username, me1.message FROM message me1 
+				INNER JOIN members m1 on me1.idMember=m1.idMember where me1.idRequest=:idRequest and 
+				(me1.idMember=:idMember or me1.idRecepteur=:idMember or me1.idMember=:idRecepteur or me1.idRecepteur=:idRecepteur)");
+                $pstmt->execute(array (':idMember' => $idMember,
+										':idRecepteur' => $idRecepteur,
+										':idRequest' => $idRequest));
+
+                while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
+                {
+                        $mes = new Message();
+                        $mes->loadFromObject4($result);
+                        array_push($favs, $mes);
+                }
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+            }
+            catch (PDOException $ex){
+            }             
+            return $favs;
+	}	
 
 }
 
