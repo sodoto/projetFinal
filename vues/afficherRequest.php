@@ -14,15 +14,16 @@
 </head>
 
 <body>
-	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
+	<!--   <div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">    -->
 		<?php
 			include("banner.php");
 			//include("menu.php");
 		?>
 
 
-		<h2>Découvrez comment vous pouvez aider quelqu'un</h2>
-		<?php
+	<!--	<h2>Découvrez comment vous pouvez aider quelqu'un</h2>           -->
+		<?php  
+		/*
 			require_once('/modele/AfficherRequestDAO.class.php');
 			$dao = new afficherRequestDAO();
 			$ariaExpanded = "true";
@@ -65,13 +66,11 @@
 				$collapsedShow = "";
 				$collapsed = "collapsed";
 						}
+			*/ 
 			?>
 		</div>
 
-
-
-		<?php /*
-		
+	
 		<?php
 				require_once('/modele/MessageDAO.class.php');
 				$daoM = new MessageDAO();
@@ -127,7 +126,8 @@
 				</tbody>
 			</table>
 		</div>
-		*/?>
+		
+		
 		<div class="mt-auto">
 			<?php
 				include("footer.php");
