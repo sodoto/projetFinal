@@ -80,6 +80,25 @@ class MessageDAO
             }             
             return $favs;
 	}	
+	
+	
+	 public function updateMessageLu($idMessage) {
+        $db = Database::getInstance();
+        $n = 0;
+		$lu="Yes";
+        try{
+            $pstmt = $db->prepare("UPDATE message SET messageLu=:ml WHERE idMessage=:idMessage");
+            $n = $pstmt->execute(array(':ml' => $lu,
+                                       ':idMessage' => $idMessage)); 
+            
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();                                 
+        }
+        catch (PDOException $ex){
+        }           
+        return $n;
+    }
 
 }
 
