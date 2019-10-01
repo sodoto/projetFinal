@@ -13,7 +13,7 @@ require_once('/controleur/NewRequestAction.class.php');
 require_once('/controleur/MyOfferRequestAction.class.php');
 require_once('/controleur/MySkillsAction.class.php');
 require_once('/controleur/AfficherMessagesAction.class.php');
-
+require_once('/controleur/AfficherConversationsAction.class.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -58,7 +58,9 @@ class ActionBuilder{
 			case "afficherMessages" :
 				return new AfficherMessagesAction();
 				break;	
-						
+			case "afficherConversations" :
+				return new AfficherConversationsAction();
+				break;			
 			default :
 				return new DefaultAction();
 		}
