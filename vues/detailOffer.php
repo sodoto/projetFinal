@@ -27,18 +27,52 @@
             <?php
                 require_once('/modele/OfferRequestDAO.class.php');
                 require_once('/modele/MessageDAO.class.php');
+                require_once('/modele/RequestDAO.class.php');
+                require_once('/modele/MemberDAO.class.php');
                 $oDao = new OfferRequestDAO();
                 $mDao = new MessageDAO();
+                $rDao = new RequestDAO();
+                $memDao = new MemberDAO();
                 $offer = $oDao->findByIdOffer($_REQUEST["offerSelected"]);
                 $tMessages = $mDao->findByIdOffer($_REQUEST["offerSelected"]);
+                $request = $rDao->find($offer->getIdRequest());
+                $member = $memDao->find($request->getIdMember());
             ?>
 
-            <div class="card">
+            <div class="container">
                 <?=$offer->getIdOffer()?>
 
-                MESSAGE
+                <h1>MESSAGE</h1>
                 <?php foreach($tMessages as $mess) {
-                    echo $mess->getMessage();
+                    if($mess->getIdMember() == $_SESSION["idMember"])
+                    {
+                ?>
+                    <div class="card w-75 text-right mt-3" style="width: 500px; color:red; float: right;">
+                        <div class="card-header">
+                            Vous -- <?=$mess->getDateHeure()?>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">
+                                
+                            </div>
+                            <?=$mess->getMessage()?>
+                        </div>
+                    </div>
+                <?php
+                    }
+                    else
+                    {
+                ?>
+                    <div class="card w-75 mt-3" style="width: 500px; color:green; float: left;">
+                        <div class="card-header">
+                            <?=$member->getFirstname()?> <?=$member->getLastname()?> -- <?=$mess->getDateHeure()?>
+                        </div>
+                        <div class="card-body">
+                            <?=$mess->getMessage()?>
+                        </div>
+                    </div>
+                <?php
+                    }
                 }
                 ?>
 

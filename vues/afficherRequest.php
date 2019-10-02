@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<!--   <div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">    -->
+	  <div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">   
 		<?php
 			include("banner.php");
 			//include("menu.php");
@@ -68,7 +68,7 @@
 						}
 			*/ 
 			?>
-		</div>
+		<!-- </div> -->
 
 	
 		<?php
@@ -133,5 +133,6 @@
 				include("footer.php");
 			?>
 		</div>
+				</div>
 </body>
 </html>

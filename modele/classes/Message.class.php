@@ -2,7 +2,8 @@
     class Message{
         private $idMessage;
 		private $message;
-		private $idRequest;
+        private $idRequest;
+        private $idOffer;
        	private $idMember;
 		private $idRecepteur;		
 		private $dateHeure;

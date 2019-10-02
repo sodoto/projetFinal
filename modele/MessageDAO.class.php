@@ -10,12 +10,13 @@ class MessageDAO
 
         try{
 
-            $pstmt = $db->prepare("INSERT INTO message (message,idRequest,idMember, idRecepteur, dateHeure, messageLu)
+            $pstmt = $db->prepare("INSERT INTO message (message,idRequest,idOffer,idMember, idRecepteur, dateHeure, messageLu)
                                     VALUES (:m,:ido,:ide,:idr, :d, :e)");		
 			$n = $pstmt->execute(array(':m' => $message->getMessage(),
                                        ':ido' => $message->getIdRequest(),
 									   ':ide' => $message->getIdMember(),
-									   ':idr' => $message->getIdRecepteur(),
+                                       ':idr' => $message->getIdRecepteur(),
+                                       ':idoff' => $message->getIdOffer(),
 									    ':d' => $message->getDateHeure(),
 									   ':e' => $message->getMessageLu()));
 
@@ -34,7 +35,7 @@ class MessageDAO
         $messages = Array();
 
         try {			
-            $pstmt = $db->prepare("SELECT * FROM message WHERE idOffer=:id");
+            $pstmt = $db->prepare("SELECT * FROM message WHERE idOffer=:id ORDER BY dateHeure");
             $pstmt->execute(array (':id' => $id));
 
             while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
