@@ -21,6 +21,8 @@
 			?>
 		<div>
 			<span>Page d'accueil.</span>
+			
+			
 		</div>
 		<div class="mt-auto">
 			<?php
