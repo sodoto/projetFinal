@@ -14,7 +14,7 @@
 		<title>Page d'accueil</title>
 	</head>
 
-<body>
+<body >
 	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
 			<?php
 				include("/vues/banner.php");
