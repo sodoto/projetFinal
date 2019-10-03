@@ -63,9 +63,9 @@
 								$dateService = date_create($request->getDateService());
 								$skill = $daoSkills->find($request->getSkillWanted());
 					?>
-					<div class="card mb-r">
-						<h4 class="card-header" role="tab" id="heading<?=$request->getIdRequest()?>">
-							<a class="<?=$collapsed?> d-block" data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
+					<div class="card">
+						<h4 class="card-header text-left" role="tab" id="heading<?=$request->getIdRequest()?>">
+							<a class="<?=$collapsed?> d-block " style="color:#444"  data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
 								<span>
 								<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?>
 								</span>
