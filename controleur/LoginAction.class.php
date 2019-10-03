@@ -39,7 +39,7 @@ class LoginAction implements Action {
 		$_SESSION["photoMember"] = $member->getPhoto();
 		$_SESSION["nameMember"] = $member->getFirstName()." ".$member->getLastName();
 		$_SESSION["erreurRequest"] = false;
-		
+		$_SESSION["userName"]=$member->getUsername();
 		return "default";
 	}
 	
