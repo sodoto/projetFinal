@@ -22,7 +22,13 @@
 		<?php
 				require_once('/modele/MessageDAO.class.php');
 				$dao = new MessageDAO();
-	
+				
+				if(isset($_REQUEST['IdMessage']))
+				{ 		 
+				$_SESSION["IdMessage"]= $_REQUEST['IdMessage']; 
+				}	
+					$dao->updateMessageLu($_SESSION["IdMessage"]); //message lu
+				
 				if(isset($_REQUEST['idRecepteur']))
 				{ 		 
 				$_SESSION["idRecepteur"]= $_REQUEST['idRecepteur']; 
