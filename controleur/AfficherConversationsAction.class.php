@@ -13,27 +13,14 @@ class AfficherConversationsAction implements Action {
 		
 		if (!ISSET($_SESSION["connected"])){  
 		return "login";  
-		}else{ 
-			
-					if(isset($_REQUEST['message'])) {
+		}else{ 		
 					
-						if(isset($_REQUEST['IdMessage']))
-						{ 		 
-						$_SESSION["IdMessage"]= $_REQUEST['IdMessage']; 
-						}			
 						
+					if(isset($_REQUEST['message'])) {
 						
 						$idMember="";
 						$idMember=isset($_SESSION['idMember'])?$_SESSION['idMember']:'';
-						$IDRequest="";
-						$IDRequest=isset($_SESSION['IDRequest'])?$_SESSION['IDRequest']:'';
-						$idRecepteur="";
-						$idRecepteur=isset($_SESSION['idRecepteur'])?$_SESSION['idRecepteur']:'';
-						
-						$dao = new MessageDAO();
-						$dao->updateMessageLu(($_SESSION["IdMessage"]));//marcar mensaje como no leido
-						
-						
+
 						$daoMe = new MessageDAO();			
 						date_default_timezone_set("America/Toronto");
 					
