@@ -10,11 +10,12 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		<title>Page d'accueil</title>
+		
+		<title>Conversation</title>
 </head>
 
 <body>
-	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
+	
 		<?php
 			include("banner.php");
 			//include("menu.php");
@@ -37,36 +38,74 @@
 				{ 		 
 				$_SESSION["IdRequest"]= $_REQUEST['IdRequest']; 
 				}	
+				
+				if(isset($_REQUEST['userName']))
+				{ 		 
+				$_SESSION["userName"]= $_REQUEST['userName']; 
+				}	
 	
 			?>	
 			
 		<h2> CONVERSATION</h3>
 			<?php //echo $_SESSION["idMember"] ?>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<td>DATE D'ENVOI</td>
-						<td>USERNAME</td>
-						<td>MESSAGE</td>
-						
-					</tr>
-				</thead>
-				<tbody>
+			
 					<?php
 						$tRequest = $dao->findConversation($_SESSION['idMember'], $_SESSION['idRecepteur'], $_SESSION['IdRequest']);
 						foreach($tRequest as $request) {
+					
+					if($request->getUsername()==$_SESSION["userName"]){
+						
 					?>
-					<tr>
-						<td><?=$request->getDateHeure()?></td>
-						<td><?=$request->getUsername()?></td>
-						<td><?=$request->getMessage()?></td>
-			
-					</tr>
+				<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">
+
+				
+				<li class="d-flex justify-content-center">
+              <img src="./images/member/avatar.jpg?>" alt="avatar" class="avatar rounded-circle "  height="100px!important">
+              <div class="chat-body white p-3 ml-2 z-depth-1">
+                <div class="header">
+                  <strong class="primary-font"><?=$request->getUsername()?></strong>
+                  <small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
+                </div>
+                <hr class="w-100">
+                <p class="mb-0">
+                  <?=$request->getMessage()?>
+                </p>
+              </div>
+            </li>
+				<br>
+				
+			</div>				
+					
 					<?php  
 					}
+					else 
+					{
+					  ?>	
+					<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">	
+						
+						 <li class="d-flex justify-content-center">
+              <div class="chat-body white p-3 z-depth-1">
+                <div class="header">
+                  <strong class="primary-font"><?=$request->getUsername()?></strong>
+                  <small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
+                </div>
+                <hr class="w-100">
+                <p class="mb-0">
+                  <?=$request->getMessage()?>
+                </p>
+              </div>
+              <img src="./images/member/avatar1.jpg?>" alt="avatar" class="avatar rounded-circle" height="100px!important">
+            </li>
+						
+						</div>
+						<br>
+										
+						<?php
+					}
+						
+					}
 					?>
-				</tbody>
-			</table>
+				
 			
 		
 		<div>
