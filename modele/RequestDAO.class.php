@@ -90,6 +90,29 @@ class RequestDAO
         return $requests;
     }
 
+    public function findThreeLast() {
+        $db = Database::getInstance();
+        $requests = Array();
+
+        try{
+            $pstmt = $db->prepare("SELECT * FROM request ORDER BY dateRequest LIMIT 3");
+            $pstmt->execute();
+
+            while($result = $pstmt->fetch(PDO::FETCH_OBJ)) {
+                $r = new Request();
+                $r->loadFromObject($result);
+                array_push($requests, $r);
+            }
+
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return $requests;
+    }
+
     public function find($id) {
         $db = Database::getInstance();
 
