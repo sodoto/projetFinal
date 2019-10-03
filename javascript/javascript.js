@@ -20,4 +20,16 @@ function openNav(lien,json) {
 
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
-} 
+}
+
+function loadContact() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("footer").innerHTML =
+        this.responseText;
+      }
+    };
+    xhttp.open("GET", "./javascript/ajax_contact.txt", true);
+    xhttp.send();
+}

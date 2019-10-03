@@ -1,6 +1,7 @@
 <?php
 	class Member{
 		private $idMember;
+		private $photo;
 		private $username;
 		private $password;
 		private $lastname;
@@ -18,6 +19,14 @@
 
 		public function setIdMember($value){
 			$this->idMember = $value;
+		}
+
+		public function getPhoto(){
+			return $this->photo;
+		}
+
+		public function setPhoto($value){
+			$this->photo = $value;
 		}
 
 		public function getUsername(){
@@ -70,6 +79,7 @@
 
 		public function loadFromObject($x) {
 			$this->idMember = $x->idMember;
+			$this->photo = $x->photo;
 			$this->firstname = $x->firstName;
 			$this->lastname = $x->lastName;
 			$this->email = $x->email;

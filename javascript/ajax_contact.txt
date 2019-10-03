@@ -1,0 +1,13 @@
+<div class="d-flex bd-highlight flex-row">
+    <a class="text-light" onclick="loadContact()">Contactez-nous</a>
+    <button type="button" href="#top" class="btn1 btn-default btn-sm ml-auto">
+        <a class="text-dark"> Retour au haut de la page </a><i class="fas fa-sort-up"></i>
+    </button>
+</div>
+<div id="contact">
+    Adresse du siège social <br/>
+    6400, 16e Avenue <br/>
+    Montréal (Québec) H1X 2S9 <br/>
+    Téléphone : 514 555-5555 <br/>
+    Courriel : info@communaction.com <br/>
+</div>

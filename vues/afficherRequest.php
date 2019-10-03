@@ -14,80 +14,79 @@
 </head>
 
 <body>
-	  <div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">   
+	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">   
 		<?php
 			include("banner.php");
-			//include("menu.php");
-		?>
-
-
-	<!--	<h2>Découvrez comment vous pouvez aider quelqu'un</h2>           -->
-		<?php  
-		/*
+		
 			require_once('/modele/AfficherRequestDAO.class.php');
 			$dao = new afficherRequestDAO();
 			$ariaExpanded = "true";
 			$collapsedShow = "show";
 			$collapsed = "";
-		?>	
-		<h2> LISTE DE REQUESTS</h3>
-		<div class="accordion" id="accordionRequest" role="tablist">
-			<?php
-				$tRequest = $dao->findAll();
-				foreach($tRequest as $request) {
-					$dateRequest = date_create($request->getDateRequest());
-					$dateService = date_create($request->getDateService());
-			?>
-			<div class="card mb-r">
-				<h4 class="card-header" role="tab" id="heading<?=$request->getIdRequest()?>">
-					<a class="<?=$collapsed?> d-block" data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
-						<span>
-						<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?>
-						</span>
-					</a>
-				</h4>
+			require_once('/modele/MessageDAO.class.php');
+			$daoM = new MessageDAO();
+			$mmesagesNonLus=$daoM->messageLuStatus($_SESSION["idMember"]);
+		?>
+						
+		<p>Messages nom lus <a  href="?action=afficherMessages"><?=$mmesagesNonLus?></a></p>
 
-				<div id="collapse<?=$request->getIdRequest()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$request->getIdRequest()?>" data-parent="#accordionRequest">
-					<div class="card-body">
-						Date du service: <?=date_format($dateService, "d/m/Y")?> <br/>
-						Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
-						Location: <?=$request->getLocation()?> <br/>
-						Status: <?=$request->getStatus()?> <br/>
-						Habileté demandée: <?=$request->getSkillWanted()?> <br/>
-					</div>
-					<div class="card-footer">
-						<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
-						<a href='?action=suppRequest&idRequest=<?=$request->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
+		<p>
+			<h2> Demandes</h2>
+			<h4>Découvrez comment vous pouvez venir en aide aux différents membres!</h4>
+		</p>
+
+		<div class="d-flex flex-row justify-content-center bd-highlight flex-grow-1">
+			<div class="accordion" id="accordionRequest" role="tablist">
+				<?php
+					$tRequest = $dao->findAll();
+					$now = date_create();
+					foreach($tRequest as $request) {
+						$dateRequest = date_create($request->getDateRequest());
+						$dateDiff = date_diff($dateRequest,$now);
+						$days = $dateDiff->format('%a');
+						$dateService = date_create($request->getDateService());
+				?>
+				<div class="card">
+					<h4 class="card-header text-left" role="tab" id="heading<?=$request->getIdRequest()?>" >
+						<a class="<?=$collapsed?> d-block" style="color:#444" data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
+							<span>
+								<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?> <span class="text-muted" style="font-size: 12px"> Il y a <?=$days?> jours </span>
+							</span>
+						</a>
+					</h4>
+
+					<div id="collapse<?=$request->getIdRequest()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$request->getIdRequest()?>" data-parent="#accordionRequest">
+						<div class="card-body">
+							Date du service demandé: <?=date_format($dateService, "d/m/Y")?> <br/>
+							Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
+							Location: <?=$request->getLocation()?> <br/>
+							Status: <?=$request->getStatus()?> <br/>
+							Habileté demandée: <?=$request->getSkillWanted()?> <br/>
+						</div>
+						<div class="card-footer text-right">
+							<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
+						</div>
 					</div>
 				</div>
+				<?php
+					$ariaExpanded = "false";
+					$collapsedShow = "";
+					$collapsed = "collapsed";
+					}
+				?>
 			</div>
-			<?php
-				$ariaExpanded = "false";
-				$collapsedShow = "";
-				$collapsed = "collapsed";
-						}
-			*/ 
-			?>
-		<!-- </div> -->
-
+		</div>
 	
-		<?php
-				require_once('/modele/MessageDAO.class.php');
-				$daoM = new MessageDAO();
-				$mmesagesNonLus=$daoM->messageLuStatus($_SESSION["idMember"]);
-				
-					?>
-						
-					<p>Messages nom lus <a  href="?action=afficherMessages"><?=$mmesagesNonLus?></a></p>
 		
-		<div>
-			<h2>Découvrez comment vous pouvez aider quelqu'un</h2>
+		
+		 <!-- <div> -->
+		<!--	<h2>Découvrez comment vous pouvez aider quelqu'un</h2> -->
 			<?php
 				require_once('/modele/AfficherRequestDAO.class.php');
 				$dao = new afficherRequestDAO();
 				
 			?>	
-			<h2> LISTE DE REQUESTS</h3>
+			<!-- <h2> LISTE DE REQUESTS</h3>
 			<?php //echo $_SESSION["idMember"] ?>
 			<table class="table">
 				<thead class="thead-light">
@@ -125,14 +124,13 @@
 					?>
 				</tbody>
 			</table>
-		</div>
-		
+		</div> -->
 		
 		<div class="mt-auto">
 			<?php
 				include("footer.php");
 			?>
 		</div>
-				</div>
+	</div>
 </body>
 </html>

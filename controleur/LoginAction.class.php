@@ -36,9 +36,11 @@ class LoginAction implements Action {
 
 		$_SESSION["connected"] = $_REQUEST["email"];
 		$_SESSION["idMember"] = $member->getIdMember();
+		$_SESSION["photoMember"] = $member->getPhoto();
+		$_SESSION["nameMember"] = $member->getFirstName()." ".$member->getLastName();
 		$_SESSION["erreurRequest"] = false;
 		
-		return "afficherRequest";
+		return "default";
 	}
 	
 	public function valide()
