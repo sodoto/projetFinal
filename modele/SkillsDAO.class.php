@@ -9,7 +9,7 @@ class SkillsDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO skills (idSkill,description)
+            $pstmt = $db->prepare("INSERT INTO skills (idSkills,description)
                                     VALUES (:id,:d)");
             $n = $pstmt->execute(array(':id' => $skills->getIdSkill(),
                                        ':d' => $skills->getDescription()));
@@ -28,7 +28,7 @@ class SkillsDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("UPDATE skills SET description=:d WHERE idSkill=:id");
+            $pstmt = $db->prepare("UPDATE skills SET description=:d WHERE idSkills=:id");
             $n = $pstmt->execute(array('id' => $skills->getIdSkill(),
                                        ':d' => $skills->getDescription()));
             
@@ -46,7 +46,7 @@ class SkillsDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("DELETE FROM skills WHERE idSkill=:id");
+            $pstmt = $db->prepare("DELETE FROM skills WHERE idSkills=:id");
             $n = $pstmt->execute(array(':id' => $skills->getIdSkill()));
 
             $pstmt->closeCursor();
