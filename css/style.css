@@ -172,6 +172,11 @@ font-weight: bold;
   transform: rotate(90deg);
 }
 
+.accordion div.card:only-child { 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125); 
+  border-radius: calc(0.25rem - 1px);
+} 
+
 /* --------------------- OVERLAY -------------------- */
 
 .overlay {
@@ -185,21 +190,21 @@ font-weight: bold;
   background-color: rgba(0, 0, 0, 0.411);
   overflow-y: hidden;
   transition: 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .overlay-content {
-  position: relative;
-  top: 25%;
-  width: 100%;
-  text-align: center
-  margin-top: 30px;
+  width: 75%;
+  flex: 0 1 auto;
 }
 
 .overlay a {
   padding: 8px;
   text-decoration: none;
   font-size: 36px;
-  color: #818181;
+  color: #444;
   display: block;
   transition: 0.3s;
 }
@@ -210,7 +215,7 @@ font-weight: bold;
 
 .overlay .closebtn {
   position: absolute;
-  top: 20px;
+  top: 60px;
   right: 45px;
   font-size: 60px;
 }

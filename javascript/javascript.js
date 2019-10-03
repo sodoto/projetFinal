@@ -26,8 +26,9 @@ function loadContact() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("footer").innerHTML =
-        this.responseText;
+        document.getElementById("footer").innerHTML = this.responseText;
+        var scrollingElement = (document.scrollingElement || document.body);
+        scrollingElement.scrollTop = scrollingElement.scrollHeight;
       }
     };
     xhttp.open("GET", "./javascript/ajax_contact.txt", true);

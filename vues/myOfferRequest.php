@@ -9,7 +9,7 @@
 <html>
 <head>
 		<meta http-equiv="Content-Language" content="en-ca">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 		<link type="text/css" rel="stylesheet" href="./css/style.css" type="text/css" />
 		<link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 		<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -28,28 +28,18 @@
 			require_once('/modele/RequestDAO.class.php');
 		?>
 		<div class="overlay-content" id="afficheRequest">
-		<table class="table" style="background-color: grey;">
-				<thead class="thead-light">
-					<tr>
-						<td>SKILL WANTED</td>
-						<td>DESCRIPTION</td>
-						<td>DATE REQUEST</td>
-						<td>DATE OF SERVICE</td>
-						<td>LOCATION</td>
-						<td>STATUS</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td id="description"></td>
-						<td id="title"></td>
-						<td id="dateRequest"></td>
-						<td id="dateService"></td>
-						<td id="location"></td>
-						<td id="status"></td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="card ">
+				<div class="card-header">
+				<span id="title"><span>
+				</div>
+				<div class="card-body">
+					Date de la demande: <span id="dateRequest"></span> <br/>
+					Date du service: <span id="dateService"></span> <br/>
+					Location: <span id="location"></span> <br/>
+					Status: <span id="status"></span> <br/>
+					Habileté demandée: <span id="description"></span> <br/>
+				</div>
+			</div>
 		</div>
 
 	</div>
@@ -59,62 +49,74 @@
 			//include("menu.php");
 		?>
 
-		<div>
+		<div class="d-flex flex-column align-items-center bd-highlight flex-grow-1">
 			<h2>MES OFFRES</h2>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<td>DEMANDE</td>
-						<td>DATE DE L'OFFRE</td>
-						<td>COMMENTAIRES</td>
-						<td>STATUS</td>
-						<td>ACTION</td>
-					</tr>
-				</thead>
-				<tbody>
-                    <?php
-                        require_once('/modele/OfferRequestDAO.class.php');
-                        require_once('/modele/RequestDAO.class.php');
-                        $daoOfferRequest = new OfferRequestDAO();
-                        $daoRequest = new RequestDAO();
-                        $tOfferRequest = $daoOfferRequest->findByIdMember($_SESSION["idMember"]);
-						date_default_timezone_set('America/Toronto');
-                        if(empty($tOfferRequest)){
-                            echo "Vous n'avez aucune demande!";
-                        }
-                        else{
-							$trequest = Array();
-						    foreach($tOfferRequest as $offerRequest) {
-                                $dateOffer = date_create($offerRequest->getDateOffer());
-								$request = $daoRequest->find($offerRequest->getIdRequest());
-								$trequest[] = array(
-									"idRequest" => $request->getIdRequest(),
-									"skill" => $request->getSkillWanted(),
-									"title" => $request->getTitle(),
-									"dateRequest" => $request->getDateRequest(),
-									"dateService" => $request->getDateService(),
-									"location" => $request->getLocation(),
-									"status" => $request->getStatus(),
-									"idMember" => $request->getIdMember()
-								  );
-					?>
-					<tr>
-						<td><a href="#" onclick="openNav(this,json)" data-id="<?=$request->getIdRequest()?>" title="Voir la demande"><?=$request->getTitle()?></a></td>
-						<td><?=date_format($dateOffer, "d/m/Y")?></td>
-						<td><?=$offerRequest->getComment()?></td>
-						<td><?=$offerRequest->getStatus()?></td>
-						<td>
+			<div class="accordion" id="accordionRequest" role="tablist">
+				<?php
+					require_once('/modele/OfferRequestDAO.class.php');
+					require_once('/modele/RequestDAO.class.php');
+					require_once('/modele/SkillsDAO.class.php');
+					$daoOfferRequest = new OfferRequestDAO();
+					$daoRequest = new RequestDAO();
+					$daoSkill = new SkillsDAO();
+					$tOfferRequest = $daoOfferRequest->findByIdMember($_SESSION["idMember"]);
+					$ariaExpanded = "true";
+					$collapsedShow = "show";
+					$collapsed = "";
+					date_default_timezone_set('America/Toronto');
+					if(empty($tOfferRequest)){
+						echo "Vous n'avez aucune demande!";
+					}
+					else{
+						$trequest = Array();
+						foreach($tOfferRequest as $offerRequest) {
+							$dateOffer = date_create($offerRequest->getDateOffer());
+							$request = $daoRequest->find($offerRequest->getIdRequest());
+							$skillDesc = $daoSkill->find($request->getSkillWanted());
+							$trequest[] = array(
+								"idRequest" => $request->getIdRequest(),
+								"skill" => $skillDesc->getDescription(),
+								"title" => $request->getTitle(),
+								"dateRequest" => $request->getDateRequest(),
+								"dateService" => $request->getDateService(),
+								"location" => $request->getLocation(),
+								"status" => $request->getStatus(),
+								"idMember" => $request->getIdMember()
+								);
+				?>
+				<div class="card">
+					<h4 class="card-header text-left" role="tab" id="heading<?=$offerRequest->getIdOffer()?>">
+						<a class="<?=$collapsed?> d-block " style="color:#444"  data-toggle="collapse" href="#collapse<?=$offerRequest->getIdOffer()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$offerRequest->getIdOffer()?>">
+							<span>
+							<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?>
+							</span>
+						</a>
+					</h4>
+				
+					<div id="collapse<?=$offerRequest->getIdOffer()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$offerRequest->getIdOffer()?>" data-parent="#accordionRequest">
+						<div class="card-body">
+							<a href="#" onclick="openNav(this,json)" data-id="<?=$request->getIdRequest()?>" title="Voir la demande">Voir la requête</a><br/>
+							Date de l'offre: <?=date_format($dateOffer, "d/m/Y")?> <br/>
+							Commentaire: <?=$offerRequest->getComment()?> <br/>
+							Status: <?=$offerRequest->getStatus()?> <br/>
+						</div>
+						<div class="card-footer text-right">
 							<a href="?action=detailOffer&offerSelected=<?=$offerRequest->getIdOffer()?>" ><i class="fas fa-comments"></i></a>
-						</td>
-					</tr>
-                    <?php 
-                            }
-					    }
+						</div>
+					</div>
+				</div>
+					<?php
+							$ariaExpanded = "false";
+							$collapsedShow = "";
+							$collapsed = "collapsed";
+                        }
+					}
 					?>
-				</tbody>
-			</table>
+				
+			</div>
 		</div>
-		<div class="mt-auto">
+
+		<div>
 			<?php
 				include("footer.php");
 			?>

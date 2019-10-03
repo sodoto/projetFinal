@@ -26,7 +26,7 @@
 			//include("menu.php");
 		?>
 
-		<div class="d-flex flex-column align-items-center justify-content-center bd-highlight">
+		<div class="d-flex flex-column align-items-center bd-highlight flex-grow-1">
 			<h2>MES DEMANDES</h2>
 			<?php
 				require_once('/modele/RequestDAO.class.php');
@@ -45,61 +45,62 @@
 				}
 			?>
 
-				<div class="accordion" id="accordionRequest" role="tablist">
-					<?php
-						require_once('/modele/SkillsDAO.class.php');
-						$daoSkills = new SkillsDAO();
-						$tRequest = $daoRequest->findByIdMember($_SESSION["idMember"]);
-						$ariaExpanded = "true";
-						$collapsedShow = "show";
-						$collapsed = "";
-						date_default_timezone_set('America/Toronto');
-						if(empty($tRequest)){
-							echo "Vous n'avez aucune demande!";
-						}
-						else{
-							foreach($tRequest as $request) {
-								$dateRequest = date_create($request->getDateRequest());
-								$dateService = date_create($request->getDateService());
-								$skill = $daoSkills->find($request->getSkillWanted());
-					?>
-					<div class="card">
-						<h4 class="card-header text-left" role="tab" id="heading<?=$request->getIdRequest()?>">
-							<a class="<?=$collapsed?> d-block " style="color:#444"  data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
-								<span>
-								<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?>
-								</span>
-							</a>
-						</h4>
-					
-						<div id="collapse<?=$request->getIdRequest()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$request->getIdRequest()?>" data-parent="#accordionRequest">
-							<div class="card-body">
-								Date du service: <?=date_format($dateService, "d/m/Y")?> <br/>
-								Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
-								Location: <?=$request->getLocation()?> <br/>
-								Status: <?=$request->getStatus()?> <br/>
-								Habileté demandée: <?=$skill->getDescription()?> <br/>
-							</div>
-							<div class="card-footer">
-								<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
-								<a href='?action=suppRequest&idRequest=<?=$request->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
-							</div>
+			<div class="accordion" id="accordionRequest" role="tablist">
+				<?php
+					require_once('/modele/SkillsDAO.class.php');
+					$daoSkills = new SkillsDAO();
+					$tRequest = $daoRequest->findByIdMember($_SESSION["idMember"]);
+					$ariaExpanded = "true";
+					$collapsedShow = "show";
+					$collapsed = "";
+					date_default_timezone_set('America/Toronto');
+					if(empty($tRequest)){
+						echo "Vous n'avez aucune demande!";
+					}
+					else{
+						foreach($tRequest as $request) {
+							$dateRequest = date_create($request->getDateRequest());
+							$dateService = date_create($request->getDateService());
+							$skill = $daoSkills->find($request->getSkillWanted());
+				?>
+				<div class="card">
+					<h4 class="card-header text-left" role="tab" id="heading<?=$request->getIdRequest()?>">
+						<a class="<?=$collapsed?> d-block " style="color:#444"  data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
+							<span>
+							<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?>
+							</span>
+						</a>
+					</h4>
+				
+					<div id="collapse<?=$request->getIdRequest()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$request->getIdRequest()?>" data-parent="#accordionRequest">
+						<div class="card-body">
+							Date du service: <?=date_format($dateService, "d/m/Y")?> <br/>
+							Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
+							Location: <?=$request->getLocation()?> <br/>
+							Status: <?=$request->getStatus()?> <br/>
+							Habileté demandée: <?=$skill->getDescription()?> <br/>
+						</div>
+						<div class="card-footer text-right">
+							<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
+							<a href='?action=suppRequest&idRequest=<?=$request->getIdRequest()?>' title='effacer'><i class="far fa-trash-alt"></i></a>
 						</div>
 					</div>
-					<?php
-									$ariaExpanded = "false";
-									$collapsedShow = "";
-									$collapsed = "collapsed";
-								}
-							}
-					?>
 				</div>
+				<?php
+								$ariaExpanded = "false";
+								$collapsedShow = "";
+								$collapsed = "collapsed";
+							}
+						}
+				?>
+			</div>
+
 			<form action="" method="POST">
 				<input name="action" value="newRequest" type="hidden" />
 				<button type="submit" style="margin-top: 10px;">Nouvelle demande</button>
 			</form>
 		</div>
-		<div class="mt-auto">
+		<div >
 			<?php
 				include("footer.php");
 			?>
