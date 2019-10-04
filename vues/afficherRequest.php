@@ -25,10 +25,14 @@
 			$collapsed = "";
 			require_once('/modele/MessageDAO.class.php');
 			$daoM = new MessageDAO();
-			$mmesagesNonLus=$daoM->messageLuStatus($_SESSION["idMember"]);
+			$mesagesNonLus=$daoM->messageLuStatus($_SESSION["idMember"]);
 		?>
-						
-		<p>Messages nom lus <a  href="?action=afficherMessages"><?=$mmesagesNonLus?></a></p>
+<div width="200px">
+
+  <a  href="?action=afficherMessages">Messages nom lus </a><span class="badge badge-warning ml-2"><?=$mesagesNonLus?></span>
+
+</div>	
+	
 
 		<p>
 			<h2> Demandes</h2>
