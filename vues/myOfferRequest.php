@@ -75,7 +75,7 @@
 							$skillDesc = $daoSkill->find($request->getSkillWanted());
 							$trequest[] = array(
 								"idRequest" => $request->getIdRequest(),
-								"skill" => $skillDesc->getDescription(),
+								"skill" => utf8_encode($skillDesc->getDescription()),
 								"title" => $request->getTitle(),
 								"dateRequest" => $request->getDateRequest(),
 								"dateService" => $request->getDateService(),
