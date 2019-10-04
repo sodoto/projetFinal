@@ -57,63 +57,51 @@
 						
 					?>
 				<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">
-
-				
 				<li class="d-flex justify-content-center">
-              <img src="./images/member/avatar.jpg?>" alt="avatar" class="avatar rounded-circle "  height="100px!important">
-              <div class="chat-body white p-3 ml-2 z-depth-1">
+				<img src="./images/member/<?=$request->getPhoto()?>" alt="avatar" class="avatar rounded-circle "  height="100px!important">
+				<div class="chat-body white p-3 ml-2 z-depth-1">
                 <div class="header">
-                  <strong class="primary-font"><?=$request->getUsername()?></strong>
-                  <small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
+                 <strong class="primary-font"><?=$request->getUsername()?></strong>
+                 <small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
                 </div>
                 <hr class="w-100">
                 <p class="mb-0">
                   <?=$request->getMessage()?>
                 </p>
-              </div>
-            </li>
-				<br>
-				
-			</div>				
+				</div>
+				</li>
+				<br>	
+				</div>				
 					
 					<?php  
 					}
 					else 
 					{
 					  ?>	
-					<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">	
-						
-						 <li class="d-flex justify-content-center">
-              <div class="chat-body white p-3 z-depth-1">
+				<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">	
+				<li class="d-flex justify-content-center">
+				<div class="chat-body white p-3 z-depth-1">
                 <div class="header">
-                  <strong class="primary-font"><?=$request->getUsername()?></strong>
-                  <small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
+                <strong class="primary-font"><?=$request->getUsername()?></strong>
+                <small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
                 </div>
                 <hr class="w-100">
                 <p class="mb-0">
                   <?=$request->getMessage()?>
                 </p>
-              </div>
-              <img src="./images/member/avatar1.jpg?>" alt="avatar" class="avatar rounded-circle" height="100px!important">
-            </li>
-						
-						</div>
-						<br>
+				</div>
+				<img src="./images/member/<?=$request->getPhoto()?>" alt="avatar" class="avatar rounded-circle" height="100px!important">
+				</li>
+				</div>
+				<br>
 										
 						<?php
 					}
 						
 					}
 					?>
-				
-			
 		
 		<div>
-			
-		
-			
-			
-		
 		
 			<form action="" method="POST" class="formLogin" >
 		<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
