@@ -9,6 +9,7 @@
 		private $messageLu;
 		private $username;
 		private $title;
+		private $photo;
 		
         public function __construct()
         {
@@ -115,6 +116,16 @@
         {
             $this->title = $title;
         }
+		
+		public function getPhoto()
+        {
+            return $this->photo;
+        }
+
+        public function setPhoto($photo)
+        {
+            $this->photo = $photo;
+        }
 
         public function loadFromObject($x) {
 			$this->idMessage = $x->idMessage;
@@ -156,13 +167,13 @@
 			$this->dateHeure = $x->dateHeure;
 			$this->username = $x->username;
 			$this->message = $x->message;
-			
+			$this->photo = $x->photo;	
 		}
 		
 
 public function __toString()
 	{
-		return "Message[".$this->idMessage.",".$this->message.",".$this->idRequest.",".$this->idMember.",".$this->idRecepteur.",".$this->dateHeure.",".$this->messageLu.",".$this->username.",".$this->title."]";
+		return "Message[".$this->idMessage.",".$this->message.",".$this->idRequest.",".$this->idMember.",".$this->idRecepteur.",".$this->dateHeure.",".$this->messageLu.",".$this->username.",".$this->title.",".$this->photo."]";
 	}
 	public function affiche()
 	{
