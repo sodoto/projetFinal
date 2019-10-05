@@ -3,7 +3,7 @@
 ?>
 <nav class="navbar navbar-expand-lg navbar-light">
 	<a class="navbar-brand" href="?action=default">
-		<img src="./images/logoCommunAction.png" alt="CommunAction" style="height:70px; margin-bottom: 3px;">
+		<img id="logo" src="./images/logo1.png" alt="CommunAction">
 	</a>
 
 	<ul class="nav navbar-nav align-items-center mr-auto">

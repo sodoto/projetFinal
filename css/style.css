@@ -21,7 +21,7 @@ a.hover {
 /* ------------ Banner and footer ----------------- */
 
 .navbar {
-background-color: #4D9AC4 ;
+background-color: #101820FF;
 }
 
 .dropdown {
@@ -72,9 +72,14 @@ text-decoration: none;
 
 #footer {
   padding: 20px;
-  background-color: #4D9AC4;
+  background-color: #101820FF;
 }
 
+#logo{
+	height:100px;
+	position:relative;
+	margin:0px;
+}
 /* ------------ Login ----------------- */
 
 .btn {
@@ -265,48 +270,15 @@ font-weight: bold;
   font-size: 60px;
 }
 
+/* --------------------- Search bar -------------------- */
 
-table {
-	width: auto;
-	align:"center";
-	border-collapse: collapse;
-	 margin-left:auto; 
-    margin-right:auto;
-
+#myInput {
+  background-image: url('../images/search.jpg');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 30%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
 }
-td {
-	padding: 15px;
-	background-color: rgba( 94, 91, 90 ,0.6);
-	color: #fff;
-}
-
-th {
-	text-align: left;
-}
-
-thead {
-	th {
-		background-color: #55608f;
-	}
-}
-
-tbody {
-	tr {
-		&:hover {
-			background-color: rgba(255,255,255,0.3);
-		}
-	}
-	td {
-		position: relative;
-		&:hover {
-			&:before {
-				content: "";
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: -9999px;
-				bottom: -9999px;
-				background-color: rgba(255,255,255,0.2);
-				z-index: -1;
-			}
-		
