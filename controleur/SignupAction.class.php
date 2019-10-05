@@ -6,11 +6,11 @@ class SigninAction implements Action {
 	public function execute(){
 		//esta instruccion permite cargar la pagina si no hay sesion todavia
 		if (!ISSET($_REQUEST["username"]))
-			return "signin";
+			return "signup";
 		if (!$this->valide())
 		{
 			//$_REQUEST["global_message"] = "Le formulaire contient des erreurs. Veuillez les corriger.";	
-			return "signin";
+			return "signup";
 		}
 		
 		$dao = new InsertMemberDAO();
