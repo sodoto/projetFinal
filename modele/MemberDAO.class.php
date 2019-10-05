@@ -9,11 +9,34 @@ class MemberDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO members (idMember,firstName,lastName,city,email,username,password)
-                                    VALUES (:id,:fn,:ln,:c,:e,:u,:p)");
-            $n = $pstmt->execute(array(':id' => $member->getIdMember(),
-                                       ':fn' => $member->getFirstname(),
+            $pstmt = $db->prepare("INSERT INTO members (firstName,lastName,city,email,username,password)
+                                    VALUES (:fn,:ln,:c,:e,:u,:p)");
+            $n = $pstmt->execute(array(':fn' => $member->getFirstname(),
                                        ':ln' => $member->getLastname(),
+                                       ':c' => $member->getCity(),
+                                       ':e' => $member->getEMail(),
+                                       ':u' => $member->getUsername(),
+                                       ':p' => $member->getPassword()));
+
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return $n;	
+    }
+
+    public function createWithProfilPicture($member) {
+        $db = Database::getInstance();
+        $n = 0;
+
+        try{
+            $pstmt = $db->prepare("INSERT INTO members (firstName,lastName,city,photo,email,username,password)
+                                    VALUES (:fn,:ln,:c,:ph,:e,:u,:p)");
+            $n = $pstmt->execute(array(':fn' => $member->getFirstname(),
+                                       ':ln' => $member->getLastname(),
+                                       ':ph' => $member->getPhoto(),
                                        ':c' => $member->getCity(),
                                        ':e' => $member->getEMail(),
                                        ':u' => $member->getUsername(),
