@@ -11,6 +11,70 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 		<title>Page d'accueil</title>
+
+<script>
+
+
+(function(document) {
+	'use strict';
+
+	var LightTableFilter = (function(Arr) {
+
+		var _input;
+
+		function _onInputEvent(e) {
+			_input = e.target;
+			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+			Arr.forEach.call(tables, function(table) {
+				Arr.forEach.call(table.tBodies, function(tbody) {
+					Arr.forEach.call(tbody.rows, _filter);
+				});
+			});
+		}
+
+		function _filter(row) {
+			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+		}
+
+		return {
+			init: function() {
+				var inputs = document.getElementsByClassName('light-table-filter');
+				Arr.forEach.call(inputs, function(input) {
+					input.oninput = _onInputEvent;
+				});
+			}
+		};
+	})(Array.prototype);
+
+	document.addEventListener('readystatechange', function() {
+		if (document.readyState === 'complete') {
+			LightTableFilter.init();
+		}
+	});
+
+})(document);
+
+
+$(document).ready(function() {
+    $("#envoyes").hide();
+});
+
+$(document).ready(function(){
+  $("#messayesRecus").click(function(){
+    $("#recus").show();
+	$("#envoyes").hide();
+  });
+  $("#messayesEnvoyes").click(function(){
+    $("#recus").hide();
+	$("#envoyes").show();
+	
+  });
+});
+
+</script>
+
+
 </head>
 
 <body>
@@ -19,11 +83,14 @@
 			include("banner.php");
 			//include("menu.php");
 		?>
+<div>		
+<button id="messayesRecus" >MESSAGES - RECUS</button>
+<button id="messayesEnvoyes" >MESSAGES - ENVOYES</button>
+</div>	
 		
-					
-		
-		<div>
+		<div id="recus">
 			
+
 			<?php
 				require_once('/modele/MessageDAO.class.php');
 				$dao = new MessageDAO();
@@ -32,15 +99,16 @@
 				
 			?>	
 			<h2> MESSAGES - RECUS</h3>
+			<input type="search" id="myInput" class="light-table-filter" data-table="order-table1" placeholder="Filter">
 			<?php //echo $_SESSION["idMember"] ?>
-			<table class="table">
+			<table class="order-table1 table">
 				<thead class="thead-light">
 					<tr>
-						<td>DATE D'ENVOI</td>
-						<td>ENVOYE PAR</td>
-						<td>TITLE</td>
-						<td>MESSAGE LU</td>
-						<td>ACCEDER</td>
+						<th>DATE D'ENVOI</th>
+						<th>ENVOYE PAR</th>
+						<th>TITLE</th>
+						<th>MESSAGE LU</th>
+						<th>ACCEDER</th>
 						
 					</tr>
 				</thead>
@@ -65,18 +133,20 @@
 					?>
 				</tbody>
 			</table>
+		</div>	
 			
-			
+		
+		<div id="envoyes">
 			<h2> MESSAGES - ENVOYES</h3>
+			<input type="search" id="myInput" class="light-table-filter" data-table="order-table" placeholder="Filter">
 			<?php //echo $_SESSION["idMember"] ?>
-			<table class="table">
+			<table class="order-table table">
 				<thead class="thead-light">
 					<tr>
-						<td>DATE D'ENVOI</td>
-						<td>ENVOYE A</td>
-						<td>TITLE</td>
-						
-						<td>ACCEDER</td>
+						<th>DATE D'ENVOI</th>
+						<th>ENVOYE A</th>
+						<th>TITLE</th>						
+						<th>ACCEDER</th>
 						
 					</tr>
 				</thead>
