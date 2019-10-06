@@ -80,6 +80,44 @@
 							Location: <?=$request->getLocation()?> <br/>
 							Status: <?=$request->getStatus()?> <br/>
 							Habileté demandée: <?=$skill->getDescription()?> <br/>
+							Membres prêts à aider: <br/>
+							<?php
+							require_once('/modele/OfferRequestDAO.class.php');
+							$daoOffers = new OfferRequestDAO();
+							$requestOffers = $daoOffers->findMembersByIdRequest($request->getIdRequest());
+							foreach($requestOffers as $request2) {
+							?>
+							
+							
+							<div id="divtest" class="card" style="max-width: 30rem;">
+							<h3 class="card-header">
+							<?=$request2->getUsername()?>
+							</h3>
+							<div class="card-body">
+							<p class="card-text">
+							
+							
+							<img src="./images/member/<?=$request2->getPhoto()?>" alt="avatar" class="avatar rounded-circle" height="100px!important">
+							
+							Définir comme "aide reçue" 
+							
+							<a href="?action=mesDemandes&IdRequest=<?=$request->getIdRequest()?>&idOffer=<?=$request2->getIdOffer()?>"><img src="./images/ok.jpg" alt="avatar" class="OK rounded-circle" height="30px!important"></a> 
+							
+							
+							</p>
+							</div>
+							<div class="card-footer">
+							Date: <?=$request2->getDateOffer()?>
+							</div>
+							</div>
+							
+							
+							
+							<?php
+							}
+							?>
+							
+							
 						</div>
 						<div class="card-footer text-right">
 							<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
@@ -91,6 +129,8 @@
 								$ariaExpanded = "false";
 								$collapsedShow = "";
 								$collapsed = "collapsed";
+								
+								
 							}
 						}
 				?>
