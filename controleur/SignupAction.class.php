@@ -1,6 +1,6 @@
 <?php
 require_once('./controleur/Action.interface.php');
-require_once('./modele/InsertMemberDAO.class.php');
+require_once('./modele/MemberDAO.class.php');
 
 class SigninAction implements Action {
 	public function execute(){
@@ -13,16 +13,40 @@ class SigninAction implements Action {
 			return "signup";
 		}
 		
-		$dao = new InsertMemberDAO();
+		$dao = new MemberDAO();
+
+		if(ISSET($_FILES["profilPicture"]))
+		{
+			$dossier = "./images/member/";
+			$nomFichier = $_REQUEST["email"]."_".$_FILES["profilPicture"]["name"];
+			if (copy($_FILES["profilPicture"]["tmp_name"],$dossier.$nomFichier))
+			{
+				unlink($_FILES['profilPicture']['tmp_name']);
+			}
+
+
+			$member = new Member();
+			$member->setFirstname($_REQUEST['firstname']);
+			$member->setLastname($_REQUEST['lastname']);
+			$member->setPhoto($nomFichier);
+			$member->setCity($_REQUEST['city']);
+			$member->setEmail($_REQUEST['email']);
+			$member->setUsername($_REQUEST['username']);
+			$member->setPassword($_REQUEST['password']);
+			$dao->createWithProfilPicture($member);
+		}
+		else
+		{
+			$member = new Member();
+			$member->setFirstname($_REQUEST['firstname']);
+			$member->setLastname($_REQUEST['lastname']);
+			$member->setCity($_REQUEST['city']);
+			$member->setEmail($_REQUEST['email']);
+			$member->setUsername($_REQUEST['username']);
+			$member->setPassword($_REQUEST['password']);
+			$dao->create($member);
+		}
 		
-		$member = new Member();
-		$member->setFirstname($_REQUEST['firstname']);
-		$member->setLastname($_REQUEST['lastname']);
-		$member->setCity($_REQUEST['city']);
-		$member->setEmail($_REQUEST['email']);
-		$member->setUsername($_REQUEST['username']);
-		$member->setPassword($_REQUEST['password']);
-		$dao->insertMember($member);
 		
 		
 		
@@ -34,6 +58,8 @@ class SigninAction implements Action {
 		session_start();
 		$_SESSION["connected"] = $_REQUEST["username"];
 		$_SESSION["idMember"] = $membre->getIdMember();
+		$_SESSION["photoMember"] = $member->getPhoto();
+		$_SESSION["nameMember"] = $member->getFirstName()." ".$member->getLastName();
 		//si esta todo correcto va a la vista afficher
 		return "memberSkills";//debe seguir a los skills
 	}

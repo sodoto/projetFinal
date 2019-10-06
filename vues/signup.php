@@ -44,7 +44,7 @@
 			?>
 
 			<div class="d-flex flex-row justify-content-center align-items-center bd-highlight flex-grow-1">
-				<form action="" method="POST" class="formLogin" style="margin: 50px;">
+				<form action="" method="POST" class="formLogin" style="margin: 50px;" enctype="multipart/form-data">
 					<h1>S'inscrire</h1>
 					<input type="text" class="Input-Login" name="firstname" value="<?php echo $f?>" placeholder="Prenom"><br/>
 					<?php if (ISSET($_REQUEST["field_messages"]["firstname"])) 
