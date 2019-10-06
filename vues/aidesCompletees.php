@@ -48,9 +48,8 @@
 
 			<div class="accordion" id="accordionRequest" role="tablist">
 				<?php
-					require_once('/modele/SkillsDAO.class.php');
-					$daoSkills = new SkillsDAO();
-					$tRequest = $daoRequest->findByIdMemberFermees($_SESSION["idMember"]);
+					$tRequest = $daoRequest->findByIdMemberCompletees($_SESSION["idMember"]);
+					 
 					$ariaExpanded = "true";
 					$collapsedShow = "show";
 					$collapsed = "";
@@ -62,7 +61,7 @@
 						foreach($tRequest as $request) {
 							$dateRequest = date_create($request->getDateRequest());
 							$dateService = date_create($request->getDateService());
-							$skill = $daoSkills->find($request->getSkillWanted());
+							
 				?>
 				<div class="card">
 					<h4 class="card-header text-left" role="tab" id="heading<?=$request->getIdRequest()?>">
@@ -79,7 +78,8 @@
 							Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
 							Location: <?=$request->getLocation()?> <br/>
 							Status: <?=$request->getStatus()?> <br/>
-							Habileté demandée: <?=$skill->getDescription()?> <br/>
+							Membre qui a aidé: <?=$request->getUsername()?> <br/>
+							
 							
 							
 							
