@@ -144,7 +144,7 @@ class RequestDAO
         $requests = Array();
 
         try{
-            $pstmt = $db->prepare("SELECT * FROM request WHERE idMember=:id ");
+            $pstmt = $db->prepare("SELECT * FROM request WHERE idMember=:id and status='ouverte'");
             $pstmt->execute(array(':id'=> $idMember));
 
             while($result = $pstmt->fetch(PDO::FETCH_OBJ)) {
@@ -161,4 +161,46 @@ class RequestDAO
         }           
         return $requests;
     }
+	
+	public function updateFermee($idRequest) {
+        $db = Database::getInstance();
+        $n = 0;
+		$status="fermee";
+        try{
+            $pstmt = $db->prepare("UPDATE request SET status=:s WHERE idRequest=:idRequest");
+            $n = $pstmt->execute(array(':s' => $status,
+									':idRequest' => $idRequest));
+            
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();                                 
+        }
+        catch (PDOException $ex){
+        }           
+        return $n;
+    }
+	
+	 public function findByIdMemberFermees($idMember) {
+        $db = Database::getInstance();
+        $requests = Array();
+
+        try{
+            $pstmt = $db->prepare("SELECT * FROM request WHERE idMember=:id and status='fermee'");
+            $pstmt->execute(array(':id'=> $idMember));
+
+            while($result = $pstmt->fetch(PDO::FETCH_OBJ)) {
+                $r = new Request();
+                $r->loadFromObject($result);
+                array_push($requests, $r);
+            }
+
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return $requests;
+    }
+	
 }
