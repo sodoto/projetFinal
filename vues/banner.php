@@ -39,7 +39,7 @@
 						<a class="text-dark" class="dropdown-item" href="?action=mySkills">MES COMP&Eacute;TENCES</a> <br/>
 						<a class="text-dark" class="dropdown-item" href="?action=mesDemandes">MES DEMANDES</a> <br/>
 						<a class="text-dark" class="dropdown-item" href="?action=mesOffres">MES OFFRES</a> <br/>
-						<a class="text-dark" class="dropdown-item" href="#">AIDES COMPLET&Eacute;ES</a> <br/>
+						<a class="text-dark" class="dropdown-item" href="?action=aidesCompletees">AIDES COMPLET&Eacute;ES</a> <br/>
 						<a class="text-dark" class="dropdown-item" href="?action=afficherMessages">NOTIFICATIONS/MESSAGES</a><br/>
 					</div>
 			</li>
