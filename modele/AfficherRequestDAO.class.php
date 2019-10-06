@@ -15,7 +15,7 @@ class afficherRequestDAO
             try {			
                 $pstmt = $db->prepare("SELECT idRequest, description, title, 
 				    dateRequest, dateService, location, status, r1.idMember, username FROM request r1 INNER JOIN members m1 on r1.idMember=m1.idMember 
-					INNER JOIN skills s1 on r1.skillWanted=s1.idSkills");
+					INNER JOIN skills s1 on r1.skillWanted=s1.idSkills where r1.status='ouverte'");
                 $pstmt->execute();
 
                 while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
