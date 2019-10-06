@@ -282,3 +282,29 @@ font-weight: bold;
   border: 1px solid #ddd;
   margin-bottom: 12px;
 }
+
+
+/* --------------------- Card comentences -------------------- */
+
+#cardCompetences {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+
+
+
+#divtest{
+	
+background-color: #fafafa;
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px solid #ccc;
+  /* IMPORTANTE */
+  text-align: center;
+  
+  
+}
+
+
+
