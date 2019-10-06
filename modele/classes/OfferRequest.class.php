@@ -6,6 +6,8 @@
         private $dateOffer;
         private $comment;
         private $status;
+		private $username;
+		private $photo;
 
         public function __construct()
         {
@@ -70,6 +72,26 @@
         {
             $this->status = $status;
         }
+		
+		public function getUsername()
+        {
+            return $this->username;
+        }
+
+        public function setUsername($username)
+        {
+            $this->username = $username;
+        }
+		
+		public function getPhoto()
+        {
+            return $this->photo;
+        }
+
+        public function setPhoto($photo)
+        {
+            $this->photo = $photo;
+        }
 
         public function loadFromObject($x) {
 			$this->idOffer = $x->idOffer;
@@ -79,6 +101,15 @@
             $this->comment = $x->comment;
             $this->status = $x->status;
         }
+		
+		public function loadFromObject1($x) {
+			$this->idOffer = $x->idOffer;
+			  $this->dateOffer = $x->dateOffer;
+            $this->idMember = $x->idMember;
+            $this->username = $x->username;
+			 $this->photo = $x->photo;
+		}
+		
         
 public function __toString()
 	{
