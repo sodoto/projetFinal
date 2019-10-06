@@ -15,6 +15,7 @@ require_once('/controleur/MySkillsAction.class.php');
 require_once('/controleur/AfficherMessagesAction.class.php');
 require_once('/controleur/AfficherConversationsAction.class.php');
 require_once('/controleur/DetailOfferAction.class.php');
+require_once('/controleur/AidesCompleteesAction.class.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -64,7 +65,10 @@ class ActionBuilder{
 				break;	
 			case "afficherConversations" :
 				return new AfficherConversationsAction();
-				break;			
+				break;	
+			case "aidesCompletees" :
+				return new AidesCompleteesAction();
+				break;					
 			default :
 				return new DefaultAction();
 		}
