@@ -160,4 +160,49 @@ class OfferRequestDAO
         }           
         return $offerRequests;
     }
+	
+	public function findMembersByIdRequest($idRequest) {
+        $db = Database::getInstance();
+        $offerRequests = Array();
+
+        try{
+            $pstmt = $db->prepare("SELECT of1.idOffer, of1.dateOffer, of1.idMember, m1.photo, m1.username FROM offerrequest of1 
+				INNER JOIN members m1 on of1.idMember=m1.idMember where of1.idrequest=:idRequest");
+            $pstmt->execute(array(':idRequest'=>$idRequest));
+
+            while($result = $pstmt->fetch(PDO::FETCH_OBJ)) {
+                $o = new OfferRequest();
+                $o->loadFromObject1($result);
+                array_push($offerRequests, $o);
+            }
+
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return $offerRequests;
+    }
+	
+	 public function updateTerminee($idOffer) {
+        $db = Database::getInstance();
+        $n = 0;
+		$comment="finished";
+		$status="Aide fournie";
+        try{
+            $pstmt = $db->prepare("UPDATE offerrequest SET comment=:c, status=:s WHERE idOffer=:idOffer");
+            $n = $pstmt->execute(array(':c' => $comment,
+                                       ':s' => $status,
+                                       ':idOffer' => $idOffer));
+            
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();                                 
+        }
+        catch (PDOException $ex){
+        }           
+        return $n;
+    }
+	
 }
