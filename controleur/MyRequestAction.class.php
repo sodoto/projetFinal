@@ -8,7 +8,21 @@ class MyRequestAction implements Action {
 			return "login";  //si hay login v a mostrar de lo contrario va a indice
 		}
 		else{
+			
+			if(isset($_REQUEST['IdRequest'])) {
+			$daoF = new RequestDAO();	
+			$daoF->updateFermee($_REQUEST['IdRequest']);
+			}
+			
+			if(isset($_REQUEST['idOffer'])) {
+			$daoT = new OfferRequestDAO();
+			$daoT->updateTerminee($_REQUEST['idOffer']);
+			
+			}
+			
 			return "myRequest";
+			
+			
 		}
 					
 		
