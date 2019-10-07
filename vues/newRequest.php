@@ -1,6 +1,6 @@
 <?php
-require_once('/modele/RequestDAO.class.php');
-date_default_timezone_set('America/Toronto');
+    require_once('/modele/RequestDAO.class.php');
+    date_default_timezone_set('America/Toronto');
     if(!ISSET($_SESSION))
     {
         session_start();
@@ -32,7 +32,6 @@ date_default_timezone_set('America/Toronto');
 	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
 		<?php
 			include("banner.php");
-			//include("menu.php");
 		?>
 
 		<div class="d-flex flex-column justify-content-center align-items-center bd-highlight flex-grow-1">

@@ -22,22 +22,33 @@ if (!ISSET($_SESSION))
 	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
 		<?php
 			include("banner.php");
-			//include("menu.php");
 			
 			if(isset($_REQUEST['IdRequest']))
-{ 		
-			//$IDRequest = $_REQUEST['IdRequest']; 
-			$_SESSION["IDRequest"]= $_REQUEST['IdRequest']; 
-			
-}
+			{ 		
+				//$IDRequest = $_REQUEST['IdRequest']; 
+				$_SESSION["IDRequest"]= $_REQUEST['IdRequest']; 
+			}
+			if((ISSET($_SESSION["erreurOfferRequest"]) && $_SESSION["erreurOfferRequest"] == true))
+			{
+		?>
+
+		<div class="container">
+			<div class="alert alert-info alert-dismissible">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Attention!</strong> Vous ne pouvez pas offrir de l'aide sur votre propre demande!
+			</div>
+		</div>
+		<?php
+			$_SESSION["erreurOfferRequest"] = false;
+			}
 		?>
 
 		<div>
 			<h2>Merci de votre intérêt à mettre vos compétences au service de quelqu'un</h2>
 			
 			<?php
-				require_once('/modele/AfficherRequestDAO.class.php');
-				$dao = new afficherRequestDAO();
+				require_once('/modele/RequestDAO.class.php');
+				$dao = new RequestDAO();
 			?>	
 			<h2> Vous avez sélectionné la tâche suivante</h2>
 			<br>
@@ -58,9 +69,9 @@ if (!ISSET($_SESSION))
 				</thead>
 				<tbody>
 					<?php
-					$skillWanted="";
-					
+						$skillWanted="";
 						$tRequest = $dao->findIdSkill($_SESSION["IDRequest"]);
+
 						foreach($tRequest as $request) {
 							$_SESSION["skillWanted"]=$request->getSkillWanted();
 							$_SESSION["title"]=$request->getTitle();
@@ -69,7 +80,7 @@ if (!ISSET($_SESSION))
 							$_SESSION["location"]=$request->getLocation();
 							$_SESSION["status"]=$request->getStatus();
 							$_SESSION["username"]=$request->getUsername();
-						    $_SESSION["idRecepteur"]=$request->getIdMember();
+							$_SESSION["idRecepteur"]=$request->getIdMember();
 						}
 					?>
 					<tr>
@@ -80,40 +91,27 @@ if (!ISSET($_SESSION))
 						<td><?php echo $_SESSION["location"]?></td>
 						<td><?php echo $_SESSION["status"]?></td>	
 						<td><?php echo $_SESSION["username"]?></td>
-						
-						
-						
-						
-					
-				
 					</tr>
-					
 				</tbody>
-				
 			</table>
 		</div>
 		
 		<div>
-		<br>
-		<br>
-		<h2> Envoyez un message à cet utilisateur pour lui dire comment vous pouvez l'aider</h2>
+			<br>
+			<br>
+			<h2> Envoyez un message à cet utilisateur pour lui dire comment vous pouvez l'aider</h2>
 		</div>
 		<form action="" method="POST" class="formLogin" >
-		<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
-		
-		<br>
-		<input name="action" value="messageEnvoye" type="hidden" />
-		<button type="submit" class="btn2">Continuer</button>
+			<textarea name="message" rows="5" cols="40" maxlength="200" placeholder="Écrivez votre message (200 caractères max)"></textarea>
+			<br>
+			<input name="action" value="messageEnvoye" type="hidden" />
+			<button type="submit" class="btn2">Continuer</button>
 		</form>
-			
-			
-
-			
-		
 		<div class="mt-auto">
 			<?php
 				include("footer.php");
 			?>
 		</div>
+	</div>
 </body>
 </html>

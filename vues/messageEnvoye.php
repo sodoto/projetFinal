@@ -27,15 +27,9 @@ if (!ISSET($_SESSION))
 
 		<div>
 			<h2>Votre message a été envoyé à l'utilisateur <?php echo $_SESSION["username"]?> </h2>
-			
 			<h2>Vous devez attendre la confirmation pour pouvoir ajuster les détails de votre aide.</h2>
-			
-	
-			
 			<a href="?action=afficherRequest">Retour aux demandes</a>
 
-			
-		
 		<div class="mt-auto">
 			<?php
 				include("footer.php");

@@ -21,6 +21,7 @@
 </head>
 
 <body>
+	<!-- Div contenant les informations de la demande qui sera selectionné (caché au démarrage) -->
 	<div id="myNav" class="overlay">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<?php
@@ -40,8 +41,8 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
+
 	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
 		<?php
 			include("banner.php");
@@ -121,6 +122,7 @@
 			?>
 		</div>
 	</div>
+	<!-- Encodage du tableau php contenant les demandes en objet JSON -->
 	<script type="text/javascript">
 		var json = <?=json_encode($trequest)?>;
 	</script>

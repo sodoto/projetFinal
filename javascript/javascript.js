@@ -1,8 +1,10 @@
 // Afficher les infos concernant la demande
-function openNav(lien,json) {
+function openNav(demande,json) {
     document.getElementById("myNav").style.height = "100%";
+    // Parcours de l'objet JSON
     for( i in json ) {
-        if(lien.dataset.id == json[i].idRequest)
+        // Selection du bon id de demande pour l'affichage
+        if(demande.dataset.id == json[i].idRequest)
         {
             document.getElementById("description").innerHTML = json[i].skill;
             document.getElementById("title").innerHTML = json[i].title;
@@ -14,9 +16,11 @@ function openNav(lien,json) {
     }
 }
 
+// Fermeture de la fenêtre
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
 }
+
 
 // Afficher les informations de contact dans le footer
 function loadContact() {
@@ -38,11 +42,10 @@ function loadContact() {
 // Fonction pour afficher le nom de fichier pour la photo de profil
 function changeTextFile(){
     var input = document.querySelector( '.inputfile1' );
-        
     var label	 = input.nextElementSibling,
         labelVal = label.innerHTML;
 
-    input.addEventListener( 'change', function( e )
+    input.addEventListener( 'change', function(e)
     {
         var fileName = '';
         

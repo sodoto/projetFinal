@@ -79,10 +79,6 @@
 							Location: <?=$request->getLocation()?> <br/>
 							Status: <?=$request->getStatus()?> <br/>
 							Membre qui a aidé: <?=$request->getUsername()?> <br/>
-							
-							
-							
-							
 						</div>
 						<div class="card-footer text-right">
 							<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>
@@ -91,13 +87,13 @@
 					</div>
 				</div>
 				<?php
-								$ariaExpanded = "false";
-								$collapsedShow = "";
-								$collapsed = "collapsed";
+							$ariaExpanded = "false";
+							$collapsedShow = "";
+							$collapsed = "collapsed";
 								
 								
-							}
 						}
+					}
 				?>
 			</div>
 

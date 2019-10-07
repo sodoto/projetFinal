@@ -52,7 +52,7 @@ class OfferRequestDAO
 
         try{
             $pstmt = $db->prepare("DELETE FROM offerrequest WHERE idOffer=:id");
-            $n = $pstmt->execute(array(':id' => $request->getIdOffer()));
+            $n = $pstmt->execute(array(':id' => $offerRequest->getIdOffer()));
 
             $pstmt->closeCursor();
             $pstmt = NULL;

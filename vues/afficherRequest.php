@@ -27,12 +27,9 @@
 			$daoM = new MessageDAO();
 			$mesagesNonLus=$daoM->messageLuStatus($_SESSION["idMember"]);
 		?>
-<div width="200px">
-
-  <a  href="?action=afficherMessages">Messages nom lus </a><span class="badge badge-warning ml-2"><?=$mesagesNonLus?></span>
-
-</div>	
-	
+		<div width="200px">
+  			<a  href="?action=afficherMessages">Messages nom lus </a><span class="badge badge-warning ml-2"><?=$mesagesNonLus?></span>
+		</div>	
 
 		<p>
 			<h2> Demandes</h2>
@@ -49,6 +46,8 @@
 						$dateDiff = date_diff($dateRequest,$now);
 						$days = $dateDiff->format('%a');
 						$dateService = date_create($request->getDateService());
+						if($request->getIdMember() != $_SESSION["idMember"])
+						{
 				?>
 				<div class="card">
 					<h4 class="card-header text-left" role="tab" id="heading<?=$request->getIdRequest()?>" >
@@ -73,62 +72,14 @@
 					</div>
 				</div>
 				<?php
-					$ariaExpanded = "false";
-					$collapsedShow = "";
-					$collapsed = "collapsed";
+						$ariaExpanded = "false";
+						$collapsedShow = "";
+						$collapsed = "collapsed";
+						}
 					}
 				?>
 			</div>
 		</div>
-	
-		
-		
-		 <!-- <div> -->
-		<!--	<h2>Découvrez comment vous pouvez aider quelqu'un</h2> -->
-			<?php
-				require_once('/modele/AfficherRequestDAO.class.php');
-				$dao = new afficherRequestDAO();
-				
-			?>	
-			<!-- <h2> LISTE DE REQUESTS</h3>
-			<?php //echo $_SESSION["idMember"] ?>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<td>SKILL WANTED</td>
-						<td>DESCRIPTION</td>
-						<td>DATE REQUEST</td>
-						<td>DATE OF SERVICE</td>
-						<td>LOCATION</td>
-						<td>STATUS</td>
-						<td>USER</td>
-						<td>ACTION</td>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-						$tRequest = $dao->findAll();
-						foreach($tRequest as $request) {
-					?>
-					<tr>
-						<td><?=$request->getSkillWanted()?></td>
-						<td><?=$request->getTitle()?></td>
-						<td><?=$request->getDateRequest()?></td>
-						<td><?=$request->getDateService()?></td>
-						<td><?=$request->getLocation()?></td>
-						<td><?=$request->getStatus()?></td>
-						<td><?=$request->getUsername()?></td>
-						<td>						
-						   
-							<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
-						</td>
-					</tr>
-					<?php  
-					}
-					?>
-				</tbody>
-			</table>
-		</div> -->
 		
 		<div class="mt-auto">
 			<?php

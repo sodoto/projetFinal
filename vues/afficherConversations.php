@@ -14,109 +14,98 @@
 </head>
 
 <body>
-	
-		<?php
-			include("banner.php");
-			//include("menu.php");
-		?>
-		<?php
-				require_once('/modele/MessageDAO.class.php');
-				$dao = new MessageDAO();
+	<?php
+		include("banner.php");
+		//include("menu.php");
+
+		require_once('/modele/MessageDAO.class.php');
+		$dao = new MessageDAO();
+		
+		if(isset($_REQUEST['IdMessage']))
+		{ 		 
+		$_SESSION["IdMessage"]= $_REQUEST['IdMessage']; 
+		}	
+			$dao->updateMessageLu($_SESSION["IdMessage"]); //message lu
+		
+		if(isset($_REQUEST['idRecepteur']))
+		{ 		 
+		$_SESSION["idRecepteur"]= $_REQUEST['idRecepteur']; 
+		}		
+		if(isset($_REQUEST['IdRequest']))
+		{ 		 
+		$_SESSION["IdRequest"]= $_REQUEST['IdRequest']; 
+		}	
+		
+		if(isset($_REQUEST['userName']))
+		{ 		 
+		$_SESSION["userName"]= $_REQUEST['userName']; 
+		}	
+
+	?>	
+		
+	<h2> CONVERSATION</h3>
+	<?php
+		$tRequest = $dao->findConversation($_SESSION['idMember'], $_SESSION['idRecepteur'], $_SESSION['IdRequest']);
+		foreach($tRequest as $request) {
+		if($request->getUsername()==$_SESSION["userName"]){		
+	?>
+	<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">
+		<li class="d-flex justify-content-center">
+			<img src="./images/member/<?=$request->getPhoto()?>" alt="avatar" class="avatar rounded-circle "  height="100px!important">
+			<div class="chat-body white p-3 ml-2 z-depth-1">
+				<div class="header">
+					<strong class="primary-font"><?=$request->getUsername()?></strong>
+					<small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
+				</div>
+				<hr class="w-100">
+				<p class="mb-0">
+					<?=$request->getMessage()?>
+				</p>
+			</div>
+		</li>
+		<br/>	
+	</div>				
 				
-				if(isset($_REQUEST['IdMessage']))
-				{ 		 
-				$_SESSION["IdMessage"]= $_REQUEST['IdMessage']; 
-				}	
-					$dao->updateMessageLu($_SESSION["IdMessage"]); //message lu
-				
-				if(isset($_REQUEST['idRecepteur']))
-				{ 		 
-				$_SESSION["idRecepteur"]= $_REQUEST['idRecepteur']; 
-				}		
-				if(isset($_REQUEST['IdRequest']))
-				{ 		 
-				$_SESSION["IdRequest"]= $_REQUEST['IdRequest']; 
-				}	
-				
-				if(isset($_REQUEST['userName']))
-				{ 		 
-				$_SESSION["userName"]= $_REQUEST['userName']; 
-				}	
-	
-			?>	
+	<?php  
+		}
+		else 
+		{
+	?>	
+	<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">	
+		<li class="d-flex justify-content-center">
+			<div class="chat-body white p-3 z-depth-1">
+				<div class="header">
+					<strong class="primary-font"><?=$request->getUsername()?></strong>
+					<small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
+				</div>
+				<hr class="w-100">
+				<p class="mb-0">
+					<?=$request->getMessage()?>
+				</p>
+			</div>
+			<img src="./images/member/<?=$request->getPhoto()?>" alt="avatar" class="avatar rounded-circle" height="100px!important">
+		</li>
+	</div>
+	<br/>
+									
+	<?php
+		}
 			
-		<h2> CONVERSATION</h3>
-			<?php //echo $_SESSION["idMember"] ?>
-			
-					<?php
-						$tRequest = $dao->findConversation($_SESSION['idMember'], $_SESSION['idRecepteur'], $_SESSION['IdRequest']);
-						foreach($tRequest as $request) {
-					
-					if($request->getUsername()==$_SESSION["userName"]){
-						
-					?>
-				<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">
-				<li class="d-flex justify-content-center">
-				<img src="./images/member/<?=$request->getPhoto()?>" alt="avatar" class="avatar rounded-circle "  height="100px!important">
-				<div class="chat-body white p-3 ml-2 z-depth-1">
-                <div class="header">
-                 <strong class="primary-font"><?=$request->getUsername()?></strong>
-                 <small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
-                </div>
-                <hr class="w-100">
-                <p class="mb-0">
-                  <?=$request->getMessage()?>
-                </p>
-				</div>
-				</li>
-				<br>	
-				</div>				
-					
-					<?php  
-					}
-					else 
-					{
-					  ?>	
-				<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">	
-				<li class="d-flex justify-content-center">
-				<div class="chat-body white p-3 z-depth-1">
-                <div class="header">
-                <strong class="primary-font"><?=$request->getUsername()?></strong>
-                <small class="pull-right text-muted"><i class="far fa-clock"></i> <?=$request->getDateHeure()?></small>
-                </div>
-                <hr class="w-100">
-                <p class="mb-0">
-                  <?=$request->getMessage()?>
-                </p>
-				</div>
-				<img src="./images/member/<?=$request->getPhoto()?>" alt="avatar" class="avatar rounded-circle" height="100px!important">
-				</li>
-				</div>
-				<br>
-										
-						<?php
-					}
-						
-					}
-					?>
-		
-		<div>
-		
-			<form action="" method="POST" class="formLogin" >
-		<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
-		
-		<br>
-		<input name="action" value="afficherConversations" type="hidden" />
-		
-		<button type="submit"  class="btn2">Continuer</button>
+		}
+	?>
+	
+	<div>
+		<form action="" method="POST" class="formLogin" >
+			<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
+			<br/>
+			<input name="action" value="afficherConversations" type="hidden" />
+			<button type="submit"  class="btn2">Continuer</button>
 		</form>
-		
-		
-		</div>
-		<div class="mt-auto">
-			<?php
-				include("footer.php");
-			?>
-		</div>
+	</div>
+	<div class="mt-auto">
+		<?php
+			include("footer.php");
+		?>
+	</div>
 </body>
 </html>

@@ -8,15 +8,12 @@ class OfferRequestAction implements Action {
 		
 		if (!ISSET($_SESSION)) {
 			session_start();
-			
 		}
 		
 		if (!ISSET($_SESSION["connected"])){  
-		return "login";  
+			return "login";  
 		}else{
-
-				return "offerRequest";
-				
+			return "offerRequest";
 		}
 					
 		
