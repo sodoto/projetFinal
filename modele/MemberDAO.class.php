@@ -32,7 +32,7 @@ class MemberDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO members (firstName,lastName,city,photo,email,username,password)
+            $pstmt = $db->prepare("INSERT INTO members (firstName,lastName,city,photo_path,email,username,password)
                                     VALUES (:fn,:ln,:c,:ph,:e,:u,:p)");
             $n = $pstmt->execute(array(':fn' => $member->getFirstname(),
                                        ':ln' => $member->getLastname(),

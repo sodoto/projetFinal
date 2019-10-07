@@ -79,7 +79,7 @@
 
 		public function loadFromObject($x) {
 			$this->idMember = $x->idMember;
-			$this->photo = $x->photo;
+			$this->photo = $x->photo_path;
 			$this->firstname = $x->firstName;
 			$this->lastname = $x->lastName;
 			$this->email = $x->email;

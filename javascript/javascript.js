@@ -1,6 +1,7 @@
 // Afficher les infos concernant la demande
 function openNav(demande,json) {
     document.getElementById("myNav").style.height = "100%";
+    console.log(json);
     // Parcours de l'objet JSON
     for( i in json ) {
         // Selection du bon id de demande pour l'affichage

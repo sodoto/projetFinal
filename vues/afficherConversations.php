@@ -94,9 +94,9 @@
 		}
 	?>
 	
-	<div>
+	<div class="d-flex justify-content-center">
 		<form action="" method="POST" class="formLogin" >
-			<textarea name="message" rows="5" cols="40" maxlength="200" >Écrivez votre message (200 caractères max)</textarea>
+			<textarea name="message" rows="5" cols="40" maxlength="200" placeholder="Écrivez votre message (200 caractères max)"></textarea>
 			<br/>
 			<input name="action" value="afficherConversations" type="hidden" />
 			<button type="submit"  class="btn2">Continuer</button>

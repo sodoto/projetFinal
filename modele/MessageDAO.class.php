@@ -157,7 +157,7 @@ class MessageDAO
             //creacion de un array
 			$favs = Array();
             try {			
-                $pstmt = $db->prepare("SELECT me1.dateHeure, m1.username, me1.message, m1.photo FROM message me1 
+                $pstmt = $db->prepare("SELECT me1.dateHeure, m1.username, me1.message, m1.photo_path FROM message me1 
 				INNER JOIN members m1 on me1.idMember=m1.idMember where me1.idRequest=:idRequest and 
 				(me1.idMember=:idMember or me1.idRecepteur=:idMember or me1.idMember=:idRecepteur or me1.idRecepteur=:idRecepteur) order by me1.dateHeure");
                 $pstmt->execute(array (':idMember' => $idMember,
