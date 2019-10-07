@@ -90,7 +90,7 @@
 				<thead class="thead-light">
 					<tr>
 						<th>Date d'envoi</th>
-						<th>Envoyé à</th>
+						<th>Reçu de</th>
 						<th>Titre</th>
 						<th>Message lu</th>					
 						<th>Accéder</th>
