@@ -30,47 +30,56 @@ class MessageAction implements Action {
 			
 				$rdao = new RequestDAO();
 				$request = $rdao->find($IDRequest);
+				$ordao = new OfferRequestDAO();
 
-				if($idMember != $request->getIdMember())
-				{
-					$dao = new OfferRequestDAO();
-					date_default_timezone_set("America/Toronto");
-				
-					$date = date('Y-m-d H:i:s');
-				
-					$offerRequest = new OfferRequest();
-					$offerRequest->setStatus("Message d'adie envoye");
-					$offerRequest->setDateOffer($date);
-					$offerRequest->setComment("Awaiting");
-					
-					$offerRequest->setIdMember($idMember); 
-					$offerRequest->setIdRequest($IDRequest);
-					$dao->create($offerRequest);
-
-					$lastOfferRequest = new OfferRequest();
-					$lastOfferRequest = $dao->findLast();
-					
-
-					$daoMe = new MessageDAO();			
-					date_default_timezone_set("America/Toronto");
-				
-					$date = date('Y-m-d H:i:s');
-
-					$message=new Message();
-					$message->setMessage($_REQUEST['message']);
-					$message->setIdRequest($_SESSION["IDRequest"]);
-					$message->setIdMember($_SESSION["idMember"]);
-					$message->setIdRecepteur($_SESSION["idRecepteur"]);
-					$message->setDateHeure($date);
-					$message->setMessageLu("No");
-					$message->setIdOffer($lastOfferRequest->getIdOffer());
-					
-					$daoMe->insert($message);
-				}
-				else
+				if($idMember == $request->getIdMember())
 				{
 					$_SESSION["erreurOfferRequest"] = true;
 					return "offerRequest";
+				}
+				else
+				{
+					if($ordao->findByIdMemberIdRequest($idMember,$IDRequest) == NULL)
+					{
+						$dao = new OfferRequestDAO();
+						date_default_timezone_set("America/Toronto");
+					
+						$date = date('Y-m-d H:i:s');
+					
+						$offerRequest = new OfferRequest();
+						$offerRequest->setStatus("Message d'adie envoye");
+						$offerRequest->setDateOffer($date);
+						$offerRequest->setComment("Awaiting");
+						
+						$offerRequest->setIdMember($idMember); 
+						$offerRequest->setIdRequest($IDRequest);
+						$dao->create($offerRequest);
+
+						$lastOfferRequest = new OfferRequest();
+						$lastOfferRequest = $dao->findLast();
+						
+
+						$daoMe = new MessageDAO();			
+						date_default_timezone_set("America/Toronto");
+					
+						$date = date('Y-m-d H:i:s');
+
+						$message=new Message();
+						$message->setMessage($_REQUEST['message']);
+						$message->setIdRequest($_SESSION["IDRequest"]);
+						$message->setIdMember($_SESSION["idMember"]);
+						$message->setIdRecepteur($_SESSION["idRecepteur"]);
+						$message->setDateHeure($date);
+						$message->setMessageLu("No");
+						$message->setIdOffer($lastOfferRequest->getIdOffer());
+						
+						$daoMe->insert($message);
+					}
+					else
+					{
+						$_SESSION["erreurOfferRequestDouble"] = true;
+						return "offerRequest";
+					}
 				}
 			
 			}

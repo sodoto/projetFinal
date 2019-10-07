@@ -31,7 +31,6 @@ if (!ISSET($_SESSION))
 			if((ISSET($_SESSION["erreurOfferRequest"]) && $_SESSION["erreurOfferRequest"] == true))
 			{
 		?>
-
 		<div class="container">
 			<div class="alert alert-info alert-dismissible">
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -39,10 +38,21 @@ if (!ISSET($_SESSION))
 			</div>
 		</div>
 		<?php
-			$_SESSION["erreurOfferRequest"] = false;
+				$_SESSION["erreurOfferRequest"] = false;
+			}
+			if((ISSET($_SESSION["erreurOfferRequestDouble"]) && $_SESSION["erreurOfferRequestDouble"] == true))
+			{
+		?>
+		<div class="container">
+			<div class="alert alert-info alert-dismissible">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>Attention!</strong> Vous avez déjà offert votre aide sur cette demande!
+			</div>
+		</div>
+		<?php
+				$_SESSION["erreurOfferRequestDouble"] = false;
 			}
 		?>
-
 		<div>
 			<h2>Merci de votre intérêt à mettre vos compétences au service de quelqu'un</h2>
 			

@@ -34,7 +34,7 @@
 				</div>
 				<div class="card-body">
 					Date de la demande: <span id="dateRequest"></span> <br/>
-					Date du service: <span id="dateService"></span> <br/>
+					Date demandé du service: <span id="dateService"></span> <br/>
 					Location: <span id="location"></span> <br/>
 					Status: <span id="status"></span> <br/>
 					Habileté demandée: <span id="description"></span> <br/>
@@ -73,12 +73,14 @@
 							$dateOffer = date_create($offerRequest->getDateOffer());
 							$request = $daoRequest->find($offerRequest->getIdRequest());
 							$skillDesc = $daoSkill->find($request->getSkillWanted());
+							$dateRequestService = date_create($request->getDateService());
+							$dateRequest = date_create($request->getDateRequest());
 							$trequest[] = array(
 								"idRequest" => $request->getIdRequest(),
 								"skill" => utf8_encode($skillDesc->getDescription()),
 								"title" => $request->getTitle(),
-								"dateRequest" => $request->getDateRequest(),
-								"dateService" => $request->getDateService(),
+								"dateRequest" => date_format($dateRequest, "d/m/Y H:i:s"),
+								"dateService" => date_format($dateRequestService, "d/m/Y"),
 								"location" => $request->getLocation(),
 								"status" => $request->getStatus(),
 								"idMember" => $request->getIdMember()
