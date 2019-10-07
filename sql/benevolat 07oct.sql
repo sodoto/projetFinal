@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 07, 2019 at 07:11 PM
+-- Generation Time: Oct 07, 2019 at 09:32 PM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.18
 
@@ -67,7 +67,8 @@ INSERT INTO `memberskills` (`idRegistre`, `idMember`, `idSkill`) VALUES
 (40, 1, 12),
 (41, 1, 13),
 (42, 1, 4),
-(43, 1, 6);
+(43, 1, 6),
+(44, 13, 3);
 
 -- --------------------------------------------------------
 
@@ -174,19 +175,18 @@ CREATE TABLE `skills` (
 --
 
 INSERT INTO `skills` (`idSkills`, `description`, `image_path`) VALUES
-(1, 'Deplacer des objets', ''),
-(2, 'Peinture(art)', ''),
-(3, 'Peinture (murs et objets similaires)', ''),
-(4, 'Traduire', ''),
-(5, 'Nettoyer', ''),
-(6, 'Transporter quelque chose', ''),
-(7, 'Acompagner quel\'un ou quelque chose', ''),
-(8, 'Enseigner', ''),
-(9, 'Organiser', ''),
-(10, 'Cuisiner', ''),
-(11, 'Nourrir', ''),
-(12, 'Conduire', ''),
-(13, 'Réparer quelque chose', '');
+(1, 'Deplacer des objets', '1.jpg'),
+(2, 'Peinture(art)', '2.jpg'),
+(3, 'Peinture (murs et objets similaires)', '3.jpg'),
+(4, 'Traduire', '4.jpg'),
+(5, 'Nettoyer', '5.jpg'),
+(6, 'Transporter quelque chose', '6.jpg'),
+(7, 'Acompagner quel\'un ou quelque chose', '7.jpg'),
+(8, 'Enseigner', '8.jpg'),
+(9, 'Organiser', '9.jpg'),
+(10, 'Cuisiner', '10.jpg'),
+(12, 'Conduire', '12.jpg'),
+(13, 'Réparer quelque chose', '13.jpg');
 
 --
 -- Indexes for dumped tables
@@ -249,7 +249,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `memberskills`
 --
 ALTER TABLE `memberskills`
-  MODIFY `idRegistre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `idRegistre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `message`
 --
