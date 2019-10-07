@@ -42,7 +42,7 @@
 
 	?>	
 		
-	<h2> CONVERSATION</h3>
+	<h2> Conversation</h3>
 	<?php
 		$tRequest = $dao->findConversation($_SESSION['idMember'], $_SESSION['idRecepteur'], $_SESSION['IdRequest']);
 		foreach($tRequest as $request) {
@@ -103,8 +103,10 @@
 			<button type="submit"  class="btn2">Continuer</button>
 		</form>
 	</div>
-	<?php
-		include("footer.php");
-	?>
+	<div class="mt-auto">
+		<?php
+			include("footer.php");
+		?>
+	</div>
 </body>
 </html>
