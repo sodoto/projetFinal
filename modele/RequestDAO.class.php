@@ -90,6 +90,32 @@ class RequestDAO
         return $requests;
     }
 
+    public static function findAllWithSkillDesc()
+	{
+		 $db = Database::getInstance();
+            //creacion de un array
+			$favs = Array();
+            try {			
+                $pstmt = $db->prepare("SELECT idRequest, description, title, 
+				    dateRequest, dateService, location, status, r1.idMember, username FROM request r1 INNER JOIN members m1 on r1.idMember=m1.idMember 
+					INNER JOIN skills s1 on r1.skillWanted=s1.idSkills where r1.status='ouverte'");
+                $pstmt->execute();
+
+                while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
+                {
+                        $req = new Request();
+                        $req->loadFromObject1($result);
+                        array_push($favs, $req);
+                }
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+            }
+            catch (PDOException $ex){
+            }             
+            return $favs;
+	}
+
     public function findThreeLast() {
         $db = Database::getInstance();
         $requests = Array();

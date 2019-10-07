@@ -40,7 +40,7 @@
 		<div class="d-flex flex-row justify-content-center bd-highlight flex-grow-1">
 			<div class="accordion" id="accordionRequest" role="tablist">
 				<?php
-					$tRequest = $dao->findAll();
+					$tRequest = $dao->findAllWithSkillDesc();
 					$now = date_create();
 					foreach($tRequest as $request) {
 						$dateRequest = date_create($request->getDateRequest());
