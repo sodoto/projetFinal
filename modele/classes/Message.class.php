@@ -167,7 +167,7 @@
 			$this->dateHeure = $x->dateHeure;
 			$this->username = $x->username;
 			$this->message = $x->message;
-			$this->photo = $x->photo;	
+			$this->photo = $x->photo_path;	
 		}
 		
 

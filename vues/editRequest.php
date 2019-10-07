@@ -58,7 +58,8 @@ date_default_timezone_set('America/Toronto');
 				$dao = new RequestDAO();
 				if(ISSET($_SESSION["requestEdited"]) && $_SESSION["requestEdited"] == true)
 				{
-			?>
+            ?>
+            <!-- Affichage d'un message si la demande à bien été ajouté -->
 			<div class="container">
 				<div class="alert alert-info alert-dismissible">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

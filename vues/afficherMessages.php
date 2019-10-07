@@ -74,7 +74,6 @@
 	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
 		<?php
 			include("banner.php");
-			//include("menu.php");
 		?>
 		<div>		
 			<button id="messayesRecus" >MESSAGES - RECUS</button>
@@ -84,9 +83,6 @@
 			<?php
 				require_once('/modele/MessageDAO.class.php');
 				$dao = new MessageDAO();
-				
-				
-				
 			?>	
 			<h2>MESSAGES - RECUS</h2>
 			<input type="search" id="myInput" class="light-table-filter" data-table="order-table1" placeholder="Filter">

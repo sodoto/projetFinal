@@ -41,10 +41,8 @@ if (ISSET($_REQUEST["email"]))
 				<?php
 					}
 				?>
-				<!--vider les champs  utilisateur et mot de passe-->
 				<input type="text" class="Input-Login" style="display:none">
 				<input type="password" class="Input-Login" style="display:none">
-				<!--   -->
 				<input type="password" class="Input-Login" name="password" placeholder="Mot de passe">
 				<?php 
 					if (ISSET($_REQUEST["field_messages"]["password"]))

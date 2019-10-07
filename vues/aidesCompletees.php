@@ -96,11 +96,6 @@
 					}
 				?>
 			</div>
-
-			<form action="" method="POST">
-				<input name="action" value="newRequest" type="hidden" />
-				<button type="submit" style="margin-top: 10px;">Nouvelle demande</button>
-			</form>
 		</div>
 		<div >
 			<?php

@@ -16,7 +16,6 @@
 <body>
 	<?php
 		include("banner.php");
-		//include("menu.php");
 
 		require_once('/modele/MessageDAO.class.php');
 		$dao = new MessageDAO();
@@ -49,6 +48,7 @@
 		foreach($tRequest as $request) {
 		if($request->getUsername()==$_SESSION["userName"]){		
 	?>
+	<!-- Affichage de nos messages -->
 	<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">
 		<li class="d-flex justify-content-center">
 			<img src="./images/member/<?=$request->getPhoto()?>" alt="avatar" class="avatar rounded-circle "  height="100px!important">
@@ -70,7 +70,8 @@
 		}
 		else 
 		{
-	?>	
+	?>
+	<!-- Affichage des messages de notre correspondant -->
 	<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">	
 		<li class="d-flex justify-content-center">
 			<div class="chat-body white p-3 z-depth-1">
@@ -102,10 +103,8 @@
 			<button type="submit"  class="btn2">Continuer</button>
 		</form>
 	</div>
-	<div class="mt-auto">
-		<?php
-			include("footer.php");
-		?>
-	</div>
+	<?php
+		include("footer.php");
+	?>
 </body>
 </html>

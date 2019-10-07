@@ -18,8 +18,8 @@
 		<?php
 			include("banner.php");
 		
-			require_once('/modele/AfficherRequestDAO.class.php');
-			$dao = new afficherRequestDAO();
+			require_once('/modele/RequestDAO.class.php');
+			$dao = new RequestDAO();
 			$ariaExpanded = "true";
 			$collapsedShow = "show";
 			$collapsed = "";
@@ -27,8 +27,9 @@
 			$daoM = new MessageDAO();
 			$mesagesNonLus=$daoM->messageLuStatus($_SESSION["idMember"]);
 		?>
+		<!-- Affichage du nombres de messages non lus -->
 		<div width="200px">
-  			<a  href="?action=afficherMessages">Messages nom lus </a><span class="badge badge-warning ml-2"><?=$mesagesNonLus?></span>
+  			<a  href="?action=afficherMessages">Messages non lus </a><span class="badge badge-warning ml-2"><?=$mesagesNonLus?></span>
 		</div>	
 
 		<p>

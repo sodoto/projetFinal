@@ -23,19 +23,26 @@
 		?>
 		<div>
 			<div id="banniere_photo" class="d-flex flex-column align-items-center bd-highlight">
-				<h2 style="color:white">Les demandes récentes</h2>
+				<h2 style="color: #EEEEEE;">Les demandes récentes</h2>
 				<div class="card-deck" style="width: 60%; padding-top: 30px;">
 					<?php
-						require_once('/modele/AfficherRequestDAO.class.php');
+						require_once('/modele/RequestDAO.class.php');
+						require_once('/modele/SkillsDAO.class.php');
 						$dao = new RequestDAO();
+						$sdao = new SkillsDAO();
+						$now = date_create();
 						$tRequest = $dao->findThreeLast();
 						foreach($tRequest as $request) {
+							$skill = $sdao->find($request->getSkillWanted());
+							$dateRequest = date_create($request->getDateRequest());
+							$dateDiff = date_diff($dateRequest,$now);
+							$days = $dateDiff->format('%a');
 					?>
 					<div class="card"  style="width: 18rem;">
-						<img src="./images/paint.jpg" class="card-img-top" alt="...">
+						<img src="./images/skills/<?=$skill->getImage_path();?>" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title"><?=$request->getTitle()?></h5>
-							<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+							<p class="card-text"><small class="text-muted">Il y a <?=$days?> jours</small></p>
 						</div>
 					</div>
 					<?php

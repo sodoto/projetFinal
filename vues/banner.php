@@ -29,6 +29,7 @@
 			if (ISSET($_SESSION["connected"]))
 			{
 		?>
+			<!-- Menu dropdown -->
 			<li class="nav-item dropdown">
 					<a class="dropdown-toggle text-light" role="button" data-toggle="dropdown">
 						<i class="fas fa-user"></i> Mon Profil
@@ -51,6 +52,7 @@
 			else
 			{
 		?>
+			<!-- Affiché seulement si l'utilisateur n'est pas connecté -->
 			<li class="nav-item">
 				<a class="text-light" class="nav-link" href="?action=connecter"><i class="fas fa-sign-in-alt"></i> Login</a>
 			</li>
