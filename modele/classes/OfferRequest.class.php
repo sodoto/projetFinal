@@ -7,7 +7,7 @@
         private $comment;
         private $status;
 		private $username;
-		private $photo;
+		private $photo_path;
 
         public function __construct()
         {
@@ -83,14 +83,14 @@
             $this->username = $username;
         }
 		
-		public function getPhoto()
+		public function getPhoto_path()
         {
-            return $this->photo;
+            return $this->photo_path;
         }
 
-        public function setPhoto($photo)
+        public function setPhoto_path($photo_path)
         {
-            $this->photo = $photo;
+            $this->photo_path = $photo_path;
         }
 
         public function loadFromObject($x) {
@@ -107,7 +107,7 @@
 			  $this->dateOffer = $x->dateOffer;
             $this->idMember = $x->idMember;
             $this->username = $x->username;
-			 $this->photo = $x->photo;
+			 $this->photo_path = $x->photo_path;
 		}
 		
         

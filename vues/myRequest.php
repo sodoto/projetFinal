@@ -93,7 +93,7 @@
 								</h3>
 								<div class="card-body">
 									<p class="card-text">
-										<img src="./images/member/<?=$request2->getPhoto()?>" alt="avatar" class="avatar rounded-circle" height="100px!important">
+										<img src="./images/member/<?=$request2->getPhoto_path()?>" alt="avatar" class="avatar rounded-circle" height="100px!important">
 										Définir comme "aide reçue" 
 										<a href="?action=mesDemandes&IdRequest=<?=$request->getIdRequest()?>&idOffer=<?=$request2->getIdOffer()?>"><img src="./images/ok.jpg" alt="avatar" class="OK rounded-circle" height="30px!important"></a> 
 									</p>
