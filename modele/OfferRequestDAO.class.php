@@ -193,7 +193,7 @@ class OfferRequestDAO
         $offerRequests = Array();
 
         try{
-            $pstmt = $db->prepare("SELECT of1.idOffer, of1.dateOffer, of1.idMember, m1.photo, m1.username FROM offerrequest of1 
+            $pstmt = $db->prepare("SELECT of1.idOffer, of1.dateOffer, of1.idMember, m1.photo_path, m1.username FROM offerrequest of1 
 				INNER JOIN members m1 on of1.idMember=m1.idMember where of1.idrequest=:idRequest");
             $pstmt->execute(array(':idRequest'=>$idRequest));
 
