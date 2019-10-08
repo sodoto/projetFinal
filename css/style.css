@@ -364,7 +364,7 @@ input:checked + .slider:before {
 }
 
 
-/* --------------------- Card comentences -------------------- */
+/* --------------------- Card comenptences -------------------- */
 
 #cardCompetences {
     margin: 0 auto; /* Added */
@@ -385,4 +385,29 @@ background-color: #fafafa;
 }
 
 
+/*---------- Afficher les demandes general----------*/
 
+.wrapper { 
+ 
+  overflow:hidden;
+}
+
+.wrapper div {
+   min-height: 200px;
+   padding: 10px;
+}
+#one {
+  float:left; 
+  margin-right:20px;
+  width:320px;
+}
+#two { 
+  background-color: white;
+  overflow:hidden;
+  margin:10px;
+  border:2px dashed #ccc;
+  min-height:170px;
+}
+
+
+}

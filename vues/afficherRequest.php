@@ -61,12 +61,24 @@
 
 					<div id="collapse<?=$request->getIdRequest()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$request->getIdRequest()?>" data-parent="#accordionRequest">
 						<div class="card-body">
+						<div class="wrapper">
+						
+						<div id="one">
 							Date du service demandé: <?=date_format($dateService, "d/m/Y")?> <br/>
 							Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
 							Location: <?=$request->getLocation()?> <br/>
 							Status: <?=$request->getStatus()?> <br/>
 							Habileté demandée: <?=$request->getSkillWanted()?> <br/>
 						</div>
+						<div id="two">
+						<!--sript pour afficher les photos du demande --> 
+						<a href=".\images\paint.jpg"><img src="./images/paint.jpg" alt="avatar"   width="220px!important"></a>
+						
+						</div>
+						
+						</div>
+						</div>
+						
 						<div class="card-footer text-right">
 							<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
 						</div>
