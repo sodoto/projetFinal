@@ -79,6 +79,7 @@
 							Location: <?=$request->getLocation()?> <br/>
 							Status: <?=$request->getStatus()?> <br/>
 							Membre qui a aidé: <?=$request->getUsername()?> <br/>
+							<img src="./images/member/<?=$request->getPhoto_path()?>" alt="avatar" class="avatar rounded-circle "  height="100px!important">
 						</div>
 						<div class="card-footer text-right">
 							<a href='?action=editRequest&idRequest=<?=$request->getIdRequest()?>' title='&eacute;diter'><i class="far fa-edit"></i></a>

@@ -234,7 +234,7 @@ class RequestDAO
         $requests = Array();
 
         try{
-            $pstmt = $db->prepare("SELECT r.*, m.username, s.description from request r 
+            $pstmt = $db->prepare("SELECT r.*, m.username, m.photo_path, s.description from request r 
 			INNER JOIN offerRequest o on o.idRequest=r.idRequest 
 			INNER JOIN members m on m.idMember=o.idMember 
 			INNER JOIN skills s on s.idSkills=r.skillWanted WHERE r.idMember=:id and r.status='fermee'");
@@ -242,7 +242,7 @@ class RequestDAO
 
             while($result = $pstmt->fetch(PDO::FETCH_OBJ)) {
                 $r = new Request();
-                $r->loadFromObject1($result);
+                $r->loadFromObject2($result);
                 array_push($requests, $r);
             }
 

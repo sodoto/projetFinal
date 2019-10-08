@@ -9,6 +9,7 @@
 		private $location;
 		private $status;
 		private $username;
+		private $photo_path;
 
 		public function jsonSerialize()
      	{
@@ -91,6 +92,14 @@
             $this->username = $value;
 		}
 		
+		 public function getPhoto_path(){
+            return $this->photo_path;
+        }
+
+        public function setPhoto_path($value){
+            $this->photo_path = $value;
+		}
+		
 		public function __toString()
 		{
 			return "Request[".$this->idRequest.",".$this->skillWanted.",".$this->title.",".$this->dateRequest.",".$this->dateService.",".$this->location.",".$this->status.",".$this->idMember."]";
@@ -134,6 +143,20 @@
 		$this->status = $x->status;
 		$this->idMember = $x->idMember;
 		$this->username = $x->username;
+		//Atribute from another table innerjoin
+		}
+		public function loadFromObject2($x)
+		{
+		$this->idRequest = $x->idRequest;
+		$this->skillWanted= $x->description;
+		$this->title = $x->title;
+		$this->dateRequest = $x->dateRequest;
+		$this->dateService = $x->dateService;
+		$this->location = $x->location;
+		$this->status = $x->status;
+		$this->idMember = $x->idMember;
+		$this->username = $x->username;
+		$this->photo_path = $x->photo_path;
 		//Atribute from another table innerjoin
 		}
 	}

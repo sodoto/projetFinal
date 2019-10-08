@@ -9,7 +9,7 @@
 		private $messageLu;
 		private $username;
 		private $title;
-		private $photo;
+		private $photo_path;
 		
         public function __construct()
         {
@@ -117,14 +117,14 @@
             $this->title = $title;
         }
 		
-		public function getPhoto()
+		public function getPhoto_path()
         {
-            return $this->photo;
+            return $this->photo_path;
         }
 
-        public function setPhoto($photo)
+        public function setPhoto_path($photo_path)
         {
-            $this->photo = $photo;
+            $this->photo_path = $photo_path;
         }
 
         public function loadFromObject($x) {
@@ -167,7 +167,7 @@
 			$this->dateHeure = $x->dateHeure;
 			$this->username = $x->username;
 			$this->message = $x->message;
-			$this->photo = $x->photo_path;	
+			$this->photo_path = $x->photo_path;	
 		}
 		
 
