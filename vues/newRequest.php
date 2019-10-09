@@ -52,7 +52,7 @@
 				}
 			?>
 
-            <form action="" method="POST" class="formLogin">
+            <form action="" method="POST" class="formLogin" enctype="multipart/form-data">
                 <h2>Ajouter une demande</h2>
                 <small>Titre</small>
                 <input type="text" class="Input-Login" name="title" value="<?php echo $title?>" placeholder="Titre"><br/>
@@ -83,6 +83,11 @@
                         }
                     ?>
                 </select>
+				
+				 <small>Photos de la requete</small>
+				<input type="file" name="files[]" id="inputfile" class="inputfile1" multiple />
+				<label onclick="changeTextFile()" for="inputfile"><span id="filename">Photos</span><strong>Choisir des fichiers</strong></label>
+				
                 <input type="hidden" name="action" value="newRequest">
                 <button type="submit" class="btn btn-lg btn-block text-uppercase">Ajouter</button>
             </form>

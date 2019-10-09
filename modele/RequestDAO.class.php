@@ -165,6 +165,32 @@ class RequestDAO
         return NULL;
     }
 
+	 public function findLast() {
+        $db = Database::getInstance();
+
+        try {			
+            $pstmt = $db->prepare("SELECT * FROM request ORDER BY idRequest DESC LIMIT 1");
+            $pstmt->execute();
+
+            $result = $pstmt->fetch(PDO::FETCH_OBJ);
+
+            if($result) {
+                $o = new Request();
+                $o->loadFromObject($result);
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+                return $o;
+            }
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return NULL;
+    }
+	
     public function findByIdMember($idMember) {
         $db = Database::getInstance();
         $requests = Array();

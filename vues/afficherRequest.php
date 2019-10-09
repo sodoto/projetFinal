@@ -72,8 +72,20 @@
 						</div>
 						<div id="two">
 						<!--sript pour afficher les photos du demande --> 
-						<a href=".\images\paint.jpg"><img src="./images/paint.jpg" alt="avatar"   width="220px!important"></a>
+						<?php
+						require_once('/modele/RequestPhotosDAO.class.php');
+						$daoP = new RequestPhotosDAO();
+						$reqPhotos = $daoP->findByIdRequest($request->getIdRequest());
+					
+						foreach($reqPhotos as $pic) {
+						?>
 						
+						<a href=".\images\imagesRequete\<?=$pic->getNomFichier()?>"><img src=".\images\imagesRequete\<?=$pic->getNomFichier()?>" alt="avatar"   width="220px!important"></a>
+						
+						
+						<?php
+						}
+						?>
 						</div>
 						
 						</div>
