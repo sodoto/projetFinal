@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 09 Octobre 2019 à 15:39
+-- Généré le :  Mer 09 Octobre 2019 à 15:47
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -176,7 +176,8 @@ INSERT INTO `request` (`idRequest`, `skillWanted`, `title`, `dateRequest`, `date
 (9, 5, 'J\'ai besoin pour nettoyer les feuilles de jardin', '2019-09-30 20:12:35', '2019-10-05 00:00:00', 'Montral', 'fermee', 13),
 (10, 10, 'Souper', '2019-10-07 11:42:09', '2019-10-11 00:00:00', 'Montreal', 'fermee', 13),
 (11, 4, 'Translate a document - 5 pages', '2019-10-08 12:39:23', '2019-10-08 00:00:00', 'Montreal', 'ouverte', 1),
-(62, 5, 'Nettoyer les feuilles du jardin', '2019-10-09 11:16:01', '2019-10-25 00:00:00', 'Montreal', 'ouverte', 13);
+(62, 5, 'Nettoyer les feuilles du jardin', '2019-10-09 11:16:01', '2019-10-25 00:00:00', 'Montreal', 'ouverte', 13),
+(63, 13, 'Reparer mon ordinateur', '2019-10-09 11:45:02', '2019-10-12 00:00:00', 'Montreal', 'ouverte', 1);
 
 -- --------------------------------------------------------
 
@@ -200,7 +201,10 @@ INSERT INTO `requestphotos` (`IdPhoto`, `nomFichier`, `dateUpLoad`, `idRequestPh
 (9, '2.jpg', '2019-10-09', 62),
 (10, '3.jpg', '2019-10-09', 62),
 (11, '4.jpg', '2019-10-09', 62),
-(12, '5.jpg', '2019-10-09', 62);
+(12, '5.jpg', '2019-10-09', 62),
+(13, 'ordi1.jpg', '2019-10-09', 63),
+(14, 'ordi2.jpg', '2019-10-09', 63),
+(15, 'ordi3.jpg', '2019-10-09', 63);
 
 -- --------------------------------------------------------
 
@@ -315,12 +319,12 @@ ALTER TABLE `offerrequest`
 -- AUTO_INCREMENT pour la table `request`
 --
 ALTER TABLE `request`
-  MODIFY `idRequest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `idRequest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 --
 -- AUTO_INCREMENT pour la table `requestphotos`
 --
 ALTER TABLE `requestphotos`
-  MODIFY `IdPhoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `IdPhoto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT pour la table `skills`
 --
