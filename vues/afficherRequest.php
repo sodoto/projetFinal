@@ -81,7 +81,7 @@
 						?>
 						
 						<a href=".\images\imagesRequete\<?=$pic->getNomFichier()?>"><img src=".\images\imagesRequete\<?=$pic->getNomFichier()?>" alt="avatar"   width="220px!important"></a>
-						
+				
 						
 						<?php
 						}
