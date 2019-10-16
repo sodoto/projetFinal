@@ -46,7 +46,7 @@
 	<?php
 		$tRequest = $dao->findConversation($_SESSION['idMember'], $_SESSION['idRecepteur'], $_SESSION['IdRequest']);
 		foreach($tRequest as $request) {
-		if($request->getUsername()==$_SESSION["userName"]){		
+			if($request->getUsername()==$_SESSION["userName"]){		
 	?>
 	<!-- Affichage de nos messages -->
 	<div class="col-md-6 col-xl-12 pl-md-3 px-lg-auto px-0">
@@ -68,7 +68,7 @@
 				
 	<?php  
 		}
-		else 
+			else 
 		{
 	?>
 	<!-- Affichage des messages de notre correspondant -->

@@ -16,6 +16,7 @@ require_once('/controleur/AfficherMessagesAction.class.php');
 require_once('/controleur/AfficherConversationsAction.class.php');
 require_once('/controleur/DetailOfferAction.class.php');
 require_once('/controleur/AidesCompleteesAction.class.php');
+require_once('/controleur/EditProfilAction.class.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -68,7 +69,10 @@ class ActionBuilder{
 				break;	
 			case "aidesCompletees" :
 				return new AidesCompleteesAction();
-				break;					
+				break;
+			case "editProfil":
+				return new EditProfilAction();
+				break;				
 			default :
 				return new DefaultAction();
 		}
