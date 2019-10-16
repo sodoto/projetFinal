@@ -42,23 +42,29 @@ function loadContact() {
 
 // Fonction pour afficher le nom de fichier pour la photo de profil
 function changeTextFile(){
-    var input = document.querySelector( '.inputfile1' );
-    var label	 = input.nextElementSibling,
-        labelVal = label.innerHTML;
-
-    input.addEventListener( 'change', function(e)
+    var inputs = document.querySelectorAll( '.inputfile1' );
+    Array.prototype.forEach.call( inputs, function( input )
     {
-        var fileName = '';
-        
-        fileName = e.target.value.split( '\\' ).pop();
+        var label	 = input.nextElementSibling,
+            labelVal = label.innerHTML;
 
-        if( fileName )
+        input.addEventListener( 'change', function(e)
         {
-            label.querySelector( 'span' ).innerHTML = fileName;
-        }
-        else
-        {
-            label.innerHTML = labelVal;
-        }
+            var fileName = '';
+            
+            if( this.files && this.files.length > 1 )
+                fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+            else
+                fileName = e.target.value.split( '\\' ).pop();
+
+            if( fileName )
+            {
+                label.querySelector( 'span' ).innerHTML = fileName;
+            }
+            else
+            {
+                label.innerHTML = labelVal;
+            }
+        });
     });
 }

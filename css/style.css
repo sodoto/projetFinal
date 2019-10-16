@@ -203,6 +203,7 @@ a.hover {
     min-height: 2em;
     display: inline-block;
     text-overflow: ellipsis;
+    white-space: nowrap;
     vertical-align: top;
     color: #a3a2a2;
 }

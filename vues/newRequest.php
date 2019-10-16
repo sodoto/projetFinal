@@ -85,7 +85,7 @@
                 </select>
 				
 				 <small>Photos de la requete</small>
-				<input type="file" name="files[]" id="inputfile" class="inputfile1" multiple />
+				<input type="file" name="files[]" id="inputfile" class="inputfile1" data-multiple-caption="{count} files selected" multiple />
 				<label onclick="changeTextFile()" for="inputfile"><span id="filename">Photos</span><strong>Choisir des fichiers</strong></label>
 				
                 <input type="hidden" name="action" value="newRequest">
