@@ -4,6 +4,7 @@
 		private $skillWanted;
 		private $idMember;
 		private $title;
+		private $description;
 		private $dateRequest;
 		private $dateService;
 		private $location;
@@ -50,6 +51,14 @@
 
 		public function setTitle($value){
 			$this->title = $value;
+		}
+
+		public function getDescription(){
+			return $this->description;
+		}
+
+		public function setDescription($value){
+			$this->description = $value;
 		}
 
 		public function getDateRequest(){
@@ -114,6 +123,7 @@
 			$this->idRequest=$tab["idRequest"];
 			$this->skillWanted=$tab["skillWanted"];
 			$this->title = $tab["title"];
+			$this->description = $tab["description_request"];
 			$this->dateRequest = $tab["dateRequest"];
 			$this->dateService = $tab["dateService"];
 			$this->location = $tab["location"];
@@ -126,6 +136,7 @@
 			$this->skillWanted= $x->skillWanted;
 			$this->idMember = $x->idMember;
 			$this->title = $x->title;
+			$this->description = $x->description_request;
 			$this->dateRequest = $x->dateRequest;
 			$this->dateService = $x->dateService;
 			$this->location = $x->location;
@@ -137,6 +148,7 @@
 		$this->idRequest = $x->idRequest;
 		$this->skillWanted= $x->description;
 		$this->title = $x->title;
+		$this->description = $x->description_request;
 		$this->dateRequest = $x->dateRequest;
 		$this->dateService = $x->dateService;
 		$this->location = $x->location;
@@ -150,6 +162,7 @@
 		$this->idRequest = $x->idRequest;
 		$this->skillWanted= $x->description;
 		$this->title = $x->title;
+		$this->description = $x->description_request;
 		$this->dateRequest = $x->dateRequest;
 		$this->dateService = $x->dateService;
 		$this->location = $x->location;

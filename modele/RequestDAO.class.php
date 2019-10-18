@@ -9,9 +9,10 @@ class RequestDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("INSERT INTO request (title,dateRequest,dateService,location,status,idMember,skillWanted)
-                                    VALUES (:t,:dr,:ds,:c,:s,:idm,:sw)");
+            $pstmt = $db->prepare("INSERT INTO request (title,description_request,dateRequest,dateService,location,status,idMember,skillWanted)
+                                    VALUES (:t,:d,:dr,:ds,:c,:s,:idm,:sw)");
             $n = $pstmt->execute(array(':t' => $request->getTitle(),
+                                       ':d' => $request->getDescription(),
                                        ':dr' => $request->getDateRequest(),
                                        ':ds' => $request->getDateService(),
                                        ':c' => $request->getLocation(),
@@ -33,9 +34,10 @@ class RequestDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("UPDATE request SET title=:t, dateService=:ds, location=:c, status=:s, skillWanted=:sw WHERE idRequest=:idr");
+            $pstmt = $db->prepare("UPDATE request SET title=:t, description_request=:d, dateService=:ds, location=:c, status=:s, skillWanted=:sw WHERE idRequest=:idr");
             $n = $pstmt->execute(array(':idr' => $request->getIdRequest(),
                                        ':t' => $request->getTitle(),
+                                       ':d' => $request->getDescription(),
                                        ':ds' => $request->getDateService(),
                                        ':c' => $request->getLocation(),
                                        ':s' => $request->getStatus(),
@@ -96,7 +98,7 @@ class RequestDAO
             //creacion de un array
 			$favs = Array();
             try {			
-                $pstmt = $db->prepare("SELECT idRequest, description, title, 
+                $pstmt = $db->prepare("SELECT idRequest, description_request, description, title, 
 				    dateRequest, dateService, location, status, r1.idMember, username FROM request r1 INNER JOIN members m1 on r1.idMember=m1.idMember 
 					INNER JOIN skills s1 on r1.skillWanted=s1.idSkills where r1.status='ouverte'");
                 $pstmt->execute();
@@ -286,7 +288,7 @@ class RequestDAO
 		 $db = Database::getInstance();
           $favs = Array();
             try {			
-                $pstmt = $db->prepare("SELECT idRequest, description, title, 
+                $pstmt = $db->prepare("SELECT idRequest, description_request, description, title, 
 				    dateRequest, dateService, location, status, r1.idMember, username FROM request r1 INNER JOIN members m1 on r1.idMember=m1.idMember 
 					INNER JOIN skills s1 on r1.skillWanted=s1.idSkills WHERE idRequest=:idRequest");
                  $pstmt->execute(array(':idRequest'=> $idRequest));
