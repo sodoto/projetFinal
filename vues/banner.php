@@ -10,18 +10,6 @@
 		<li class="nav-item">
 				<a class="text-light" href="?action=afficherRequest">Voir les demandes</a>
 		</li>
-		<!-- <li class="nav-item">
-			<form class="form-inline">
-				<div class="input-group">
-					<input type="text" class="rechercher" class="form-control" placeholder="Rechercher" aria-label="Rechercher" aria-describedby="button-addon2">
-					<div class="input-group-append">
-						<button class="btn2 my-2 my-sm-0" type="button" id="button-addon2">
-							<i class="fas fa-search"></i>
-						</button>
-					</div>
-				</div>
-			</form>
-		</li>	 -->
 	</ul>
 
 	<ul class="nav navbar-nav ml-auto">

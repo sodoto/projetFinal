@@ -8,7 +8,9 @@ class EditProfilAction implements Action {
         if (!ISSET($_SESSION)) {
 			session_start();
         }
-        
+		
+		$_SESSION["passwordChanged"] = false;
+
         if (!ISSET($_SESSION["connected"])){  
             return "login";
         }
@@ -30,9 +32,18 @@ class EditProfilAction implements Action {
 						$memberPass -> setPassword($_REQUEST["newPassword"]);
 						$memberPass -> setIdMember($_SESSION["idMember"]);
 
-						$dao->updatePassword($memberPass);
+						$_SESSION["patate"] = $memberPass->getPassword();
+						$_SESSION["patate2"] = $memberPass->getIdMember();
+
+						$n = $dao->updatePassword($memberPass);
+
+						if($n != 0)
+						{
+							$_SESSION["passwordChanged"] = true;
+						}
+
+						return "profil";
 					}
-					return "profil";
 				}
 				else
 				{
@@ -130,7 +141,8 @@ class EditProfilAction implements Action {
 	{
 		$dao = new MemberDAO();
 		$memberPass = $dao->find($_SESSION['idMember']);
-		
+
+		$result = true;
 		if ($_REQUEST['oldPassword'] != $memberPass->getPassword())
 		{
 			$_REQUEST["field_messages"]["oldPassword"] = "Ancien mot de passe n'est pas valide";
@@ -150,6 +162,7 @@ class EditProfilAction implements Action {
 		{
 			$_REQUEST["field_messages"]["passwordMissMatch"] = "Les deux mots de passe ne correspondent pas, veuillez vérifier";
 			$result = false;
-		}	
+		}
+		return $result;
 	}
 }

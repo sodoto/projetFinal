@@ -43,6 +43,11 @@ require_once('/modele/MemberDAO.class.php');
 		?>
 
 		<div class="d-flex flex-row justify-content-center align-items-center bd-highlight flex-grow-1">
+				<?php 
+				echo $_SESSION["patate"];
+				echo $_SESSION["patate2"];
+					
+				?>
 			<form action="" method="POST" class="formLogin" style="margin: 50px;" enctype="multipart/form-data">
 				<h1>Modifier mot de passe</h1>
 				<small>Ancien mot de passe</small>
