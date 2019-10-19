@@ -12,7 +12,7 @@ class EditProfilAction implements Action {
         }
         else
         {
-            return "editProfil";
+            return "profil";
         }
 
         if (ISSET($_REQUEST["sendEditForm"]))
