@@ -70,7 +70,7 @@ class ActionBuilder{
 			case "aidesCompletees" :
 				return new AidesCompleteesAction();
 				break;
-			case "editProfil":
+			case "profil":
 				return new EditProfilAction();
 				break;				
 			default :

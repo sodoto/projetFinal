@@ -74,12 +74,13 @@
 				
 					<div id="collapse<?=$request->getIdRequest()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$request->getIdRequest()?>" data-parent="#accordionRequest">
 						<div class="card-body">
-							Date du service: <?=date_format($dateService, "d/m/Y")?> <br/>
-							Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
-							Location: <?=$request->getLocation()?> <br/>
-							Status: <?=$request->getStatus()?> <br/>
-							Habileté demandée: <?=$skill->getDescription()?> <br/>
-							Membres prêts à aider: <br/>
+							<b>Date du service:</b> <?=date_format($dateService, "d/m/Y")?> <br/>
+							<b>Date de la demande:</b> <?=date_format($dateRequest, "d/m/Y")?> <br/>
+							<b>Location:</b> <?=$request->getLocation()?> <br/>
+							<b>Status:</b> <?=$request->getStatus()?> <br/>
+							<b>Description:</b> <?=$request->getDescription()?> <br/>
+							<b>Habileté demandée:</b> <?=$skill->getDescription()?> <br/>
+							<b>Membres prêts à aider:</b> <br/>
 							<?php
 								require_once('/modele/OfferRequestDAO.class.php');
 								$daoOffers = new OfferRequestDAO();

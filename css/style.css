@@ -113,11 +113,10 @@ a.hover {
     height: 30px;
 }
 
-.btn2 { /*rechercher*/
-    background-color: #555555;
+.btn2 { 
+    background-color: #101820FF !important;
     color: white;
     border: 1px solid;
-    border-color: #555555;
 }
 
 .btn3 {
@@ -153,6 +152,15 @@ a.hover {
     border: 1px solid #ccc;
 }
 
+.Input-Login-Edit-Profil {
+    padding: 5px 5px;
+    margin-top: 5px;
+    width: 100%;
+    color: #666;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
 .select-form{
     padding: 15px 10px;
     margin: 5px 0px;
@@ -170,6 +178,19 @@ a.hover {
 
 .warningMessage {
     color : red;
+}
+
+/* --------------------- Profil -------------------- */
+
+#affProfil{
+    border: 10px solid #f05630;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#nomProfil{
+    font-size: 20px;
+    font-family: 'Roboto';
 }
 
 /* --------------------- Sign Up Upload Fichier -------------------- */
@@ -332,23 +353,14 @@ input:checked + .slider:before {
 }
 
 .overlay a {
-    padding: 8px;
     text-decoration: none;
-    font-size: 36px;
+    font-size: 30px;
     color: #444;
-    display: block;
     transition: 0.3s;
 }
 
 .overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
-}
-
-.overlay .closebtn {
-    position: absolute;
-    top: 60px;
-    right: 45px;
-    font-size: 60px;
+    color: #b6b6b6;
 }
 
 /* --------------------- Search bar -------------------- */

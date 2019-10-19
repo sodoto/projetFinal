@@ -53,7 +53,7 @@
 				<div class="card">
 					<h4 class="card-header text-left" role="tab" id="heading<?=$request->getIdRequest()?>" >
 						<a class="<?=$collapsed?> d-block" style="color:#444" data-toggle="collapse" href="#collapse<?=$request->getIdRequest()?>"  aria-expanded="<?=$ariaExpanded?>" aria-controls="collapse<?=$request->getIdRequest()?>">
-							<span>
+							<span title="Demande faite le <?=date_format($dateRequest, "d/m/Y")?>">
 								<i class="fa fa-chevron-down float-right"></i><?=$request->getTitle()?> <span class="text-muted" style="font-size: 12px"> Il y a <?=$days?> jours </span>
 							</span>
 						</a>
@@ -64,29 +64,27 @@
 						<div class="wrapper">
 						
 						<div id="one">
-							Date du service demandé: <?=date_format($dateService, "d/m/Y")?> <br/>
-							Date de la demande: <?=date_format($dateRequest, "d/m/Y")?> <br/>
-							Location: <?=$request->getLocation()?> <br/>
-							Status: <?=$request->getStatus()?> <br/>
-							Habileté demandée: <?=$request->getSkillWanted()?> <br/>
-							Description:  <?=$request->getDescription()?> <br/>
+							<b>Date du service demandé:</b> <?=date_format($dateService, "d/m/Y")?> <br/>
+							<b>Location:</b> <?=$request->getLocation()?> <br/>
+							<!-- <b>Status:</b> <?=$request->getStatus()?> <br/> -->
+							<b>Habileté demandée:</b> <?=$request->getSkillWanted()?> <br/>
+							<b>Description:</b>  <?=$request->getDescription()?> <br/>
 						</div>
 						<div id="two">
-						<!--sript pour afficher les photos du demande --> 
-						<?php
-						require_once('/modele/RequestPhotosDAO.class.php');
-						$daoP = new RequestPhotosDAO();
-						$reqPhotos = $daoP->findByIdRequest($request->getIdRequest());
+							<!--sript pour afficher les photos du demande --> 
+							<?php
+								require_once('/modele/RequestPhotosDAO.class.php');
+								$daoP = new RequestPhotosDAO();
+								$reqPhotos = $daoP->findByIdRequest($request->getIdRequest());
+							
+								foreach($reqPhotos as $pic) {
+							?>
+							
+							<a href=".\images\imagesRequete\<?=$pic->getNomFichier()?>"><img src=".\images\imagesRequete\<?=$pic->getNomFichier()?>" alt="avatar"   width="220px!important"></a>
 					
-						foreach($reqPhotos as $pic) {
-						?>
-						
-						<a href=".\images\imagesRequete\<?=$pic->getNomFichier()?>"><img src=".\images\imagesRequete\<?=$pic->getNomFichier()?>" alt="avatar"   width="220px!important"></a>
-				
-						
-						<?php
-						}
-						?>
+							<?php
+								}
+							?>
 						</div>
 						
 						</div>

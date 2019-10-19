@@ -15,7 +15,7 @@ class SigninAction implements Action {
 		
 		$dao = new MemberDAO();
 
-		if(ISSET($_FILES["profilPicture"]))
+		if(ISSET($_FILES["profilPicture"]) && $_FILES['profilPicture']["name"]!="")
 		{
 			$dossier = "./images/member/";
 			$nomFichier = $_REQUEST["email"]."_".$_FILES["profilPicture"]["name"];

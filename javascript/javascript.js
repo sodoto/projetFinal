@@ -1,6 +1,6 @@
 // Afficher les infos concernant la demande
-function openNav(demande,json) {
-    document.getElementById("myNav").style.height = "100%";
+function openNavOfferRequest(demande,json) {
+    document.getElementById("myNavOfferRequest").style.height = "100%";
     console.log(json);
     // Parcours de l'objet JSON
     for( i in json ) {
@@ -9,6 +9,7 @@ function openNav(demande,json) {
         {
             document.getElementById("description").innerHTML = json[i].skill;
             document.getElementById("title").innerHTML = json[i].title;
+            document.getElementById("description_request").innerHTML = json[i].description_request;
             document.getElementById("dateRequest").innerHTML = json[i].dateRequest;
             document.getElementById("dateService").innerHTML = json[i].dateService;
             document.getElementById("location").innerHTML = json[i].location;
@@ -17,11 +18,48 @@ function openNav(demande,json) {
     }
 }
 
-// Fermeture de la fenêtre
-function closeNav() {
-    document.getElementById("myNav").style.height = "0%";
+
+// Fermeture de la fenêtre Request
+function closeNavOfferRequest() {
+    document.getElementById("myNavOfferRequest").style.height = "0%";
 }
 
+// Afficher les infos concernant la modification de profil
+function openNavEditProfil() {
+    document.getElementById("myNavEditProfil").style.height = "100%";
+}
+
+// Fermeture de la fenêtre modification de profil
+function closeNavEditProfil() {
+    document.getElementById("myNavEditProfil").style.height = "0%";
+}
+
+//Mise à jour du profil
+function updateProfil(){
+    var formElements = document.forms['editProfilForm'].elements;
+    var firstname = formElements['firstname'].value;
+    var lastname = formElements['lastname'].value;
+    var email = formElements['email'].value;
+    var city = formElements['city'].value;
+    var username = formElements['username'].value;
+    var photo = formElements['profilPicture'].value;
+    var data = "firstname="+firstname+
+                "&lastname="+lastname+
+                "&email="+email+
+                "&city="+city+
+                "&username="+username+
+                "&photo="+photo+
+                "&sendEditForm=";
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("messageEditProfil").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("POST", "?action=editProfil", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
 
 // Afficher les informations de contact dans le footer
 function loadContact() {

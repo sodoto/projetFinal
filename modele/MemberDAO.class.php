@@ -56,13 +56,53 @@ class MemberDAO
         $n = 0;
 
         try{
-            $pstmt = $db->prepare("UPDATE members SET firstName=:fn ,lastName=:ln ,city=:c ,email=:e, username=:u ,password=:u WHERE idMember=:id");
+            $pstmt = $db->prepare("UPDATE members SET firstName=:fn ,lastName=:ln ,city=:c ,email=:e, username=:u WHERE idMember=:id");
             $n = $pstmt->execute(array(':fn' => $member->getFirstname(),
                                        ':ln' => $member->getLastname(),
                                        ':c' => $member->getCity(),
                                        ':e' => $member->getEMail(),
                                        ':u' => $member->getUsername(),
-                                       ':p' => $member->getPassword(),
+                                       ':id' => $member->getIdMember())); 
+            
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();                                 
+        }
+        catch (PDOException $ex){
+        }           
+        return $n;
+    }
+
+    public function updateWithProfilPicture($member) {
+        $db = Database::getInstance();
+        $n = 0;
+
+        try{
+            $pstmt = $db->prepare("UPDATE members SET firstName=:fn ,lastName=:ln ,city=:c ,email=:e, username=:u, photo_path=:ph WHERE idMember=:id");
+            $n = $pstmt->execute(array(':fn' => $member->getFirstname(),
+                                       ':ln' => $member->getLastname(),
+                                       ':c' => $member->getCity(),
+                                       ':e' => $member->getEMail(),
+                                       ':u' => $member->getUsername(),
+                                       ':ph' => $member->getPhoto(),
+                                       ':id' => $member->getIdMember())); 
+            
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();                                 
+        }
+        catch (PDOException $ex){
+        }           
+        return $n;
+    }
+
+    public function updatePassword($member) {
+        $db = Database::getInstance();
+        $n = 0;
+
+        try{
+            $pstmt = $db->prepare("UPDATE members SET password=:p WHERE idMember=:id");
+            $n = $pstmt->execute(array(':p' => $member->getPassword(),
                                        ':id' => $member->getIdMember())); 
             
             $pstmt->closeCursor();

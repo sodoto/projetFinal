@@ -36,7 +36,7 @@
 					</a> 
 					<div class="dropdown-content">
 						<img class="rounded-circle" src="./images/member/<?=$_SESSION['photoMember']?>" width="20"> 
-						<a class="text-dark" href="?action=editProfil"><?=$_SESSION['nameMember']?></a><br/>
+						<a class="text-dark" href="?action=profil"><?=$_SESSION['nameMember']?></a><br/>
 						<a class="text-dark" class="dropdown-item" href="?action=mySkills">MES COMP&Eacute;TENCES</a> <br/>
 						<a class="text-dark" class="dropdown-item" href="?action=mesDemandes">MES DEMANDES</a> <br/>
 						<a class="text-dark" class="dropdown-item" href="?action=mesOffres">MES OFFRES</a> <br/>

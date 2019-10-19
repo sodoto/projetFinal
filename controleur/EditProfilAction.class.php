@@ -1,5 +1,7 @@
 <?php
 require_once('./controleur/Action.interface.php');
+require_once('/modele/MemberDAO.class.php');
+require_once('/modele/classes/Member.class.php');
 
 class EditProfilAction implements Action {
 	public function execute(){
@@ -12,13 +14,83 @@ class EditProfilAction implements Action {
         }
         else
         {
-            return "profil";
-        }
+			$dao = new MemberDAO();
 
-        if (ISSET($_REQUEST["sendEditForm"]))
-        {
+			if(ISSET($_REQUEST["EditPassword"]))
+			{
+				if (ISSET($_REQUEST["sendEditPassword"]))
+				{
+					if (!$this->validePassword())
+					{
+						return "editPassword";
+					}
+					else
+					{
+						$memberPass = new Member();
+						$memberPass -> setPassword($_REQUEST["newPassword"]);
+						$memberPass -> setIdMember($_SESSION["idMember"]);
+
+						$dao->updatePassword($memberPass);
+					}
+					return "profil";
+				}
+				else
+				{
+					return "editPassword";
+				}
+			}
+			elseif(ISSET($_REQUEST["EditProfil"]))
+			{
+				if (ISSET($_REQUEST["sendEditForm"]))
+				{
+					if (!$this->valide())
+					{
+						return "editProfil";
+					}
+					else
+					{
+
+						$member = new Member();
+						$member -> setIdMember($_SESSION["idMember"]);
+						$member -> setFirstname($_REQUEST["firstname"]);
+						$member -> setLastname($_REQUEST["lastname"]);
+						$member -> setCity($_REQUEST["city"]);
+						$member -> setUsername($_REQUEST["username"]);
+						$member -> setEMail($_REQUEST["email"]);
+
+						if(ISSET($_FILES["profilPicture"]) && $_FILES['profilPicture']["name"]!="")
+						{
+							$dossier = "./images/member/";
+							$nomFichier = $_REQUEST["email"]."_".$_FILES["profilPicture"]["name"];
+							if (copy($_FILES["profilPicture"]["tmp_name"],$dossier.$nomFichier))
+							{
+								unlink($_FILES['profilPicture']['tmp_name']);
+							}
+							$member -> setPhoto($nomFichier);
+
+							$dao->updateWithProfilPicture($member);
+						}
+						else
+						{
+							$dao->update($member);
+						}
+					}
+
+					return "profil";
+				}
+				else
+				{
+					return "editProfil";
+				}
+			}
+			else
+			{
+				return "profil";
+			}
             
         }
+
+        
 
     }
 
@@ -50,26 +122,34 @@ class EditProfilAction implements Action {
 			$_REQUEST["field_messages"]["username"] = "Veuillez entrer votre nom d'utilisateur";
 			$result = false;
         }
-        if ($_REQUEST['oldPassword'] == "")
+        
+		return $result;
+	}
+
+	public function validePassword()
+	{
+		$dao = new MemberDAO();
+		$memberPass = $dao->find($_SESSION['idMember']);
+		
+		if ($_REQUEST['oldPassword'] != $memberPass->getPassword())
 		{
-			$_REQUEST["field_messages"]["oldPassword"] = "Mot de passe obligatoire";
+			$_REQUEST["field_messages"]["oldPassword"] = "Ancien mot de passe n'est pas valide";
 			$result = false;
 		}
-		if ($_REQUEST['password'] == "")
+		if ($_REQUEST['newPassword'] == "")
 		{
-			$_REQUEST["field_messages"]["password"] = "Mot de passe obligatoire";
+			$_REQUEST["field_messages"]["newPassword"] = "Mot de passe obligatoire";
 			$result = false;
 		}
-		if ($_REQUEST['password2'] == "")
+		if ($_REQUEST['newPassword2'] == "")
 		{
-			$_REQUEST["field_messages"]["password2"] = "Retapez le mot de passe";
+			$_REQUEST["field_messages"]["newPassword2"] = "Retapez le mot de passe";
 			$result = false;
 		}	
-		if ($_REQUEST['password2'] != $_REQUEST['password'])
+		if ($_REQUEST['newPassword'] != $_REQUEST['newPassword2'])
 		{
 			$_REQUEST["field_messages"]["passwordMissMatch"] = "Les deux mots de passe ne correspondent pas, veuillez vérifier";
 			$result = false;
 		}	
-		return $result;
 	}
 }

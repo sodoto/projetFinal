@@ -44,38 +44,27 @@ require_once('/modele/MemberDAO.class.php');
 
 		<div class="d-flex flex-row justify-content-center align-items-center bd-highlight flex-grow-1">
 			<form action="" method="POST" class="formLogin" style="margin: 50px;" enctype="multipart/form-data">
-				<h1>Modifier profil</h1>
-				<small>Prénom</small>
-				<input type="text" class="Input-Login" name="firstname" value="<?php echo $firstname?>" placeholder="Prenom"><br/>
-				<?php if (ISSET($_REQUEST["field_messages"]["firstname"])) 
-					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["firstname"]."</span><br/>";
+				<h1>Modifier mot de passe</h1>
+				<small>Ancien mot de passe</small>
+				<input type="password" class="Input-Login" name="oldPassword"  placeholder="Ancien mot de passe"><br/>
+				<?php if (ISSET($_REQUEST["field_messages"]["oldPassword"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["oldPassword"]."</span><br/>";
 				?>
-				<small>Nom</small>
-				<input type="text" class="Input-Login" name="lastname" value="<?php echo $lastname?>" placeholder="Nom"><br/>
-				<?php if (ISSET($_REQUEST["field_messages"]["lastname"])) 
-					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["lastname"]."</span><br/>";
+				<small>Nouveau mot de passe</small>
+				<input type="password" class="Input-Login" name="newPassword"  placeholder="Nouveau mot de passe"><br/>
+				<?php if (ISSET($_REQUEST["field_messages"]["newPassword"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["newPassword"]."</span><br/>";
 				?>
-				<small>Ville</small>
-				<input type="text" class="Input-Login" name="city"  value="<?php echo $city?>" placeholder="Ville"><br/>
-				<?php if (ISSET($_REQUEST["field_messages"]["city"])) 
-					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["city"]."</span><br/>";
+				<small>Répéter le mot de passe</small>
+				<input type="password" class="Input-Login" name="newPassword2"  placeholder="R&eacute;p&eacute;ter le mot de passe"><br/>
+				<?php if (ISSET($_REQUEST["field_messages"]["newPassword2"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["newPassword2"]."</span></br>";
 				?>
-				<small>Courrier électronique</small>
-				<input type="email" class="Input-Login" name="email" value="<?php echo $email?>" placeholder="Courrier &eacute;lectronique"><br/>
-				<?php if (ISSET($_REQUEST["field_messages"]["email"])) 
-					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["email"]."</span><br/>";
+				<?php if (ISSET($_REQUEST["field_messages"]["passwordMissMatch"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["passwordMissMatch"]."</span></br>";
 				?>
-				<small>Nom d'utilisateur</small>
-				<input type="text" class="Input-Login" name="username" value="<?php echo $username?>" placeholder="Utilisateur"><br/>
-				<?php if (ISSET($_REQUEST["field_messages"]["username"])) 
-					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["username"]."</span><br/>";
-				?>
-
-				<small>Photo de profil</small>
-				<input type="file" id="inputfile" class="inputfile1" name="profilPicture" />
-				<label onclick="changeTextFile()" for="inputfile"><span id="filename"><?=$photoName?></span><strong>Choisir un fichier</strong></label>
-
-				<input type="hidden" name="sendEditForm">
+			
+				<input type="hidden" name="sendEditPassword">
 				<button type="submit" class="btn btn-lg btn-block text-uppercase">Modifier</button>
 				<br />
 			</form>

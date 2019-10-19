@@ -38,12 +38,24 @@ require_once('/modele/MemberDAO.class.php');
 			$email = $member->getEmail();
 			$username = $member->getUsername();
 			$photoName = $member->getPhoto();
-			
-			
 		?>
-
+		
 		<div class="d-flex flex-row justify-content-center align-items-center bd-highlight flex-grow-1">
-			<div><img src="./images/member/<?=$photoName?>" /></div>
+			<div id="affProfil" class="d-flex flex-column w-50" style="background-color: #asdasds">
+				<div class="pt-3 align-self-center">
+					<img src="./images/member/<?=$photoName?>" width="75" height="75" alt="Photo de profil" title="Photo de profil"/>
+				</div>
+				<span id="nomProfil" class="align-self-center"><?=$firstname?> <?=$lastname?></span>
+				<div class="p-5">
+					<b>Nom d'utilisateur:</b> <?=$username?> <br/>
+					<b>Courriel électronique:</b> <?=$email?> <br/>
+					<b>Ville:</b> <?=$city?> <br/>
+				</div>
+				<div class="align-self-center">
+					<a href="?action=profil&EditProfil"><button class="m-2 btn btn2">Modifier le profil</button></a>
+					<a href="?action=profil&EditPassword"><button class="m-2 btn btn2">Modifier le mot de passe</button></a>
+				</div>
+			</div>
 		</div>
 
 		

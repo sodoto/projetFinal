@@ -22,26 +22,25 @@
 
 <body>
 	<!-- Contient les informations de la demande qui sera selectionné (caché au démarrage) -->
-	<div id="myNav" class="overlay">
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<?php
-			require_once('/modele/RequestDAO.class.php');
-		?>
+	<div id="myNavOfferRequest" class="overlay">
 		<div class="overlay-content" id="afficheRequest">
 			<div class="card ">
-				<div class="card-header">
-				<span id="title"><span>
+				<div class="card-header d-flex flex-row align-items-center bd-highlight">
+					<b><span id="title" style="font-size: 20px;"></span></b>
+					<a href="javascript:void(0)" class="ml-auto" onclick="closeNavOfferRequest()"><i class="far fa-times-circle"></i></a>
 				</div>
 				<div class="card-body">
-					Date de la demande: <span id="dateRequest"></span> <br/>
-					Date demandé du service: <span id="dateService"></span> <br/>
-					Location: <span id="location"></span> <br/>
-					Status: <span id="status"></span> <br/>
-					Habileté demandée: <span id="description"></span> <br/>
+					<b>Date de la demande:</b> <span id="dateRequest"></span> <br/>
+					<b>Date demandé du service:</b> <span id="dateService"></span> <br/>
+					<b>Location:</b> <span id="location"></span> <br/>
+					<b>Status:</b> <span id="status"></span> <br/>
+					<p><b>Description:</b> <span id="description_request"></span></p>
+					<b>Habileté demandée:</b> <span id="description"></span> <br/>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Fin du div caché au démarrage -->
 
 	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
 		<?php
@@ -76,8 +75,9 @@
 							$dateRequest = date_create($request->getDateRequest());
 							$trequest[] = array(
 								"idRequest" => $request->getIdRequest(),
-								"skill" => utf8_encode($skillDesc->getDescription()),
+								"skill" => $skillDesc->getDescription(),
 								"title" => $request->getTitle(),
+								"description_request" => $request->getDescription(),
 								"dateRequest" => date_format($dateRequest, "d/m/Y H:i:s"),
 								"dateService" => date_format($dateRequestService, "d/m/Y"),
 								"location" => $request->getLocation(),
@@ -96,7 +96,7 @@
 				
 					<div id="collapse<?=$offerRequest->getIdOffer()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$offerRequest->getIdOffer()?>" data-parent="#accordionRequest">
 						<div class="card-body">
-							<a href="#" onclick="openNav(this,json)" data-id="<?=$request->getIdRequest()?>" title="Voir la demande">Voir la requête</a><br/>
+							<a href="#" onclick="openNavOfferRequest(this,json)" data-id="<?=$request->getIdRequest()?>" title="Voir la demande">Voir la requête</a><br/>
 							Date de l'offre: <?=date_format($dateOffer, "d/m/Y")?> <br/>
 							Commentaire: <?=$offerRequest->getComment()?> <br/>
 							Status: <?=$offerRequest->getStatus()?> <br/>
