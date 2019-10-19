@@ -69,6 +69,7 @@
 							Location: <?=$request->getLocation()?> <br/>
 							Status: <?=$request->getStatus()?> <br/>
 							Habileté demandée: <?=$request->getSkillWanted()?> <br/>
+							Description:  <?=$request->getDescription()?> <br/>
 						</div>
 						<div id="two">
 						<!--sript pour afficher les photos du demande --> 
