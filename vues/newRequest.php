@@ -7,6 +7,7 @@
     }
 
     $title = "";
+	$description = "";
     $dateService = "";
     $location = "";
     $statut = "";
@@ -58,6 +59,11 @@
                 <input type="text" class="Input-Login" name="title" value="<?php echo $title?>" placeholder="Titre"><br/>
                 <?php if (ISSET($_REQUEST["field_messages"]["title"])) 
                     echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["title"]."</span><br /><br />";
+                ?>
+				<small>Description</small>
+                <input type="text" class="Input-Login" name="description" value="<?php echo $description?>" placeholder="Description"><br/>
+                <?php if (ISSET($_REQUEST["field_messages"]["description"])) 
+                    echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["description"]."</span><br /><br />";
                 ?>
                 <small>Date du service demandé</small>
                 <input type="date" class="Input-Login" name="dateService"  value="<?php echo date('Y-m-d')?>"><br/>

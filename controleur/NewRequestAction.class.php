@@ -33,6 +33,7 @@ class NewRequestAction implements Action {
         $request = new Request();
         $request -> setIdMember($_SESSION["idMember"]);
         $request -> setTitle($_REQUEST["title"]);
+		$request -> setDescription($_REQUEST["description"]);
         $request -> setDateService(date($_REQUEST["dateService"]));
         $request -> setDateRequest(date('Y-m-d H:i:s'));
         $request -> setLocation($_REQUEST["location"]);
@@ -103,6 +104,11 @@ class NewRequestAction implements Action {
 		if ($_REQUEST['title'] == "")
 		{
 			$_REQUEST["field_messages"]["title"] = "Donnez un titre";
+			$result = false;
+		}
+		if ($_REQUEST['description'] == "")
+		{
+			$_REQUEST["field_messages"]["description"] = "Donnez une description";
 			$result = false;
 		}	
 		if ($_REQUEST['location'] == "")
