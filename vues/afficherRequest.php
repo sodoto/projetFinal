@@ -36,6 +36,15 @@
 			<h2> Demandes</h2>
 			<h4>Découvrez comment vous pouvez venir en aide aux différents membres!</h4>
 		</p>
+		
+		<div class="search-request">
+			<div class="input-group input-group-lg mb-3">
+				<input type="text" class="form-control" placeholder="Recherche par mot-clé">
+				<div class="input-group-append">
+					<button class="btn btn-search" type="button">OK</button>
+				</div>
+			</div>
+		</div>
 
 		<div class="d-flex flex-row justify-content-center bd-highlight flex-grow-1">
 			<div class="accordion" id="accordionRequest" role="tablist">

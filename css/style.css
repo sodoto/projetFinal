@@ -18,6 +18,15 @@ a.hover {
     /* color: black; */
 }
 
+.search-request {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    margin: auto;
+}
+
+
 /* ------------ Banner and footer ----------------- */
 
 .navbar {
@@ -96,12 +105,15 @@ a.hover {
 /* ------------ Login ----------------- */
 
 .btn {
-    /* font-size: 80%; */
     margin-top: 10px;
     font-weight: bold;
     background-color: #074B98 !important;
     /* #f03030 Couleur du logo*/
     color: #ced7dd !important;
+}
+
+.btn-search{
+    margin-top: 0;
 }
 
 .btn1 { /* footer */
