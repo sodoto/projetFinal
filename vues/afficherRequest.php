@@ -37,19 +37,31 @@
 			<h4>Découvrez comment vous pouvez venir en aide aux différents membres!</h4>
 		</p>
 		
-		<div class="search-request">
-			<div class="input-group input-group-lg mb-3">
-				<input type="text" class="form-control" placeholder="Recherche par mot-clé">
-				<div class="input-group-append">
-					<button class="btn btn-search" type="button">OK</button>
+		<!-- Champs texte permettant la recherche par mot clé -->
+		<form action="" method="post">
+			<div class="search-request">
+				<div class="input-group input-group-lg mb-3">
+					<input type="text" name="searchKeyword" class="form-control" placeholder="Recherche par mot-clé">
+					<input type="hidden" name="search">
+					<div class="input-group-append">
+						<button class="btn btn-search" type="submit">OK</button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 
 		<div class="d-flex flex-row justify-content-center bd-highlight flex-grow-1">
 			<div class="accordion" id="accordionRequest" role="tablist">
 				<?php
-					$tRequest = $dao->findAllWithSkillDesc();
+					if(ISSET($_SESSION["searchKeyword"]) && $_SESSION["searchKeyword"] != "")
+					{
+						$tRequest = $dao->findByKeyword($_SESSION["searchKeyword"]);
+					} 
+					else
+					{
+						$tRequest = $dao->findAllWithSkillDesc();
+					}
+					
 					$now = date_create();
 					foreach($tRequest as $request) {
 						$dateRequest = date_create($request->getDateRequest());
@@ -92,6 +104,7 @@
 							<a href=".\images\imagesRequete\<?=$pic->getNomFichier()?>"><img src=".\images\imagesRequete\<?=$pic->getNomFichier()?>" alt="avatar"   width="220px!important"></a>
 					
 							<?php
+									$_SESSION["searchKeyword"] = "";
 								}
 							?>
 						</div>

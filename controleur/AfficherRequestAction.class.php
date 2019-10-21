@@ -8,6 +8,11 @@ class AfficherRequestAction implements Action {
 			return "login";  
 		}
 		else{
+			if(ISSET($_REQUEST["search"]))
+			{
+				$_SESSION["searchKeyword"] = $_REQUEST["searchKeyword"];
+				return "afficherRequest";
+			}
 			return "afficherRequest";
 		}
 					
