@@ -59,7 +59,9 @@
 					} 
 					else
 					{
-						$tRequest = $dao->findAllWithSkillDesc();
+						
+						include("navigation.php");
+						//$tRequest = $dao->findAllWithSkillDesc();
 					}
 					
 					$now = date_create();
@@ -68,8 +70,8 @@
 						$dateDiff = date_diff($dateRequest,$now);
 						$days = $dateDiff->format('%a');
 						$dateService = date_create($request->getDateService());
-						if($request->getIdMember() != $_SESSION["idMember"])
-						{
+						//if($request->getIdMember() != $_SESSION["idMember"])
+						//{
 				?>
 				<div class="card">
 					<h4 class="card-header text-left" role="tab" id="heading<?=$request->getIdRequest()?>" >
@@ -86,6 +88,7 @@
 						
 						<div id="one">
 							<b>Date du service demandé:</b> <?=date_format($dateService, "d/m/Y")?> <br/>
+							<b>Utilisateur:</b> <?=$request->getUsername()?> <br/>
 							<b>Location:</b> <?=$request->getLocation()?> <br/>
 							<!-- <b>Status:</b> <?=$request->getStatus()?> <br/> -->
 							<b>Habileté demandée:</b> <?=$request->getSkillWanted()?> <br/>
@@ -113,7 +116,14 @@
 						</div>
 						
 						<div class="card-footer text-right">
-							<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
+						<?php
+								if($request->getIdMember()!=$_SESSION["idMember"]){
+								?>	
+								<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
+								<?php
+								}
+								?>
+							
 						</div>
 					</div>
 				</div>
@@ -121,11 +131,12 @@
 						$ariaExpanded = "false";
 						$collapsedShow = "";
 						$collapsed = "collapsed";
-						}
+						//}
 					}
 				?>
 			</div>
 		</div>
+			
 		
 		<div class="mt-auto">
 			<?php

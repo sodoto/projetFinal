@@ -117,6 +117,41 @@ class RequestDAO
             }             
             return $favs;
     }
+	
+	public static function getPage($numPage, $taillePage)
+	{
+			$db = Database::getInstance();
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
+			$debut = ($numPage - 1)*$taillePage;
+			$tp=$taillePage;
+			
+			
+			$favs = Array();
+            try {			
+                $pstmt = $db->prepare("SELECT idRequest, description_request, description, title, 
+				    dateRequest, dateService, location, status, r1.idMember, username FROM request r1 INNER JOIN members m1 on r1.idMember=m1.idMember 
+					INNER JOIN skills s1 on r1.skillWanted=s1.idSkills where r1.status='ouverte' LIMIT :debut, :tp");
+               
+				  $pstmt->execute(array (':debut'=> $debut,
+										':tp'=> $tp));
+										
+										
+                while ($result = $pstmt->fetch(PDO::FETCH_OBJ))
+                {
+                        $req = new Request();
+                        $req->loadFromObject1($result);
+                        array_push($favs, $req);
+                }
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+				
+            }
+            catch (PDOException $ex){
+            } 
+				
+            return $favs;
+	}
     
     public static function findByKeyword($keyword)
 	{
