@@ -24,43 +24,6 @@ function closeNavOfferRequest() {
     document.getElementById("myNavOfferRequest").style.height = "0%";
 }
 
-// Afficher les infos concernant la modification de profil
-function openNavEditProfil() {
-    document.getElementById("myNavEditProfil").style.height = "100%";
-}
-
-// Fermeture de la fenêtre modification de profil
-function closeNavEditProfil() {
-    document.getElementById("myNavEditProfil").style.height = "0%";
-}
-
-//Mise à jour du profil
-function updateProfil(){
-    var formElements = document.forms['editProfilForm'].elements;
-    var firstname = formElements['firstname'].value;
-    var lastname = formElements['lastname'].value;
-    var email = formElements['email'].value;
-    var city = formElements['city'].value;
-    var username = formElements['username'].value;
-    var photo = formElements['profilPicture'].value;
-    var data = "firstname="+firstname+
-                "&lastname="+lastname+
-                "&email="+email+
-                "&city="+city+
-                "&username="+username+
-                "&photo="+photo+
-                "&sendEditForm=";
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("messageEditProfil").innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("POST", "?action=editProfil", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(data);
-}
-
 // Afficher les informations de contact dans le footer
 function loadContact() {
     var xhttp = new XMLHttpRequest();
