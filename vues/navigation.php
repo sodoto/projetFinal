@@ -3,7 +3,7 @@
 ?>
 
 	<form action="" method="post">
-			Nombre de r&eacute;sultats pas page :
+			Nombre de r&eacute;sultats par page :
 		<?php
 			$selected = "selected=\"selected\"";
 			$n = -1;
