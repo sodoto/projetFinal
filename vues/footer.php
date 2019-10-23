@@ -5,4 +5,6 @@
             <a class="text-dark"> Retour au haut de la page </a><i class="fas fa-sort-up"></i>
         </button>
     </div>
+    <div id="contact">
+    </div>
 </footer>

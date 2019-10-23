@@ -28,13 +28,17 @@ function closeNavOfferRequest() {
 function loadContact() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("footer").innerHTML = this.responseText;
-        
-        // Scroll automatique au bas de la page
-        var scrollingElement = (document.scrollingElement || document.body);
-        scrollingElement.scrollTop = scrollingElement.scrollHeight;
-      }
+        if (this.readyState == 4 && this.status == 200) {
+
+            if(document.getElementById("contact").innerHTML=="")
+                document.getElementById("contact").innerHTML = this.responseText;
+            else
+                document.getElementById("contact").innerHTML = "";
+
+            // Scroll automatique au bas de la page
+            var scrollingElement = (document.scrollingElement || document.body);
+            scrollingElement.scrollTop = scrollingElement.scrollHeight;
+        }
     };
     xhttp.open("GET", "./javascript/ajax_contact.txt", true);
     xhttp.send();
