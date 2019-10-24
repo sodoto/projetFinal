@@ -96,7 +96,6 @@
 									<b>Habileté demandée:</b> <?=$request->getSkillWanted()?> <br/>
 									<b>Description:</b>  <?=$request->getDescription()?> <br/>
 								</div>
-								<!-- <div id="two"> -->
 								<div id="carouselExampleControls<?=$request->getIdRequest()?>" class="carousel slide two" data-ride="carousel">
 									<div class="carousel-inner">
 										<!--sript pour afficher les photos du demande --> 
@@ -109,7 +108,7 @@
 										?>
 										<div class="carousel-item <?=$active?>">
 											<a href=".\images\imagesRequete\<?=$pic->getNomFichier()?>">
-												<img class="d-block w-100" src=".\images\imagesRequete\<?=$pic->getNomFichier()?>" alt="avatar">
+												<img class="d-block img-carousel" src=".\images\imagesRequete\<?=$pic->getNomFichier()?>" alt="avatar">
 											</a>
 										</div>
 										<?php	
@@ -118,6 +117,10 @@
 											
 										?>
 									</div>
+									<?php
+										if(count($reqPhotos) > 0)
+										{
+									?>
 									<a class="carousel-control-prev" href="#carouselExampleControls<?=$request->getIdRequest()?>" role="button" data-slide="prev">
 										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 										<span class="sr-only">Previous</span>
@@ -126,6 +129,9 @@
 										<span class="carousel-control-next-icon" aria-hidden="true"></span>
 										<span class="sr-only">Next</span>
 									</a>
+									<?php
+										}
+									?>
 								</div>
 							
 							</div>
