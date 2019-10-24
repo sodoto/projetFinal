@@ -323,7 +323,7 @@ input:checked + .slider:before {
 
 .accordion {
     width: 70%;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
 
 .card {

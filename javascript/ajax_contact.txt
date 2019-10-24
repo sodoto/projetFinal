@@ -3,3 +3,23 @@ Adresse du siège social <br/>
 Montréal (Québec) H1X 2S9 <br/>
 Téléphone : 514 555-5555 <br/>
 Courriel : info@communaction.com <br/>
+
+function confirmDelete(event){
+    event.preventDefault();
+    var url = event.currentTarget.getAttribute("href");
+
+    swal({
+        title: "Étes-vous sûr de vouloir supprimer cette demande?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Oui',
+        cancelButtonText: 'Non'
+    })
+    .then(() => {
+        if(result.value)
+        {
+            window.location.href=url;
+        }
+      });
+}

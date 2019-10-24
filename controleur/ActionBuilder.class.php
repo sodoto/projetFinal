@@ -9,6 +9,7 @@ require_once('/controleur/MemberSkillsAction.class.php');
 require_once('/controleur/OfferRequestAction.class.php');
 require_once('/controleur/MessageAction.class.php');
 require_once('/controleur/EditRequestAction.class.php');
+require_once('/controleur/DeleteRequestAction.class.php');
 require_once('/controleur/NewRequestAction.class.php');
 require_once('/controleur/MyOfferRequestAction.class.php');
 require_once('/controleur/MySkillsAction.class.php');
@@ -33,6 +34,9 @@ class ActionBuilder{
 				break;
 			case "editRequest" :
 				return new EditRequestAction();
+				break;
+			case "deleteRequest" :
+				return new DeleteRequestAction();
 				break;
 			case "connecter" :
 				return new LoginAction();

@@ -73,3 +73,25 @@ function changeTextFile(){
         });
     });
 }
+
+//Confirmation
+function confirmDelete(event){
+    event.preventDefault();
+    var url = event.currentTarget.getAttribute("href");
+
+    swal({
+        title: "Étes-vous sûr de vouloir supprimer cette demande?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'Oui',
+        cancelButtonText: 'Non'
+    })
+    .then((result) => {
+        console.log(result);
+        if(result.value)
+        {
+            window.location.href=url;
+        }
+      });
+}
