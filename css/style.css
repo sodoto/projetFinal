@@ -426,11 +426,20 @@ background-color: #fafafa;
   margin-right:20px;
   width:320px;
 }
-#two { 
+
+.two { 
   background-color: white;
   overflow:hidden;
   margin:10px;
   border:2px dashed #ccc;
   min-height:170px;
 }
+
+#carouselExampleControls { 
+    background-color: white;
+    overflow:hidden;
+    margin:10px;
+    border:2px dashed #ccc;
+    min-height:170px;
+  }
 

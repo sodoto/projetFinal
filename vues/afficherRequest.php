@@ -23,6 +23,7 @@
 			$ariaExpanded = "true";
 			$collapsedShow = "show";
 			$collapsed = "";
+			
 			require_once('/modele/MessageDAO.class.php');
 			$daoM = new MessageDAO();
 			$mesagesNonLus=$daoM->messageLuStatus($_SESSION["idMember"]);
@@ -66,6 +67,7 @@
 					
 					$now = date_create();
 					foreach($tRequest as $request) {
+						$active = "active";
 						$dateRequest = date_create($request->getDateRequest());
 						$dateDiff = date_diff($dateRequest,$now);
 						$days = $dateDiff->format('%a');
@@ -84,45 +86,59 @@
 
 					<div id="collapse<?=$request->getIdRequest()?>" class="collapse <?=$collapsedShow?>" aria-labelledby="heading<?=$request->getIdRequest()?>" data-parent="#accordionRequest">
 						<div class="card-body">
-						<div class="wrapper">
+							<div class="wrapper">
 						
-						<div id="one">
-							<b>Date du service demandé:</b> <?=date_format($dateService, "d/m/Y")?> <br/>
-							<b>Utilisateur:</b> <?=$request->getUsername()?> <br/>
-							<b>Location:</b> <?=$request->getLocation()?> <br/>
-							<!-- <b>Status:</b> <?=$request->getStatus()?> <br/> -->
-							<b>Habileté demandée:</b> <?=$request->getSkillWanted()?> <br/>
-							<b>Description:</b>  <?=$request->getDescription()?> <br/>
-						</div>
-						<div id="two">
-							<!--sript pour afficher les photos du demande --> 
-							<?php
-								require_once('/modele/RequestPhotosDAO.class.php');
-								$daoP = new RequestPhotosDAO();
-								$reqPhotos = $daoP->findByIdRequest($request->getIdRequest());
+								<div id="one">
+									<b>Date du service demandé:</b> <?=date_format($dateService, "d/m/Y")?> <br/>
+									<b>Utilisateur:</b> <?=$request->getUsername()?> <br/>
+									<b>Location:</b> <?=$request->getLocation()?> <br/>
+									<!-- <b>Status:</b> <?=$request->getStatus()?> <br/> -->
+									<b>Habileté demandée:</b> <?=$request->getSkillWanted()?> <br/>
+									<b>Description:</b>  <?=$request->getDescription()?> <br/>
+								</div>
+								<!-- <div id="two"> -->
+								<div id="carouselExampleControls<?=$request->getIdRequest()?>" class="carousel slide two" data-ride="carousel">
+									<div class="carousel-inner">
+										<!--sript pour afficher les photos du demande --> 
+										<?php
+											require_once('/modele/RequestPhotosDAO.class.php');
+											$daoP = new RequestPhotosDAO();
+											$reqPhotos = $daoP->findByIdRequest($request->getIdRequest());
+										
+											foreach($reqPhotos as $pic) {
+										?>
+										<div class="carousel-item <?=$active?>">
+											<a href=".\images\imagesRequete\<?=$pic->getNomFichier()?>">
+												<img class="d-block w-100" src=".\images\imagesRequete\<?=$pic->getNomFichier()?>" alt="avatar">
+											</a>
+										</div>
+										<?php	
+											$active= "";
+											}
+											
+										?>
+									</div>
+									<a class="carousel-control-prev" href="#carouselExampleControls<?=$request->getIdRequest()?>" role="button" data-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a>
+									<a class="carousel-control-next" href="#carouselExampleControls<?=$request->getIdRequest()?>" role="button" data-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
+								</div>
 							
-								foreach($reqPhotos as $pic) {
-							?>
-							
-							<a href=".\images\imagesRequete\<?=$pic->getNomFichier()?>"><img src=".\images\imagesRequete\<?=$pic->getNomFichier()?>" alt="avatar"   width="220px!important"></a>
-					
-							<?php
-									$_SESSION["searchKeyword"] = "";
-								}
-							?>
-						</div>
-						
-						</div>
+							</div>
 						</div>
 						
 						<div class="card-footer text-right">
 						<?php
-								if($request->getIdMember()!=$_SESSION["idMember"]){
-								?>	
-								<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
-								<?php
-								}
-								?>
+							if($request->getIdMember()!=$_SESSION["idMember"]){
+						?>	
+							<a href="?action=offerRequest&IdRequest=<?=$request->getIdRequest()?>">SOS Go!</a> 
+						<?php
+							}
+						?>
 							
 						</div>
 					</div>
@@ -133,6 +149,7 @@
 						$collapsed = "collapsed";
 						//}
 					}
+					$_SESSION["searchKeyword"] = "";
 				?>
 			</div>
 		</div>
