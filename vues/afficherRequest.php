@@ -96,9 +96,10 @@
 									<b>Habileté demandée:</b> <?=$request->getSkillWanted()?> <br/>
 									<b>Description:</b>  <?=$request->getDescription()?> <br/>
 								</div>
+								<!--sript pour afficher les photos du demande avec un carousel(bootstrap) --> 
 								<div id="carouselExampleControls<?=$request->getIdRequest()?>" class="carousel slide two" data-ride="carousel">
 									<div class="carousel-inner">
-										<!--sript pour afficher les photos du demande --> 
+										
 										<?php
 											require_once('/modele/RequestPhotosDAO.class.php');
 											$daoP = new RequestPhotosDAO();
