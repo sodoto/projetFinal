@@ -68,7 +68,9 @@
 		}
 		
 		 public function loadFromObject1($x) {
-			
+			$this->idRegistre = $x->idRegistre;
+            $this->idMember = $x->idMember;
+            $this->idSkill = $x->idSkills;
 			$this->description = $x->description;
 			$this->image_path = $x->image_path;
 		}
