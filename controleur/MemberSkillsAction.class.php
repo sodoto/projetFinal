@@ -94,6 +94,47 @@ if (!ISSET($_SESSION))
 			return "afficherRequest";
 		}
 
+		if(isset($_POST['edit']))
+		{
+			$tSkillsMember = $dao->findSkills($_SESSION["idMember"]);
+			$skillIdMember = Array();
+
+			if(!empty($_REQUEST["formSkill"]))
+			{
+				$selectedSkill = $_REQUEST["formSkill"];
+
+				// Vérifie si le membre à enlevé des compétences
+				foreach($tSkillsMember as $skill)
+				{
+					$skillIdMember[] = $skill->getIdSkill();
+					if(!in_array($skill->getIdSkill(),$selectedSkill))
+					{
+						$dao->delete($skill);
+					}
+				}
+
+				// Vérifie si le membres a ajouté des compétences
+				foreach($selectedSkill as $skill)
+				{
+					if(!in_array($skill,$skillIdMember))
+					{
+						$newSkill = new MemberSkills();
+						$newSkill->setIdMember($idMember);
+						$newSkill->setIdSkill($skill);
+						$dao->insertMemberSkills($newSkill);
+					}
+				}
+			}
+			else
+			{
+				foreach($tSkillsMember as $skill)
+				{
+					$dao->delete($skill);
+				}
+			}
+			return "mySkills";
+		}
+
 		if (isset($_POST['reset'])) {
 		header('location:competences.php');//changer buttons off
 		}

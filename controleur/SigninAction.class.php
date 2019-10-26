@@ -34,6 +34,7 @@ class SigninAction implements Action {
 		session_start();
 		$_SESSION["connected"] = $_REQUEST["username"];
 		$_SESSION["idMember"] = $membre->getIdMember();
+		$_SESSION["photoMember"] = $member->getPhoto();
 		//si esta todo correcto va a la vista afficher
 		return "memberSkills";//debe seguir a los skills
 	}

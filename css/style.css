@@ -397,7 +397,9 @@ input:checked + .slider:before {
     margin-bottom: 10px; /* Added */
 }
 
+#div-competence{
 
+}
 
 #divtest{
 	
@@ -440,7 +442,7 @@ background-color: #fafafa;
 
 .img-carousel{
     width: auto;
-    height: 100;
+    height: 100%;
     margin: auto;
 }
 
