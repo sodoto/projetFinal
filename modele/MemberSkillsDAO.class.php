@@ -33,7 +33,7 @@ class MemberSkillsDAO
 		 $db = Database::getInstance();
           $favs = Array();
             try {			
-                $pstmt = $db->prepare("SELECT s1.description FROM memberskills m1 INNER JOIN skills s1 on m1.idSkill = s1.idSkills and m1.idMember=:id");
+                $pstmt = $db->prepare("SELECT s1.description, s1.image_path FROM memberskills m1 INNER JOIN skills s1 on m1.idSkill = s1.idSkills and m1.idMember=:id");
                  $pstmt->execute(array(':id'=> $id));
 			
                 while ($result = $pstmt->fetch(PDO::FETCH_OBJ))

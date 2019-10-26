@@ -17,31 +17,47 @@
 	<div class="d-flex flex-column align-content-stretch bd-highlight" style="height: 100vh;">
 		<?php
 			include("banner.php");
-			require_once('/modele/MemberSkillsDAO.class.php');
-				$dao = new MemberSkillsDAO();
+			
 		?>
-		<p><br></p>
-		<div id="cardCompetences" class="card text-white bg-primary mb-3 d-inline-block" style="max-width: 25rem; background-color:#101820FF" >
-			<div class="card-body">
-				<h4 class="card-title">Mes compétences</h4>
-				<!-- <h6 class="card-subtitle">Mes compétences enregistrés sont :</h6> -->
-			</div>
+			
+		
+			<h2>Mes compétences</h2>
+			
 
-			<!-- Image -->
-			<img src="./images/handshake.jpg" style="max-width: 20rem;" alt="Photo of sunset">
-			<div class="card-body">
-				<?php
+			<?php
+			//Columns must be a factor of 12 (1,2,3,4,6,12)
+			$numOfCols = 4;
+			$rowCount = 0;
+			$bootstrapColWidth = 12 / $numOfCols;
+			?>
+			<div class="row">
+			<?php
+					require_once('/modele/MemberSkillsDAO.class.php');
+					$dao = new MemberSkillsDAO();
 					$tRequest = $dao->findSkills($_SESSION["idMember"]);
 					foreach($tRequest as $request) {
-				?>
-				<p class="card-text">
-					<i class="far fa-star"></i> - <?=$request->getDescription()?>
-				</p>
-				<?php  
-					}
-				?>			
+			?>  
+			<div class="col-md-<?php echo $bootstrapColWidth; ?>">
+            <div class="card"  style="width: 18rem;">
+				<img src="./images/skills/<?=$request->getImage_path();?>" class="card-img-top" alt="...">
+				<div class="card-body">
+				<h5 class="card-title"><i class="far fa-star"></i> - <?=$request->getDescription()?></h5>
+				<p class="card-text"> </p>
+				</div>
+				</div>
 			</div>
-		</div>
+			<?php
+			$rowCount++;
+			if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
+			}
+			?>
+			</div>
+		
+		
+		
+		
+			
+		
 		<div class="mt-auto">
 			<?php
 				include("footer.php");

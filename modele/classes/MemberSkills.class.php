@@ -4,7 +4,8 @@
 		private $idMember;
         private $idSkill;
 		private $description;
-
+		private $image_path;
+		
         public function __construct()
         {
         }
@@ -48,16 +49,28 @@
         {
             $this->description = $description;
         }
+		
+		 public function getImage_path()
+        {
+            return $this->image_path;
+        }
+
+        public function setImage_path($image_path)
+        {
+            $this->image_path = $image_path;
+        }
 
         public function loadFromObject($x) {
 			$this->idRegistre = $x->idRegistre;
 			$this->idSKill = $x->idSkill;
 			$this->idMember = $x->idMember;
+			
 		}
 		
 		 public function loadFromObject1($x) {
 			
 			$this->description = $x->description;
+			$this->image_path = $x->image_path;
 		}
 		
 		
