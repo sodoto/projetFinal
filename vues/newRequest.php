@@ -53,7 +53,7 @@
 				}
 			?>
 
-            <form action="" method="POST" class="formLogin" enctype="multipart/form-data">
+            <form id="formNewRequest" action="" method="POST" class="formLogin" enctype="multipart/form-data">
                 <h2>Ajouter une demande</h2>
                 <small>Titre</small>
                 <input type="text" class="Input-Login" name="title" value="<?php echo $title?>" placeholder="Titre"><br/>
@@ -61,7 +61,7 @@
                     echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["title"]."</span><br /><br />";
                 ?>
 				<small>Description</small>
-                <input type="text" class="Input-Login" name="description" value="<?php echo $description?>" placeholder="Description"><br/>
+                <textarea form="formNewRequest" class="form-control" name="description" row="4"><?php echo $description?></textarea>
                 <?php if (ISSET($_REQUEST["field_messages"]["description"])) 
                     echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["description"]."</span><br /><br />";
                 ?>

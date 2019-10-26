@@ -33,8 +33,6 @@ if (!ISSET($_SESSION))
 					<p id="par1">
 						<strong>Si vous changez d'avis plus tard vous pouvez ajouter des compétences dans vos préferences</strong>
 					</p>
-					<?php echo $_SESSION["idMember"] ?>
-					<?php echo $_SESSION["connected"] ?>
 					<form action="" method="POST" class="formLogin">
 						<label class="slider-label">Deplacer des objets </label>
 						<label class="switch">
