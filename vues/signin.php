@@ -77,6 +77,9 @@
 					<?php if (ISSET($_REQUEST["field_messages"]["password2"])) 
 					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["password2"]."</span></br>";
 					?>
+					<?php if (ISSET($_REQUEST["field_messages"]["passwordMissMatch"])) 
+					echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["passwordMissMatch"]."</span></br>";
+					?>
 					<button type="submit" class="btn btn-lg btn-block text-uppercase">S'inscrire</button>
 						
 					<br />
