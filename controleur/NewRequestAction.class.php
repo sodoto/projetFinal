@@ -3,9 +3,11 @@ require_once('./controleur/Action.interface.php');
 require_once('/modele/RequestDAO.class.php');
 require_once('/modele/RequestPhotosDAO.class.php');
 require_once('/modele/classes/Request.class.php');
+require_once('./controleur/RequirePRGAction.interface.php');
+
 date_default_timezone_set('America/Toronto');
 
-class NewRequestAction implements Action {
+class NewRequestAction implements Action, RequirePRGAction {
     public function execute(){
         if(!ISSET($_SESSION))
         {
@@ -53,7 +55,7 @@ class NewRequestAction implements Action {
 		$date = date('Y-m-d H:i:s');
 		
 			$targetDir = "./images/imagesRequete/";
-			$allowTypes = array('jpg','png','jpeg','gif');
+			$allowTypes = array('jpg','JPG','png','jpeg','gif');
 			
 			$statusMsg = $errorMsg = $insertValuesSQL = $errorUpload = $errorUploadType = '';
 			if(!empty(array_filter($_FILES['files']['name']))){
@@ -77,7 +79,6 @@ class NewRequestAction implements Action {
 												
 						$daoPhoto = new RequestPhotosDAO();
 						$daoPhoto -> create($reqPhotos);	
-							
 						}else{
 							$errorUpload .= $_FILES['files']['name'][$key].', ';
 						}
@@ -95,7 +96,7 @@ class NewRequestAction implements Action {
             }
 			
 
-        return "newRequest";
+        return "afficherNewRequest";
     }
 
     public function valide()

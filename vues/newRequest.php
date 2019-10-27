@@ -41,7 +41,7 @@
 				$dao = new RequestDAO();
 				if(ISSET($_SESSION["requestCreated"]) && $_SESSION["requestCreated"] == true)
 				{
-			?>
+            ?>
 			<div class="container">
 				<div class="alert alert-info alert-dismissible">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

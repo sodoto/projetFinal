@@ -27,7 +27,7 @@
 		<?php
 			include("banner.php");
 		?>
-		<a href="?action=newRequest"><button type="submit" class="btn">Nouvelle demande</button></a>
+		<a href="?action=afficherNewRequest"><button type="submit" class="btn">Nouvelle demande</button></a>
 		<div class="d-flex flex-column align-items-center bd-highlight flex-grow-1">
 			
 			<h2>Mes demandes</h2>

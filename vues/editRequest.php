@@ -53,7 +53,7 @@ date_default_timezone_set('America/Toronto');
 			include("banner.php");
 		?>
 
-		<div class="d-flex flex-row justify-content-center align-items-center bd-highlight flex-grow-1">
+		<div class="d-flex flex-column justify-content-center align-items-center bd-highlight flex-grow-1">
             <?php
 				require_once('/modele/RequestDAO.class.php');
 				$dao = new RequestDAO();
@@ -72,7 +72,7 @@ date_default_timezone_set('America/Toronto');
 				}
 			?>
 
-            <form action="" method="POST" class="formLogin">
+            <form id="formEditRequest" action="" method="POST" class="formLogin">
                 <h2>Modifier ma demande</h2>
                 <small>Titre</small>
                 <input type="text" class="Input-Login" name="title" value="<?php echo $title?>" placeholder="Titre"><br/>
@@ -80,7 +80,7 @@ date_default_timezone_set('America/Toronto');
                     echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["title"]."</span><br /><br />";
                 ?>
                 <small>Description</small>
-                <textarea form="formNewRequest" class="form-control" name="description" row="4"><?php echo $description?></textarea>
+                <textarea form="formEditRequest" class="form-control" name="description" row="4"><?php echo $description?></textarea>
                 <?php if (ISSET($_REQUEST["field_messages"]["description"])) 
                     echo "<span class=\"warningMessage\">".$_REQUEST["field_messages"]["description"]."</span><br /><br />";
                 ?>
