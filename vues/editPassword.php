@@ -65,7 +65,7 @@ require_once('/modele/MemberDAO.class.php');
 				?>
 			
 				<input type="hidden" name="sendEditPassword">
-				<button type="submit" class="btn btn-lg btn-block text-uppercase">Modifier</button>
+				<button type="submit" class="btn btn2 btn-lg btn-block text-uppercase">Modifier</button>
 				<br />
 			</form>
 		</div>

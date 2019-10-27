@@ -54,7 +54,7 @@ if (ISSET($_REQUEST["email"]))
 				?>
 
 				<input name="action" value="connecter" type="hidden" />
-				<button type="submit" class="btn btn-lg btn-block text-uppercase">Se Connecter</button>
+				<button type="submit" class="btn btn2 btn-lg btn-block text-uppercase">Se Connecter</button>
 				<br /><br /><br />
 				<a class="text-dark1" href="?action=signup">Pas inscrit? Créer un compte</a>
 			</form>

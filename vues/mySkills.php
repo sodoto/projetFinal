@@ -134,8 +134,8 @@
 				</label>
 				<br>
 				<input name="action" value="memberSkills" type="hidden" />
-				<button type="submit" name="edit" value="edit" >Enregistrer</button>
-				<button type="reset" name="reset" value="reset"  >Éteindre les boutons</button>
+				<button type="submit" name="edit" value="edit" class="btn btn2">Enregistrer</button>
+				<button type="reset" name="reset" value="reset" class="btn btn2" >Éteindre les boutons</button>
 			</form>
 		
 			

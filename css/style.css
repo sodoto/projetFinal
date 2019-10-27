@@ -132,13 +132,9 @@ a.hover {
 }
 
 .btn3 {
-    background-color: #4D9AC4;
-    color: black;
-    border-color: #4D9AC4;
-    display: inline-block;
-    text-decoration: none;
-    line-height: normal;
-    padding-right:2px;
+    background-color: #f05630 !important;
+    color: #444 !important;
+    border: 1px solid;
 }
 
 /* h1 {
@@ -244,8 +240,8 @@ a.hover {
 #inputfile + label strong {
     height: 100%;
     width: 60%;
-    color: #ced7dd;
-    background-color: #074B98;
+    color: #444;
+    background-color: #f05630;
     display: inline-block;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -395,10 +391,6 @@ input:checked + .slider:before {
     margin: 0 auto; /* Added */
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
-}
-
-#div-competence{
-
 }
 
 #divtest{

@@ -119,7 +119,7 @@ date_default_timezone_set('America/Toronto');
                     ?>
                 </select>
                 <input type="hidden" name="sendEditForm">
-                <button type="submit" class="btn btn-lg btn-block text-uppercase">Enregistrer</button>
+                <button type="submit" class="btn btn2 btn-lg btn-block text-uppercase">Enregistrer</button>
             </form>
 			
 		</div>

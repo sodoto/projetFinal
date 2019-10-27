@@ -80,7 +80,7 @@
 				<input type="file" id="inputfile" class="inputfile1" name="profilPicture" />
 				<label onclick="changeTextFile()" for="inputfile"><span id="filename">Photo de profil</span><strong>Choisir un fichier</strong></label>
 
-				<button type="submit" class="btn btn-lg btn-block text-uppercase">S'inscrire</button>
+				<button type="submit" class="btn btn2 btn-lg btn-block text-uppercase">S'inscrire</button>
 				<br />
 				<span class="text-dark1">Vous avez déjà un compte?</span>
 				<a class="text-dark1" href="?action=connecter">Login</a>

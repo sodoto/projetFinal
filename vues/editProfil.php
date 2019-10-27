@@ -76,7 +76,7 @@ require_once('/modele/MemberDAO.class.php');
 				<label onclick="changeTextFile()" for="inputfile"><span id="filename"><?=$photoName?></span><strong>Choisir un fichier</strong></label>
 
 				<input type="hidden" name="sendEditForm">
-				<button type="submit" class="btn btn-lg btn-block text-uppercase">Modifier</button>
+				<button type="submit" class="btn btn2 btn-lg btn-block text-uppercase">Modifier</button>
 				<br />
 			</form>
 		</div>

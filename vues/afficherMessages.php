@@ -76,8 +76,8 @@
 			include("banner.php");
 		?>
 		<div>		
-			<button id="messayesRecus" >Messages - Reçus</button>
-			<button id="messayesEnvoyes" >Messages - Envoyés</button>
+			<button id="messayesRecus" class="btn btn2 ml-2">Messages - Reçus</button>
+			<button id="messayesEnvoyes" class="btn btn2">Messages - Envoyés</button>
 		</div>	
 		<div id="recus">
 			<?php
