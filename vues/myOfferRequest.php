@@ -102,7 +102,7 @@
 							Status: <?=$offerRequest->getStatus()?> <br/>
 						</div>
 						<div class="card-footer text-right">
-							<a href="?action=detailOffer&offerSelected=<?=$offerRequest->getIdOffer()?>" ><i class="fas fa-comments"></i></a>
+							<a href="?action=afficherMessages" ><i class="fas fa-comments"></i></a>
 						</div>
 					</div>
 				</div>

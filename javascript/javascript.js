@@ -95,3 +95,8 @@ function confirmDelete(event){
         }
       });
 }
+
+function topPage()
+{
+    document.documentElement.scrollTop = 0;
+}

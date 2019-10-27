@@ -34,7 +34,7 @@ if (!ISSET($_SESSION))
 						<strong>Si vous changez d'avis plus tard vous pouvez ajouter des compétences dans vos préferences</strong>
 					</p>
 					<form action="" method="POST" class="formLogin">
-						<label class="slider-label">Deplacer des objets </label>
+						<label class="slider-label">Déplacement d'objets</label>
 						<label class="switch">
 							<input type="checkbox" name="deObj" value="deObj" >
 							<div class="slider round"></div>
@@ -46,67 +46,61 @@ if (!ISSET($_SESSION))
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Peinture (murs et objets similaires)</label>
+						<label class="slider-label">Peinture(murs et objets similaires)</label>
 						<label class="switch">
 							<input type="checkbox" name="peintO" value="peintO">
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Traduire </label>
+						<label class="slider-label">Traduction</label>
 						<label class="switch">
 							<input type="checkbox" name="trad" value="trad">
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Nettoyer </label>
+						<label class="slider-label">Nettoyage</label>
 						<label class="switch">
 							<input type="checkbox" name="nett" value="nett">
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Transporter quelque chose</label>
+						<label class="slider-label">Transport d'objets</label>
 						<label class="switch">
 							<input type="checkbox" name="transp" value="transp">
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Acompagner</label>
+						<label class="slider-label">Accompagnement</label>
 						<label class="switch">
 							<input type="checkbox" name="acomp" value="acomp">
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Enseigner </label>
+						<label class="slider-label">Enseignement</label>
 						<label class="switch">
 							<input type="checkbox" name="ense" value="ense">
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Organiser </label>
+						<label class="slider-label">Organisation</label>
 						<label class="switch">
 							<input type="checkbox"name="org" value="org">
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Cuisiner </label>
+						<label class="slider-label">Cuisine</label>
 						<label class="switch">
 							<input type="checkbox" name="cuis" value="cuis">
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Nourrir</label>
-						<label class="switch">
-							<input type="checkbox" name="nour" value="nour">
-							<div class="slider round"></div>
-						</label>
-						<br>
-						<label class="slider-label">Conduire</label>
+						<label class="slider-label">Accompagnement en voiture</label>
 						<label class="switch">
 							<input type="checkbox" name="cond" value="cond">
 							<div class="slider round"></div>
 						</label>
 						<br>
-						<label class="slider-label">Réparer quelque chose</label>
+						<label class="slider-label">Réparation</label>
 						<label class="switch">
 							<input type="checkbox" name="rep" value="rep">
 							<div class="slider round"></div>
@@ -114,7 +108,7 @@ if (!ISSET($_SESSION))
 						<br>
 						<input name="action" value="memberSkills" type="hidden" />
 						<button type="submit" name="submit" value="submit" >Enregistrer</button>
-						<button type="reset" name="reset" value="reset"  >Éteindre les boutons</button>
+						<button type="reset" name="reset" value="reset"  >Réinitialiser les boutons</button>
 					</form>
 				</section>
 			</article>

@@ -27,7 +27,6 @@
 		<?php
 			include("banner.php");
 		?>
-		<a href="?action=newRequest"><button type="submit" class="btn">Nouvelle demande</button></a>
 		<div class="d-flex flex-column align-items-center bd-highlight flex-grow-1">
 			
 			<h2>Mes demandes</h2>
@@ -127,6 +126,7 @@
 							<a href='?action=deleteRequest&idRequest=<?=$request->getIdRequest()?>' onclick="confirmDelete(event)" title='Supprimer la demande'><i class="far fa-trash-alt"></i></a>
 						</div>
 					</div>
+					
 				</div>
 				<?php
 							$ariaExpanded = "false";
@@ -135,6 +135,7 @@
 						}
 					}
 				?>
+				<a href="?action=afficherNewRequest"><button type="submit" class="mr-auto btn btn3 ">Nouvelle demande</button></a>
 			</div>
 		</div>
 		<?php

@@ -27,48 +27,41 @@
 			$dao = new MemberSkillsDAO();
 		?>
 			
+		<h2>Mes compétences</h2>
 		
-			<h2>Mes compétences</h2>
-			
-			<div  class="Skills">
+		<div  class="Skills">
 			<?php
-			$numOfCols = 4;
-			$rowCount = 0;
-			$bootstrapColWidth = 12 / $numOfCols;
+				$numOfCols = 4;
+				$rowCount = 0;
+				$bootstrapColWidth = 12 / $numOfCols;
 			?>
 			<div class="row">
-			<?php
+				<?php
 					$tSkillId = Array();
 					$tRequest = $dao->findSkills($_SESSION["idMember"]);
 					foreach($tRequest as $request) {
 						$tSkillId[] = $request->getIdSkill();
-						
-			?>  
-			<div class="col-md-<?php echo $bootstrapColWidth; ?>">
-            <div class="card"  style="width: 18rem;">
-				<img src="./images/skills/<?=$request->getImage_path();?>" class="card-img-top" alt="...">
-				<div class="card-body">
-				<h6 class="card-title"><?=$request->getDescription()?></h6>
-				<p class="card-text"> </p>
+							
+				?>  
+				<div class="col-md-<?php echo $bootstrapColWidth; ?>">
+					<div class="card"  style="width: 18rem;">
+						<img src="./images/skills/<?=$request->getImage_path();?>" class="card-img-top" alt="...">
+						<div class="card-body">
+							<h6 class="card-title"><?=$request->getDescription()?></h6>
+							<p class="card-text"> </p>
+						</div>
+					</div>
 				</div>
-				</div>
+				<?php
+						$rowCount++;
+						if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
+					}
+				?>
 			</div>
-			<?php
-			$rowCount++;
-			if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
-			
-			}
-			
-			?>
-			<?php 
-			//var_dump($tSkillId);				
-			?>
-			
-			</div>
-			</div>
+		</div>
 		<h3><br>Édition de compétences</h3>
 		<form action="" method="POST" class="formLogin">
-				<label class="slider-label">Deplacer des objets </label>
+				<label class="slider-label">Déplacement d'objets</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="1" <?php echo (in_array(1,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
@@ -80,75 +73,69 @@
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Peinture (murs et objets similaires)</label>
+				<label class="slider-label">Peinture(murs et objets similaires)</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="3" <?php echo (in_array(3,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Traduire </label>
+				<label class="slider-label">Traduction</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="4" <?php echo (in_array(4,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Nettoyer </label>
+				<label class="slider-label">Nettoyage</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="5" <?php echo (in_array(5,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Transporter quelque chose</label>
+				<label class="slider-label">Transport d'objets</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="6" <?php echo (in_array(6,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Acompagner</label>
+				<label class="slider-label">Accompagnement</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="7" <?php echo (in_array(7,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Enseigner </label>
+				<label class="slider-label">Enseignement</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="8" <?php echo (in_array(8,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Organiser </label>
+				<label class="slider-label">Organisation</label>
 				<label class="switch">
 					<input type="checkbox"name="formSkill[]" value="9" <?php echo (in_array(9,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Cuisiner </label>
+				<label class="slider-label">Cuisine</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="10" <?php echo (in_array(10,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Nourrir</label>
-				<label class="switch">
-					<input type="checkbox" name="formSkill[]" value="11" <?php echo (in_array(11,$tSkillId) ? "checked" : "");?>>
-					<div class="slider round"></div>
-				</label>
-				<br>
-				<label class="slider-label">Conduire</label>
+				<label class="slider-label">Accompagnement en voiture</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="12" <?php echo (in_array(12,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
-				<label class="slider-label">Réparer quelque chose</label>
+				<label class="slider-label">Réparation</label>
 				<label class="switch">
 					<input type="checkbox" name="formSkill[]" value="13" <?php echo (in_array(13,$tSkillId) ? "checked" : "");?>>
 					<div class="slider round"></div>
 				</label>
 				<br>
 				<input name="action" value="memberSkills" type="hidden" />
-				<button type="submit" name="edit" value="edit" >Enregistrer</button>
-				<button type="reset" name="reset" value="reset"  >Éteindre les boutons</button>
+				<button type="submit" name="edit" value="edit" class="btn btn2">Enregistrer</button>
+				<button type="reset" name="reset" value="reset" class="btn btn2" >Éteindre les boutons</button>
 			</form>
 		
 			

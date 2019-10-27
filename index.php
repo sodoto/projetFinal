@@ -1,21 +1,26 @@
 <?php
 // -- Contrôleur frontal --
 require_once('/controleur/ActionBuilder.class.php');
-if (ISSET($_REQUEST["action"]))
+require_once('./controleur/RequirePRGAction.interface.php');
+	$action = NULL;
+	$vue = NULL;
+	if (ISSET($_REQUEST["action"]))
 	{
-		//$vue = ActionBuilder::getAction($_REQUEST["action"])->execute();
-		/*
-		Ou :*/
-		$actionDemandee = $_REQUEST["action"];
-		$controleur = ActionBuilder::getAction($actionDemandee);
-		$vue = $controleur->execute();
-		/**/
+		$action = ActionBuilder::getAction($_REQUEST["action"]);
+		$vue = $action->execute();
 	}
-else	
+	else	
 	{
 		$action = ActionBuilder::getAction("");
 		$vue = $action->execute();
 	}
-// On affiche la page (vue)
-include_once('vues/'.$vue.'.php');
+
+	if ($action instanceof RequirePRGAction)
+	{
+		header("Location: ?action=".$vue);
+	}
+	else
+	{
+		include_once('vues/'.$vue.'.php');
+	}
 ?>

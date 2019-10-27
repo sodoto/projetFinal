@@ -40,6 +40,7 @@ class EditRequestAction implements Action {
             $editedRequest = new Request();
             $editedRequest -> setIdRequest($_REQUEST["idRequest"]);
             $editedRequest -> setTitle($_REQUEST["title"]);
+            $editedRequest -> setDescription($_REQUEST["description"]);
             $editedRequest -> setDateService(date($_REQUEST["dateService"]));
             $editedRequest -> setLocation($_REQUEST["location"]);
             $editedRequest -> setStatus($_REQUEST["statut"]);
@@ -66,6 +67,11 @@ class EditRequestAction implements Action {
 		if ($_REQUEST['title'] == "")
 		{
 			$_REQUEST["field_messages"]["title"] = "Inscrivez un titre";
+			$result = false;
+        }
+        if ($_REQUEST['description'] == "")
+		{
+			$_REQUEST["field_messages"]["description"] = "Inscrivez une description";
 			$result = false;
 		}	
 		if ($_REQUEST['dateService'] == "")
